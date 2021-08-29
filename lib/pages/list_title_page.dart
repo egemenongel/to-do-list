@@ -17,8 +17,7 @@ class _ListTitlePage extends State<ListTitlePage> {
   @override
   @override
   Widget build(BuildContext context) {
-    GlobalKey _key = GlobalKey();
-    var lisTitle = TextEditingController();
+    var listTitle = TextEditingController();
     var _listContainerModel =
         Provider.of<ListContainerModel>(context, listen: true);
 
@@ -40,12 +39,11 @@ class _ListTitlePage extends State<ListTitlePage> {
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Form(
               child: TextFormField(
-                controller: lisTitle,
+                controller: listTitle,
                 decoration: InputDecoration(
                     labelText:
                         "List Title (ex: Shopping List, Daily To Do List)"),
               ),
-              key: _key,
             ),
           ),
           SizedBox(
@@ -53,7 +51,7 @@ class _ListTitlePage extends State<ListTitlePage> {
           ),
           ElevatedButton(
             onPressed: () {
-              ToDoModel toDoListModel = ToDoModel(listTitle: lisTitle.text);
+              ToDoModel toDoListModel = ToDoModel(listTitle: listTitle.text);
               _listContainerModel.addList(toDoListModel);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AddListPage()));

@@ -9,7 +9,7 @@ import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 void main() => runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ToDoModel(listTitle: "")),
-        ChangeNotifierProvider(create: (_) => ListContainerModel())
+        ChangeNotifierProvider(create: (_) => ListContainerModel(index: 0)),
       ],
       child: MyApp(),
     ));

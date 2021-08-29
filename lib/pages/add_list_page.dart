@@ -19,9 +19,8 @@ class _AddListPage extends State<AddListPage> {
     var taskTitle = TextEditingController();
     var _listContainerModel =
         Provider.of<ListContainerModel>(context, listen: true);
-    var _toDoListModel = Provider.of<ToDoModel>(context, listen: true);
 
-    var containerIndex = 0;
+    var _containerIndex = _listContainerModel.listContainer.length - 1;
 
     return Scaffold(
       body: Center(
@@ -31,9 +30,7 @@ class _AddListPage extends State<AddListPage> {
             height: 100,
           ),
           Text(
-            _listContainerModel
-                .listContainer[_listContainerModel.listContainer.length - 1]
-                .listTitle,
+            _listContainerModel.listContainer[_containerIndex].listTitle,
             style: TextStyle(fontSize: 35, color: Colors.green[700]),
           ),
           SizedBox(
@@ -57,28 +54,32 @@ class _AddListPage extends State<AddListPage> {
               setState(() {
                 TaskModel task =
                     TaskModel(task: taskTitle.text, isCompleted: false);
-                _listContainerModel.listContainer[0].addTask(task);
+                _listContainerModel.listContainer[_containerIndex]
+                    .addTask(task);
               });
             },
             child: Text("Add"),
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: _listContainerModel.listContainer[0].taskList.length,
+                itemCount: _listContainerModel
+                    .listContainer[_containerIndex].taskList.length,
                 itemBuilder: (BuildContext context, int index) => ListTile(
                       trailing: IconButton(
                         icon: Icon(Icons.remove_circle),
                         onPressed: () {
-                          _listContainerModel.listContainer[0]
-                              .removeTaskAt(index);
+                          setState(() {
+                            _listContainerModel.listContainer[index]
+                                .removeTaskAt(index);
+                          });
                         },
                       ),
                       title: Row(
                         children: [
                           Text((index + 1).toString() + ". "),
                           Text(
-                            _listContainerModel
-                                .listContainer[0].taskList[index].task,
+                            _listContainerModel.listContainer[_containerIndex]
+                                .taskList[index].task,
                           ),
                         ],
                       ),
@@ -128,7 +129,10 @@ class _AddListPage extends State<AddListPage> {
             Expanded(
               child: TextButton(
                   onPressed: () {
-                    _listContainerModel.listContainer[0].clearList();
+                    setState(() {
+                      _listContainerModel.listContainer[_containerIndex]
+                          .clearList();
+                    });
                   },
                   child: Text("Clear List")),
             ),
