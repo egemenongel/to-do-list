@@ -42,7 +42,8 @@ class _ListTitlePage extends State<ListTitlePage> {
                 controller: listTitle,
                 decoration: InputDecoration(
                     labelText:
-                        "List Title (ex: Shopping List, Daily To Do List)"),
+                        "List Title (Shopping List, Daily To Do List...)",
+                    labelStyle: TextStyle(fontSize: 14)),
               ),
             ),
           ),
@@ -56,7 +57,7 @@ class _ListTitlePage extends State<ListTitlePage> {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AddListPage()));
             },
-            child: Text("Add"),
+            child: Text("Next"),
           ),
         ],
       )),
