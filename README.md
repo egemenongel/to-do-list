@@ -6,7 +6,6 @@ A simple To Do List built with Flutter. Used Provider Package for State Manageme
 
 ## TO DO
 
-* [X] Checklists are working without setState.
 * [ ] Firebase Integration.
 * [ ] After adding a task, automatically focus to TextFormField.
 * [ ] Works with multiple lists.
