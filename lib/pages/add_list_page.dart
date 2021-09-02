@@ -42,6 +42,7 @@ class _AddListPage extends State<AddListPage> {
               child: TextFormField(
                 controller: taskTitle,
                 decoration: InputDecoration(labelText: "New Task"),
+                autofocus: true,
               ),
               key: _key,
             ),
@@ -69,7 +70,7 @@ class _AddListPage extends State<AddListPage> {
                         icon: Icon(Icons.remove_circle),
                         onPressed: () {
                           setState(() {
-                            _listContainerModel.listContainer[index]
+                            _listContainerModel.listContainer[0]
                                 .removeTaskAt(index);
                           });
                         },

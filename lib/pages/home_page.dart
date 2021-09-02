@@ -110,7 +110,7 @@ class _HomePageState extends State<HomePage> {
               //       },
               //     )),
               Container(
-                margin: EdgeInsets.only(left: 60),
+                margin: EdgeInsets.only(left: 30),
                 child: Column(
                   children: [
                     Text(
@@ -119,7 +119,7 @@ class _HomePageState extends State<HomePage> {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                     ),
                     Container(
-                      width: 200,
+                      width: 300,
                       height: 400,
                       child: ListView.builder(
                           itemCount: _listContainer[0].taskList.length,

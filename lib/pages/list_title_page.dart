@@ -15,7 +15,6 @@ class ListTitlePage extends StatefulWidget {
 
 class _ListTitlePage extends State<ListTitlePage> {
   @override
-  @override
   Widget build(BuildContext context) {
     var listTitle = TextEditingController();
     var _listContainerModel =
@@ -44,6 +43,7 @@ class _ListTitlePage extends State<ListTitlePage> {
                     labelText:
                         "List Title (Shopping List, Daily To Do List...)",
                     labelStyle: TextStyle(fontSize: 14)),
+                autofocus: true,
               ),
             ),
           ),
