@@ -13,7 +13,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
+    var _taskListManager = Provider.of<TaskListManager>(
+      context,
+    );
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_box),
@@ -59,7 +61,7 @@ class _HomePageState extends State<HomePage> {
                                   trailing: Checkbox(
                                     value: task.isCompleted,
                                     onChanged: (value) {
-                                      _taskListManager.checkboxToggle(value!);
+                                      _taskListManager.checkboxToggle(task);
                                     },
                                   ));
                             }),

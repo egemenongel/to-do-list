@@ -9,4 +9,8 @@ class TaskModel {
     this.title = title;
     this.isCompleted = false;
   }
+
+  void toggle() {
+    isCompleted = !isCompleted;
+  }
 }

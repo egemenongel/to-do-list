@@ -31,8 +31,8 @@ class TaskListManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  checkboxToggle(bool value) {
-    value = !value;
+  checkboxToggle(TaskModel task) {
+    task.toggle();
     notifyListeners();
   }
 }
