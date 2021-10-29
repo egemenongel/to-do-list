@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/pages/add_list_page.dart';
+import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
 class ListTitlePage extends StatefulWidget {
   ListTitlePage({Key? key}) : super(key: key);
@@ -12,6 +14,7 @@ class _ListTitlePage extends State<ListTitlePage> {
   @override
   Widget build(BuildContext context) {
     var listTitle = TextEditingController();
+    var _taskListManager = Provider.of<TaskListManager>(context);
     return Scaffold(
       body: Center(
           child: Column(
@@ -44,6 +47,7 @@ class _ListTitlePage extends State<ListTitlePage> {
           ),
           ElevatedButton(
             onPressed: () {
+              _taskListManager.setTitle(listTitle.text);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AddListPage()));
             },

@@ -25,7 +25,7 @@ class _AddListPage extends State<AddListPage> {
             height: 100,
           ),
           Text(
-            "Title",
+            "${_taskListManager.listTitle}",
             style: TextStyle(fontSize: 35, color: Colors.green[700]),
           ),
           SizedBox(

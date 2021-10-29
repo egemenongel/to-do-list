@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Text(
-                      "Title",
+                      "${_taskListManager.listTitle}",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                     ),
