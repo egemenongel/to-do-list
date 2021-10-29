@@ -14,26 +14,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    var _listContainerModel =
-        Provider.of<ListContainerModel>(context, listen: true);
-    // var _containerIndex = _listContainerModel.listContainer.length - 1;
-
-    var _listContainer = _listContainerModel.listContainer;
-    var _toDoListModel = ToDoModel(listTitle: "");
-    int taskIndexSetter() {
-      if (_listContainerModel.listContainer.isNotEmpty) {
-        return _listContainerModel.listContainer[0].taskList.length;
-      }
-      return 0;
-    }
-
-    int listIndexSetter() {
-      if (_listContainer.isNotEmpty) {
-        return _listContainer.length - 1;
-      }
-      return 0;
-    }
-
+    var _taskListManager = Provider.of<TaskListManager>(context);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add_box),
@@ -52,69 +33,17 @@ class _HomePageState extends State<HomePage> {
                 fontWeight: FontWeight.bold,
                 fontSize: 25),
           ),
-          // Container(
-          //   height: 100,
-          //   child: ListView.builder(
-          //       itemCount: _toDoListModel.taskList.length,
-          //       itemBuilder: (BuildContext context, int index) => ListTile(
-          //             onTap: () {},
-          //             trailing: IconButton(
-          //               icon: Icon(Icons.remove_circle),
-          //               onPressed: () {
-          //                 _toDoListModel.removeTaskAt(index);
-          //               },
-          //             ),
-          //             title: Row(
-          //               children: [
-          //                 Text((index + 1).toString() + ". "),
-          //                 Text((() {
-          //                   if (_toDoListModel.taskList.isNotEmpty) {
-          //                     return _toDoListModel.taskList[index].task;
-          //                   }
-
-          //                   return "";
-          //                 })()),
-          //               ],
-          //             ),
-          //             leading: Checkbox(
-          //                 onChanged: (bool? value) {
-          //                   setState(() {
-          //                     _toDoListModel.taskList[index].isCompleted =
-          //                         value!;
-          //                   });
-          //                 },
-          //                 value: _toDoListModel.taskList[index].isCompleted),
-          //           )),
-          // ),
           SizedBox(
             height: 50,
           ),
           Row(
             children: [
-              // Container(
-              //     width: 100,
-              //     height: 400,
-              //     child: ListView.builder(
-              //       itemCount: _listContainer.length,
-              //       itemBuilder: (BuildContext context, int index) {
-              //         if (_listContainerModel.listContainer[listIndexSetter()]
-              //             .listTitle.isNotEmpty) {
-              //           return ListTile(
-              //             title: TextButton(
-              //               onPressed: () {},
-              //               child: Text(_listContainer[index].listTitle),
-              //             ),
-              //           );
-              //         }
-              //         return SizedBox();
-              //       },
-              //     )),
               Container(
                 margin: EdgeInsets.only(left: 30),
                 child: Column(
                   children: [
                     Text(
-                      _listContainerModel.listContainer[0].listTitle,
+                      "Title",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
                     ),
@@ -122,28 +51,9 @@ class _HomePageState extends State<HomePage> {
                       width: 300,
                       height: 400,
                       child: ListView.builder(
-                          itemCount: _listContainer[0].taskList.length,
+                          itemCount: _taskListManager.taskList.length,
                           itemBuilder: (BuildContext context, int index) {
-                            if (_listContainer.isNotEmpty) {
-                              return ListTile(
-                                title: Text(
-                                    _listContainer[0].taskList[index].task),
-                                leading: Checkbox(
-                                    activeColor: Colors.green,
-                                    onChanged: (bool? value) {
-                                      setState(() {
-                                        _listContainer[0]
-                                            .taskList[index]
-                                            .isCompleted = value!;
-                                      });
-                                    },
-                                    value: _listContainer[0]
-                                        .taskList[index]
-                                        .isCompleted),
-                              );
-                            }
-
-                            return SizedBox();
+                            return Text(_taskListManager.taskList[index].task);
                           }),
                     ),
                   ],

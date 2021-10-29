@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list_with_provider/models/list_container_model.dart';
 import 'package:to_do_list_with_provider/models/to_do_model.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 
 void main() => runApp(MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => ToDoModel(listTitle: "")),
-        ChangeNotifierProvider(create: (_) => ListContainerModel()),
+        ChangeNotifierProvider(create: (_) => TaskListManager()),
       ],
       child: MyApp(),
     ));

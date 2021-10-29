@@ -15,9 +15,6 @@ class _ListTitlePage extends State<ListTitlePage> {
   @override
   Widget build(BuildContext context) {
     var listTitle = TextEditingController();
-    var _listContainerModel =
-        Provider.of<ListContainerModel>(context, listen: true);
-
     return Scaffold(
       body: Center(
           child: Column(
@@ -50,8 +47,6 @@ class _ListTitlePage extends State<ListTitlePage> {
           ),
           ElevatedButton(
             onPressed: () {
-              ToDoModel toDoListModel = ToDoModel(listTitle: listTitle.text);
-              _listContainerModel.addList(toDoListModel);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AddListPage()));
             },

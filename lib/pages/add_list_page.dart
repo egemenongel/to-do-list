@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/models/list_container_model.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
+import 'package:to_do_list_with_provider/models/to_do_model.dart';
 import 'package:to_do_list_with_provider/pages/home_page.dart';
 
 class AddListPage extends StatefulWidget {
@@ -16,11 +17,7 @@ class _AddListPage extends State<AddListPage> {
   Widget build(BuildContext context) {
     GlobalKey _key = GlobalKey();
     var taskTitle = TextEditingController();
-    var _listContainerModel =
-        Provider.of<ListContainerModel>(context, listen: true);
-
-    var _containerIndex = _listContainerModel.listContainer.length - 1;
-
+    var _taskListManager = Provider.of<TaskListManager>(context);
     return Scaffold(
       body: Center(
           child: Column(
@@ -29,7 +26,7 @@ class _AddListPage extends State<AddListPage> {
             height: 100,
           ),
           Text(
-            _listContainerModel.listContainer[_containerIndex].listTitle,
+            "Title",
             style: TextStyle(fontSize: 35, color: Colors.green[700]),
           ),
           SizedBox(
@@ -51,35 +48,27 @@ class _AddListPage extends State<AddListPage> {
           ),
           ElevatedButton(
             onPressed: () {
-              setState(() {
-                TaskModel task =
-                    TaskModel(task: taskTitle.text, isCompleted: false);
-                _listContainerModel.listContainer[_containerIndex]
-                    .addTask(task);
-              });
+              TaskModel task =
+                  TaskModel(task: taskTitle.text, isCompleted: false);
+              _taskListManager.addTask(task);
             },
             child: Text("Add"),
           ),
           Expanded(
             child: ListView.builder(
-                itemCount: _listContainerModel
-                    .listContainer[_containerIndex].taskList.length,
+                itemCount: _taskListManager.taskList.length,
                 itemBuilder: (BuildContext context, int index) => ListTile(
                       trailing: IconButton(
                         icon: Icon(Icons.remove_circle),
                         onPressed: () {
-                          setState(() {
-                            _listContainerModel.listContainer[0]
-                                .removeTaskAt(index);
-                          });
+                          _taskListManager.removeTaskAt(index);
                         },
                       ),
                       title: Row(
                         children: [
                           Text((index + 1).toString() + ". "),
                           Text(
-                            _listContainerModel.listContainer[_containerIndex]
-                                .taskList[index].task,
+                            _taskListManager.taskList[index].task,
                           ),
                         ],
                       ),
@@ -129,10 +118,7 @@ class _AddListPage extends State<AddListPage> {
             Expanded(
               child: TextButton(
                   onPressed: () {
-                    setState(() {
-                      _listContainerModel.listContainer[_containerIndex]
-                          .clearList();
-                    });
+                    _taskListManager.clearList();
                   },
                   child: Text("Clear List")),
             ),
