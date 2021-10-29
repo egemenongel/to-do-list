@@ -5,20 +5,24 @@ import 'package:to_do_list_with_provider/models/task_model.dart';
 
 class TaskListManager extends ChangeNotifier {
   String? listTitle;
-  List<TaskModel> taskList = [];
+  List<TaskModel> _taskList = [];
+
+  UnmodifiableListView<TaskModel> get taskList {
+    return UnmodifiableListView(_taskList);
+  }
 
   addTask(TaskModel taskModel) {
-    taskList.add(taskModel);
+    _taskList.add(taskModel);
     notifyListeners();
   }
 
   removeTaskAt(index) {
-    taskList.removeAt(index);
+    _taskList.removeAt(index);
     notifyListeners();
   }
 
   clearList() {
-    taskList.clear();
+    _taskList.clear();
     notifyListeners();
   }
 
