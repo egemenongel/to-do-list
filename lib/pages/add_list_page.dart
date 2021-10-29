@@ -48,7 +48,7 @@ class _AddListPage extends State<AddListPage> {
           ElevatedButton(
             onPressed: () {
               TaskModel task =
-                  TaskModel(task: taskTitle.text, isCompleted: false);
+                  TaskModel(title: taskTitle.text, isCompleted: false);
               _taskListManager.addTask(task);
             },
             child: Text("Add"),
@@ -67,7 +67,7 @@ class _AddListPage extends State<AddListPage> {
                         children: [
                           Text((index + 1).toString() + ". "),
                           Text(
-                            _taskListManager.taskList[index].task,
+                            _taskListManager.taskList[index].title,
                           ),
                         ],
                       ),

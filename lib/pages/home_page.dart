@@ -52,22 +52,22 @@ class _HomePageState extends State<HomePage> {
                       child: ListView.builder(
                           itemCount: _taskListManager.taskList.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return Text(_taskListManager.taskList[index].task);
+                            var task = _taskListManager.taskList[index];
+                            return ListTile(
+                                title: Text(task.title),
+                                trailing: Checkbox(
+                                  value: task.isCompleted,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      task.isCompleted = value!;
+                                    });
+                                  },
+                                ));
                           }),
                     ),
                   ],
                 ),
               ),
-
-              // Container(
-              //   margin: EdgeInsets.only(right: 30),
-              //   width: 150,
-              //   height: 250,
-              //   child: ListView.builder(
-              //       itemCount: _toDoListModel.taskList.length,
-              //       itemBuilder: (BuildContext context, int index) => ListTile(
-              //           title: Text(_toDoListModel.taskList[index].task))),
-              // ),
             ],
           ),
         ],
