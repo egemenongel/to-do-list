@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/models/list_container_model.dart';
-import 'package:to_do_list_with_provider/models/to_do_model.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/pages/home_page.dart';
 
