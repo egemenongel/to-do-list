@@ -1,12 +1,12 @@
 class TaskModel {
   String title;
-  bool isCompleted = false;
+  bool isCompleted;
 
   TaskModel({
     required this.title,
     required this.isCompleted,
   }) {
     this.title = title;
-    this.isCompleted = isCompleted;
+    this.isCompleted = false;
   }
 }
