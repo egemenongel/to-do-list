@@ -3,14 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/pages/add_list_page.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
-class ListTitlePage extends StatefulWidget {
+class ListTitlePage extends StatelessWidget {
   ListTitlePage({Key? key}) : super(key: key);
-
-  @override
-  _ListTitlePage createState() => _ListTitlePage();
-}
-
-class _ListTitlePage extends State<ListTitlePage> {
   @override
   Widget build(BuildContext context) {
     var listTitle = TextEditingController();

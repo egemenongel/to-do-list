@@ -4,14 +4,9 @@ import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/pages/home_page.dart';
 
-class AddListPage extends StatefulWidget {
+class AddListPage extends StatelessWidget {
   AddListPage({Key? key}) : super(key: key);
 
-  @override
-  _AddListPage createState() => _AddListPage();
-}
-
-class _AddListPage extends State<AddListPage> {
   @override
   Widget build(BuildContext context) {
     GlobalKey _key = GlobalKey();
@@ -71,40 +66,6 @@ class _AddListPage extends State<AddListPage> {
                           ),
                         ],
                       ),
-                      // leading: Checkbox(
-                      //     onChanged: (bool? value) {
-                      //       setState(() {
-                      //         _toDoListModel.taskList[index].isCompleted =
-                      //             value!;
-                      //       });
-                      //     },
-                      //     value: _toDoListModel.taskList[index].isCompleted),
-                      // IconButton(
-                      //     icon: ((() {
-                      //       if (_toDoListModel
-                      //               .taskList[index].isCompleted !=
-                      //           true) {
-                      //         return Icon(Icons.check_box_outline_blank);
-                      //       }
-
-                      //       return Icon(
-                      //         Icons.check_box,
-                      //         color: Colors.green,
-                      //       );
-                      //     })()),
-                      //     onPressed: () {
-                      //       setState(() {
-                      //         if (_toDoListModel
-                      //                 .taskList[index].isCompleted !=
-                      //             true) {
-                      //           _toDoListModel
-                      //               .taskList[index].isCompleted = true;
-                      //         } else {
-                      //           _toDoListModel
-                      //               .taskList[index].isCompleted = false;
-                      //         }
-                      //       });
-                      //     }),
                     )),
           )
         ],
