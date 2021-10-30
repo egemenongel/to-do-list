@@ -48,9 +48,8 @@ class _HomePageState extends State<HomePage> {
                         title: Text(task.title),
                         leading: Checkbox(
                           value: task.isCompleted,
-                          onChanged: (value) {
-                            _taskListManager.checkboxToggle(task);
-                          },
+                          onChanged: (value) =>
+                              _taskListManager.checkboxToggle(task),
                           activeColor: Colors.green,
                         ),
                       );
