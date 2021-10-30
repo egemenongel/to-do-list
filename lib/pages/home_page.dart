@@ -17,13 +17,6 @@ class _HomePageState extends State<HomePage> {
       context,
     );
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_box),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ListTitlePage()));
-        },
-      ),
       appBar: AppBar(
         title: Center(
           child: Text(
@@ -45,34 +38,34 @@ class _HomePageState extends State<HomePage> {
                 height: 50,
               ),
               Container(
-                margin: EdgeInsets.only(left: 30),
-                child: Column(
-                  children: [
-                    Container(
-                      width: 300,
-                      height: 400,
-                      child: ListView.builder(
-                          itemCount: _taskListManager.taskList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            var task = _taskListManager.taskList[index];
-                            return ListTile(
-                              title: Text(task.title),
-                              leading: Checkbox(
-                                value: task.isCompleted,
-                                onChanged: (value) {
-                                  _taskListManager.checkboxToggle(task);
-                                },
-                                activeColor: Colors.green,
-                              ),
-                            );
-                          }),
-                    ),
-                  ],
-                ),
+                width: 300,
+                height: 400,
+                child: ListView.builder(
+                    itemCount: _taskListManager.taskList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var task = _taskListManager.taskList[index];
+                      return ListTile(
+                        title: Text(task.title),
+                        leading: Checkbox(
+                          value: task.isCompleted,
+                          onChanged: (value) {
+                            _taskListManager.checkboxToggle(task);
+                          },
+                          activeColor: Colors.green,
+                        ),
+                      );
+                    }),
               ),
             ],
           ),
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_box),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ListTitlePage()));
+        },
       ),
     );
   }
