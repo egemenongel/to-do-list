@@ -21,7 +21,7 @@ class AddListPage extends StatelessWidget {
           ),
           Text(
             "${_taskListManager.listTitle}",
-            style: TextStyle(fontSize: 35, color: Colors.green[700]),
+            style: Theme.of(context).textTheme.headline2,
           ),
           SizedBox(
             height: 70,

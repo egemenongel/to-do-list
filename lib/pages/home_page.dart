@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               Text(
                 "${_taskListManager.listTitle}",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                style: Theme.of(context).textTheme.headline2,
               ),
               SizedBox(
                 height: 50,
@@ -61,7 +61,7 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add_box),
+        child: Icon(Icons.add),
         onPressed: () {
           Navigator.push(context,
               MaterialPageRoute(builder: (context) => ListTitlePage()));
