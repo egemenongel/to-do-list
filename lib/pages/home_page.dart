@@ -45,7 +45,14 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (BuildContext context, int index) {
                       var task = _taskListManager.taskList[index];
                       return ListTile(
-                        title: Text(task.title),
+                        title: Text(
+                          task.title,
+                          style: TextStyle(
+                            decoration: task.isCompleted
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
+                          ),
+                        ),
                         leading: Checkbox(
                           value: task.isCompleted,
                           onChanged: (value) =>
