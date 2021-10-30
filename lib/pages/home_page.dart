@@ -15,6 +15,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     var _taskListManager = Provider.of<TaskListManager>(
       context,
+      listen: false,
     );
     return Scaffold(
       appBar: AppBar(
@@ -38,30 +39,32 @@ class _HomePageState extends State<HomePage> {
                 height: 50,
               ),
               Container(
-                width: 300,
-                height: 400,
-                child: ListView.builder(
-                    itemCount: _taskListManager.taskList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var task = _taskListManager.taskList[index];
-                      return ListTile(
-                        title: Text(
-                          task.title,
-                          style: TextStyle(
-                            decoration: task.isCompleted
-                                ? TextDecoration.lineThrough
-                                : TextDecoration.none,
-                          ),
-                        ),
-                        leading: Checkbox(
-                          value: task.isCompleted,
-                          onChanged: (value) =>
-                              _taskListManager.checkboxToggle(task),
-                          activeColor: Colors.green,
-                        ),
-                      );
-                    }),
-              ),
+                  width: 300,
+                  height: 400,
+                  child: Consumer<TaskListManager>(
+                      builder: (_, taskListManager, __) {
+                    return ListView.builder(
+                        itemCount: taskListManager.taskList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          var task = taskListManager.taskList[index];
+                          return ListTile(
+                            title: Text(
+                              task.title,
+                              style: TextStyle(
+                                decoration: task.isCompleted
+                                    ? TextDecoration.lineThrough
+                                    : TextDecoration.none,
+                              ),
+                            ),
+                            leading: Checkbox(
+                              value: task.isCompleted,
+                              onChanged: (value) =>
+                                  _taskListManager.checkboxToggle(task),
+                              activeColor: Colors.green,
+                            ),
+                          );
+                        });
+                  })),
             ],
           ),
         ),

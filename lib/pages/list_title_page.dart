@@ -8,7 +8,7 @@ class ListTitlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var listTitle = TextEditingController();
-    var _taskListManager = Provider.of<TaskListManager>(context);
+    var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
       body: Center(
           child: Column(
