@@ -9,7 +9,6 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -27,18 +26,20 @@ class HomePage extends StatelessWidget {
               height: 30,
             ),
             Text(
-              "${_taskListManager.listTitle}",
+              "${context.read<TaskListManager>().listTitle}",
               style: Theme.of(context).textTheme.headline2,
             ),
             SizedBox(
               height: 30,
             ),
             Expanded(
-              child: ListView.builder(
-                  itemCount: _taskListManager.listLength,
-                  itemBuilder: (BuildContext context, int index) {
-                    return TaskTile(index);
-                  }),
+              child: Consumer<TaskListManager>(
+                builder: (_, taskListManager, child) => ListView.builder(
+                    itemCount: taskListManager.listLength,
+                    itemBuilder: (BuildContext context, int index) {
+                      return TaskTile(index, taskListManager);
+                    }),
+              ),
             ),
           ],
         ),
