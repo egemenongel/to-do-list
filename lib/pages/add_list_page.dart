@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
-import 'package:to_do_list_with_provider/pages/home_page.dart';
+import 'package:to_do_list_with_provider/widgets/bottom_app_bar.dart';
 
 class AddListPage extends StatelessWidget {
   AddListPage({Key? key}) : super(key: key);
@@ -69,33 +69,7 @@ class AddListPage extends StatelessWidget {
           ),
         ],
       )),
-      bottomNavigationBar: BottomAppBar(
-        shape: CircularNotchedRectangle(),
-        child: Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                  onPressed: () {
-                    _taskListManager.clearList();
-                  },
-                  child: Text("Clear List")),
-            ),
-            Container(
-              height: 30,
-              child: VerticalDivider(color: Colors.grey),
-              width: 0,
-            ),
-            Expanded(
-                child: TextButton(
-                    style: ButtonStyle(),
-                    onPressed: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => HomePage()));
-                    },
-                    child: Text("Submit")))
-          ],
-        ),
-      ),
+      bottomNavigationBar: ListBottomBar(),
     );
   }
 }
