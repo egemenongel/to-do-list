@@ -3,14 +3,9 @@ import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
@@ -41,23 +36,42 @@ class _HomePageState extends State<HomePage> {
                 child: ListView.builder(
                     itemCount: _taskListManager.taskList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      var task = _taskListManager.taskList[index];
-                      return ListTile(
-                        title: Text(
-                          task.title,
-                          style: TextStyle(
-                            decoration: task.isCompleted
-                                ? TextDecoration.lineThrough
-                                : TextDecoration.none,
+                      return Consumer<TaskListManager>(
+                          builder: (context, taskListManager, child) {
+                        var task = taskListManager.taskList[index];
+                        return ListTile(
+                          title: Text(
+                            task.title,
+                            style: TextStyle(
+                              decoration: task.isCompleted
+                                  ? TextDecoration.lineThrough
+                                  : TextDecoration.none,
+                            ),
                           ),
-                        ),
-                        leading: Checkbox(
-                          value: task.isCompleted,
-                          onChanged: (value) =>
-                              _taskListManager.checkboxToggle(task),
-                          activeColor: Colors.green,
-                        ),
-                      );
+                          leading: Checkbox(
+                            value: taskListManager.taskList[index].isCompleted,
+                            onChanged: (value) =>
+                                _taskListManager.checkboxToggle(task),
+                            activeColor: Colors.green,
+                          ),
+                        );
+                      });
+                      //  ListTile(
+                      //   title: Text(
+                      //     task.title,
+                      //     style: TextStyle(
+                      //       decoration: task.isCompleted
+                      //           ? TextDecoration.lineThrough
+                      //           : TextDecoration.none,
+                      //     ),
+                      //   ),
+                      //   leading: Checkbox(
+                      //     value: task.isCompleted,
+                      //     onChanged: (value) =>
+                      //         _taskListManager.checkboxToggle(task),
+                      //     activeColor: Colors.green,
+                      //   ),
+                      // );
                     }),
               ),
             ],
