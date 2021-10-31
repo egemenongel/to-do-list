@@ -1,16 +1,16 @@
 class TaskModel {
   String title;
-  bool isCompleted;
+  bool? isCompleted;
 
   TaskModel({
     required this.title,
-    required this.isCompleted,
+    this.isCompleted,
   }) {
     this.title = title;
     this.isCompleted = false;
   }
 
   void toggle() {
-    isCompleted = !isCompleted;
+    isCompleted = !isCompleted!;
   }
 }
