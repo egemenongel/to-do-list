@@ -20,62 +20,61 @@ class HomePage extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Text(
-                "${_taskListManager.listTitle}",
-                style: Theme.of(context).textTheme.headline2,
-              ),
-              SizedBox(
-                height: 50,
-              ),
-              Container(
-                width: 300,
-                height: 400,
-                child: ListView.builder(
-                    itemCount: _taskListManager.taskList.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Consumer<TaskListManager>(
-                          builder: (context, taskListManager, child) {
-                        var task = taskListManager.taskList[index];
-                        return ListTile(
-                          title: Text(
-                            task.title,
-                            style: TextStyle(
-                              decoration: task.isCompleted
-                                  ? TextDecoration.lineThrough
-                                  : TextDecoration.none,
-                            ),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 30,
+            ),
+            Text(
+              "${_taskListManager.listTitle}",
+              style: Theme.of(context).textTheme.headline2,
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Expanded(
+              child: ListView.builder(
+                  itemCount: _taskListManager.taskList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Consumer<TaskListManager>(
+                        builder: (context, taskListManager, child) {
+                      var task = taskListManager.taskList[index];
+                      return ListTile(
+                        title: Text(
+                          task.title,
+                          style: TextStyle(
+                            decoration: task.isCompleted
+                                ? TextDecoration.lineThrough
+                                : TextDecoration.none,
                           ),
-                          leading: Checkbox(
-                            value: taskListManager.taskList[index].isCompleted,
-                            onChanged: (value) =>
-                                _taskListManager.checkboxToggle(task),
-                            activeColor: Colors.green,
-                          ),
-                        );
-                      });
-                      //  ListTile(
-                      //   title: Text(
-                      //     task.title,
-                      //     style: TextStyle(
-                      //       decoration: task.isCompleted
-                      //           ? TextDecoration.lineThrough
-                      //           : TextDecoration.none,
-                      //     ),
-                      //   ),
-                      //   leading: Checkbox(
-                      //     value: task.isCompleted,
-                      //     onChanged: (value) =>
-                      //         _taskListManager.checkboxToggle(task),
-                      //     activeColor: Colors.green,
-                      //   ),
-                      // );
-                    }),
-              ),
-            ],
-          ),
+                        ),
+                        leading: Checkbox(
+                          value: taskListManager.taskList[index].isCompleted,
+                          onChanged: (value) =>
+                              _taskListManager.checkboxToggle(task),
+                          activeColor: Colors.green,
+                        ),
+                      );
+                    });
+                    //  ListTile(
+                    //   title: Text(
+                    //     task.title,
+                    //     style: TextStyle(
+                    //       decoration: task.isCompleted
+                    //           ? TextDecoration.lineThrough
+                    //           : TextDecoration.none,
+                    //     ),
+                    //   ),
+                    //   leading: Checkbox(
+                    //     value: task.isCompleted,
+                    //     onChanged: (value) =>
+                    //         _taskListManager.checkboxToggle(task),
+                    //     activeColor: Colors.green,
+                    //   ),
+                    // );
+                  }),
+            ),
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
