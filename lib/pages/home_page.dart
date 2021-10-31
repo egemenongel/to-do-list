@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
+import 'package:to_do_list_with_provider/widgets/task_tile.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -36,26 +37,7 @@ class HomePage extends StatelessWidget {
               child: ListView.builder(
                   itemCount: _taskListManager.taskList.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return Consumer<TaskListManager>(
-                        builder: (context, taskListManager, child) {
-                      var task = taskListManager.taskList[index];
-                      return ListTile(
-                        title: Text(
-                          task.title,
-                          style: TextStyle(
-                            decoration: task.isCompleted
-                                ? TextDecoration.lineThrough
-                                : TextDecoration.none,
-                          ),
-                        ),
-                        leading: Checkbox(
-                          value: taskListManager.taskList[index].isCompleted,
-                          onChanged: (value) =>
-                              _taskListManager.checkboxToggle(task),
-                          activeColor: Colors.green,
-                        ),
-                      );
-                    });
+                    return TaskTile(index);
                   }),
             ),
           ],
