@@ -10,6 +10,10 @@ class TaskListManager extends ChangeNotifier {
     return UnmodifiableListView(_taskList);
   }
 
+  int get listLength {
+    return _taskList.length;
+  }
+
   addTask(TaskModel taskModel) {
     _taskList.add(taskModel);
     notifyListeners();
