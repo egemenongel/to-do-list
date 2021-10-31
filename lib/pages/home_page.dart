@@ -56,22 +56,6 @@ class HomePage extends StatelessWidget {
                         ),
                       );
                     });
-                    //  ListTile(
-                    //   title: Text(
-                    //     task.title,
-                    //     style: TextStyle(
-                    //       decoration: task.isCompleted
-                    //           ? TextDecoration.lineThrough
-                    //           : TextDecoration.none,
-                    //     ),
-                    //   ),
-                    //   leading: Checkbox(
-                    //     value: task.isCompleted,
-                    //     onChanged: (value) =>
-                    //         _taskListManager.checkboxToggle(task),
-                    //     activeColor: Colors.green,
-                    //   ),
-                    // );
                   }),
             ),
           ],
