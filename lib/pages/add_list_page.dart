@@ -6,11 +6,9 @@ import 'package:to_do_list_with_provider/pages/home_page.dart';
 
 class AddListPage extends StatelessWidget {
   AddListPage({Key? key}) : super(key: key);
-
+  final taskTitle = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    GlobalKey _key = GlobalKey();
-    var taskTitle = TextEditingController();
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
       body: Center(
@@ -34,7 +32,6 @@ class AddListPage extends StatelessWidget {
                 decoration: InputDecoration(labelText: "New Task"),
                 autofocus: true,
               ),
-              key: _key,
             ),
           ),
           SizedBox(
@@ -51,7 +48,7 @@ class AddListPage extends StatelessWidget {
           Expanded(
             child: Consumer<TaskListManager>(
                 builder: (context, taskListManager, child) => ListView.builder(
-                    itemCount: taskListManager.taskList.length,
+                    itemCount: taskListManager.listLength,
                     itemBuilder: (BuildContext context, int index) {
                       var task = taskListManager.taskList[index];
                       return ListTile(
@@ -75,7 +72,6 @@ class AddListPage extends StatelessWidget {
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Expanded(
               child: TextButton(
@@ -84,18 +80,19 @@ class AddListPage extends StatelessWidget {
                   },
                   child: Text("Clear List")),
             ),
-            Container(height: 30, child: VerticalDivider(color: Colors.grey)),
+            Container(
+              height: 30,
+              child: VerticalDivider(color: Colors.grey),
+              width: 0,
+            ),
             Expanded(
-              child: Container(
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => HomePage()));
-                      },
-                      child: Text("Submit"))),
-            )
+                child: TextButton(
+                    style: ButtonStyle(),
+                    onPressed: () {
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => HomePage()));
+                    },
+                    child: Text("Submit")))
           ],
         ),
       ),
