@@ -11,7 +11,7 @@ class AddListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     GlobalKey _key = GlobalKey();
     var taskTitle = TextEditingController();
-    var _taskListManager = Provider.of<TaskListManager>(context);
+    var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
       body: Center(
           child: Column(
@@ -45,29 +45,32 @@ class AddListPage extends StatelessWidget {
               TaskModel task =
                   TaskModel(title: taskTitle.text, isCompleted: false);
               _taskListManager.addTask(task);
+              taskTitle.clear();
             },
             child: Text("Add"),
           ),
           Expanded(
-            child: ListView.builder(
-                itemCount: _taskListManager.taskList.length,
-                itemBuilder: (BuildContext context, int index) => ListTile(
-                      trailing: IconButton(
-                        icon: Icon(Icons.remove_circle),
-                        onPressed: () {
-                          _taskListManager.removeTaskAt(index);
-                        },
-                      ),
-                      title: Row(
-                        children: [
-                          Text((index + 1).toString() + ". "),
-                          Text(
-                            _taskListManager.taskList[index].title,
-                          ),
-                        ],
-                      ),
-                    )),
-          )
+            child: Consumer<TaskListManager>(
+                builder: (context, taskListManager, child) => ListView.builder(
+                    itemCount: taskListManager.taskList.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      var task = taskListManager.taskList[index];
+                      return ListTile(
+                        trailing: IconButton(
+                          icon: Icon(Icons.remove_circle),
+                          onPressed: () => taskListManager.removeTaskAt(index),
+                        ),
+                        title: Row(
+                          children: [
+                            Text("${index + 1}. "),
+                            Text(
+                              task.title,
+                            ),
+                          ],
+                        ),
+                      );
+                    })),
+          ),
         ],
       )),
       bottomNavigationBar: BottomAppBar(
