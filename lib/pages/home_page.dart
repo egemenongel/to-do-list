@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                  itemCount: _taskListManager.taskList.length,
+                  itemCount: _taskListManager.listLength,
                   itemBuilder: (BuildContext context, int index) {
                     return TaskTile(index);
                   }),
