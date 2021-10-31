@@ -5,9 +5,9 @@ import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
 class ListTitlePage extends StatelessWidget {
   ListTitlePage({Key? key}) : super(key: key);
+  final listTitle = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var listTitle = TextEditingController();
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
       body: Center(
