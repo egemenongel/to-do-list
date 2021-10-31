@@ -42,8 +42,7 @@ class AddListPage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              TaskModel task =
-                  TaskModel(title: taskTitle.text, isCompleted: false);
+              TaskModel task = TaskModel(title: taskTitle.text);
               _taskListManager.addTask(task);
               taskTitle.clear();
             },

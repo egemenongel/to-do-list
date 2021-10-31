@@ -14,7 +14,7 @@ class TaskTile extends StatelessWidget {
         title: Text(
           task.title,
           style: TextStyle(
-            decoration: task.isCompleted
+            decoration: task.isCompleted!
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
           ),
