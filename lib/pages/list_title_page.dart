@@ -8,7 +8,6 @@ class ListTitlePage extends StatelessWidget {
   final listTitle = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
       body: Center(
           child: Column(
@@ -41,7 +40,7 @@ class ListTitlePage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              _taskListManager.setTitle(listTitle.text);
+              context.read<TaskListManager>().setTitle(listTitle.text);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => AddListPage()));
             },
