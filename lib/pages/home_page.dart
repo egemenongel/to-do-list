@@ -39,13 +39,11 @@ class HomePage extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       var task = taskListManager.taskList[index];
                       return TaskTile(
-                        index: index,
                         taskTitle: task.title,
                         isCompleted: task.isCompleted!,
                         checkboxCallback: (checkboxState) =>
                             taskListManager.checkboxToggle(task),
-                        removeCallback: () =>
-                            taskListManager.removeTaskAt(index),
+                        removeCallback: () => taskListManager.removeTask(task),
                       );
                     }),
               ),

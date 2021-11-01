@@ -54,7 +54,7 @@ class AddListPage extends StatelessWidget {
                       return ListTile(
                         trailing: IconButton(
                           icon: Icon(Icons.remove_circle),
-                          onPressed: () => taskListManager.removeTaskAt(index),
+                          onPressed: () => taskListManager.removeTask(task),
                         ),
                         title: Row(
                           children: [

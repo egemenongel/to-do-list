@@ -19,8 +19,8 @@ class TaskListManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  removeTaskAt(index) {
-    _taskList.removeAt(index);
+  removeTask(taskModel) {
+    _taskList.remove(taskModel);
     notifyListeners();
   }
 
