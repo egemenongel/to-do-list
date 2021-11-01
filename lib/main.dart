@@ -17,7 +17,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        textTheme: TextTheme(headline2: TextStyle(color: Colors.yellow[600])),
+        textTheme:
+            TextTheme(headline2: TextStyle(color: Colors.deepPurple[700])),
         primarySwatch: Colors.deepPurple,
       ),
       home: ListTitlePage(),
