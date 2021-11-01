@@ -34,10 +34,19 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
               child: Consumer<TaskListManager>(
-                builder: (_, taskListManager, child) => ListView.builder(
+                builder: (_, taskListManager, __) => ListView.builder(
                     itemCount: taskListManager.listLength,
                     itemBuilder: (BuildContext context, int index) {
-                      return TaskTile(index, taskListManager);
+                      var task = taskListManager.taskList[index];
+                      return TaskTile(
+                        index: index,
+                        taskTitle: task.title,
+                        isCompleted: task.isCompleted!,
+                        checkboxCallback: (checkboxState) =>
+                            taskListManager.checkboxToggle(task),
+                        removeCallback: () =>
+                            taskListManager.removeTaskAt(index),
+                      );
                     }),
               ),
             ),
