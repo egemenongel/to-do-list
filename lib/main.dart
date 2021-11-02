@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/theme/theme.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
@@ -16,11 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme:
-            TextTheme(headline2: TextStyle(color: Colors.deepPurple[700])),
-        primarySwatch: Colors.deepPurple,
-      ),
+      theme: MyTheme.theme,
       home: ListTitlePage(),
       debugShowCheckedModeBanner: false,
     );
