@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
+import 'package:to_do_list_with_provider/widgets/time_field.dart';
 import 'package:to_do_list_with_provider/widgets/bottom_app_bar.dart';
 
 class AddListPage extends StatefulWidget {
@@ -13,14 +14,20 @@ class AddListPage extends StatefulWidget {
 
 class _AddListPageState extends State<AddListPage> {
   final taskTitle = TextEditingController();
-  final startDate = TextEditingController();
-  final finishDate = TextEditingController();
+  final startTime = TextEditingController();
+  TimeOfDay parseTime(String time) {
+    return TimeOfDay(
+        hour: int.parse(time.split(":")[0]),
+        minute: int.parse(time.split(":")[1][0] + time.split(":")[1][1]));
+  }
+
   @override
   Widget build(BuildContext context) {
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(
+      body: Center(
+          child: Column(
         children: [
           SizedBox(
             height: 100,
@@ -45,28 +52,13 @@ class _AddListPageState extends State<AddListPage> {
                 SizedBox(
                   height: 15,
                 ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Start Date"),
-                  controller: startDate,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                TextFormField(
-                  decoration: InputDecoration(labelText: "Finish Date"),
-                  controller: finishDate,
-                )
               ],
             )),
-          ),
-          SizedBox(
-            height: 15,
           ),
           ElevatedButton(
             onPressed: () {
               TaskModel task = TaskModel(
-                title: taskTitle.text,
-              );
+                  title: taskTitle.text, startDate: parseTime(startTime.text));
               _taskListManager.addTask(task);
               taskTitle.clear();
             },
@@ -97,7 +89,7 @@ class _AddListPageState extends State<AddListPage> {
                     })),
           ),
         ],
-      ),
+      )),
       bottomNavigationBar: ListBottomBar(),
     );
   }
