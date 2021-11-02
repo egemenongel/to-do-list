@@ -15,6 +15,7 @@ class AddListPage extends StatefulWidget {
 class _AddListPageState extends State<AddListPage> {
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
+  final finishTime = TextEditingController();
   TimeOfDay parseTime(String time) {
     return TimeOfDay(
         hour: int.parse(time.split(":")[0]),
@@ -55,6 +56,13 @@ class _AddListPageState extends State<AddListPage> {
                 TimeField(
                   controller: startTime,
                   label: "Start Time",
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                TimeField(
+                  controller: finishTime,
+                  label: "Finish Time",
                 )
               ],
             )),
@@ -62,7 +70,10 @@ class _AddListPageState extends State<AddListPage> {
           ElevatedButton(
             onPressed: () {
               TaskModel task = TaskModel(
-                  title: taskTitle.text, startDate: parseTime(startTime.text));
+                title: taskTitle.text,
+                startDate: parseTime(startTime.text),
+                finishDate: parseTime(finishTime.text),
+              );
               _taskListManager.addTask(task);
               taskTitle.clear();
             },
@@ -80,7 +91,7 @@ class _AddListPageState extends State<AddListPage> {
                           onPressed: () => taskListManager.removeTask(task),
                         ),
                         subtitle: Text(
-                            "${task.startDate!.format(context).split(" ")[0]}"),
+                            "${task.startDate!.format(context).split(" ")[0]} - ${task.finishDate!.format(context).split(" ")[0]}"),
                         title: Row(
                           children: [
                             Text("${index + 1}. "),
