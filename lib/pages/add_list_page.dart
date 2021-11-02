@@ -22,6 +22,9 @@ class _AddListPageState extends State<AddListPage> {
         minute: int.parse(time.split(":")[1][0] + time.split(":")[1][1]));
   }
 
+  OutlineInputBorder _border() =>
+      OutlineInputBorder(borderRadius: BorderRadius.circular(10));
+
   @override
   Widget build(BuildContext context) {
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
@@ -42,30 +45,52 @@ class _AddListPageState extends State<AddListPage> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Form(
-                child: Column(
-              children: [
-                TextFormField(
-                  controller: taskTitle,
-                  decoration: InputDecoration(labelText: "New Task"),
-                  autofocus: true,
+            child: Container(
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                  color: Colors.purple[50],
+                  borderRadius: BorderRadius.circular(10),
                 ),
-                SizedBox(
-                  height: 15,
-                ),
-                TimeField(
-                  controller: startTime,
-                  labelText: "Start Time",
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                TimeField(
-                  controller: finishTime,
-                  labelText: "Finish Time",
-                )
-              ],
-            )),
+                child: Expanded(
+                  child: Form(
+                      child: Column(
+                    children: [
+                      TextFormField(
+                        controller: taskTitle,
+                        decoration: InputDecoration(
+                            labelText: "New Task",
+                            border: _border(),
+                            labelStyle: TextStyle(color: Colors.deepPurple)),
+                        autofocus: true,
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            width: 110,
+                            child: TimeField(
+                              controller: startTime,
+                              labelText: "Start Time",
+                            ),
+                          ),
+                          Container(
+                            width: 110,
+                            child: TimeField(
+                              controller: finishTime,
+                              labelText: "Finish Time",
+                            ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 15,
+                      ),
+                    ],
+                  )),
+                )),
           ),
           ElevatedButton(
             onPressed: () {
