@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class TaskModel {
   String title;
   bool? isCompleted;
