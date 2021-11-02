@@ -4,10 +4,10 @@ class TimeField extends StatefulWidget {
   TimeField({
     Key? key,
     this.controller,
-    this.label,
+    this.labelText,
   }) : super(key: key);
   final TextEditingController? controller;
-  final String? label;
+  final String? labelText;
   @override
   _TimeFieldState createState() => _TimeFieldState();
 }
@@ -32,7 +32,7 @@ class _TimeFieldState extends State<TimeField> {
     }
 
     return TextFormField(
-      decoration: InputDecoration(labelText: widget.label),
+      decoration: InputDecoration(labelText: widget.labelText),
       controller: widget.controller,
       onTap: () => selectTime(widget.controller!),
       onChanged: (parse) => widget.controller!.text,

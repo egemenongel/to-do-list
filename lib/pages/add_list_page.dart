@@ -55,14 +55,14 @@ class _AddListPageState extends State<AddListPage> {
                 ),
                 TimeField(
                   controller: startTime,
-                  label: "Start Time",
+                  labelText: "Start Time",
                 ),
                 SizedBox(
                   height: 15,
                 ),
                 TimeField(
                   controller: finishTime,
-                  label: "Finish Time",
+                  labelText: "Finish Time",
                 )
               ],
             )),
@@ -71,8 +71,8 @@ class _AddListPageState extends State<AddListPage> {
             onPressed: () {
               TaskModel task = TaskModel(
                 title: taskTitle.text,
-                startDate: parseTime(startTime.text),
-                finishDate: parseTime(finishTime.text),
+                startTime: parseTime(startTime.text),
+                finishTime: parseTime(finishTime.text),
               );
               _taskListManager.addTask(task);
               taskTitle.clear();
@@ -91,7 +91,7 @@ class _AddListPageState extends State<AddListPage> {
                           onPressed: () => taskListManager.removeTask(task),
                         ),
                         subtitle: Text(
-                            "${task.startDate!.format(context).split(" ")[0]} - ${task.finishDate!.format(context).split(" ")[0]}"),
+                            "${task.startTime!.format(context).split(" ")[0]} - ${task.finishTime!.format(context).split(" ")[0]}"),
                         // ERROR VALIDATION SHOULD BE ADDED to check if start date is smaller than finish date.//
                         title: Row(
                           children: [
