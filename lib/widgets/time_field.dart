@@ -18,7 +18,6 @@ class _TimeFieldState extends State<TimeField> {
     TimeOfDay _time = TimeOfDay.now();
     void selectTime(TextEditingController date) async {
       TimeOfDay? newTime = await showTimePicker(
-        hourLabelText: "a",
         context: context,
         initialTime: _time,
       );
@@ -35,7 +34,7 @@ class _TimeFieldState extends State<TimeField> {
       decoration: InputDecoration(labelText: widget.labelText),
       controller: widget.controller,
       onTap: () => selectTime(widget.controller!),
-      onChanged: (parse) => widget.controller!.text,
+      onChanged: (time) => widget.controller!.text,
     );
   }
 }
