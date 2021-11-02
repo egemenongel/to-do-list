@@ -7,7 +7,9 @@ A simple To Do List built with Flutter. Used Provider Package for State Manageme
 ## TO DO
 
 * [X] After adding a task, automatically focus to TextFormField.
+- [ ] New properties to tasks.
 * [ ] Works with multiple lists.
+* [ ] Gridview for Lists. 
 * [ ] Firebase Integration.
 * [ ] More appealing design.
 * [ ] Add details to the project.
