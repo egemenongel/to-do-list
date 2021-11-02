@@ -92,6 +92,7 @@ class _AddListPageState extends State<AddListPage> {
                         ),
                         subtitle: Text(
                             "${task.startDate!.format(context).split(" ")[0]} - ${task.finishDate!.format(context).split(" ")[0]}"),
+                        // ERROR VALIDATION SHOULD BE ADDED to check if start date is smaller than finish date.//
                         title: Row(
                           children: [
                             Text("${index + 1}. "),
