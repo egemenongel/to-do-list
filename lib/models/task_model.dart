@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+
 class TaskModel {
   String title;
   bool? isCompleted;
-  DateTime? startDate;
-  DateTime? finishDate;
+  TimeOfDay? startDate;
+  TimeOfDay? finishDate;
 
   TaskModel({
     required this.title,
