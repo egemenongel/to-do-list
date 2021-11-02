@@ -52,6 +52,10 @@ class _AddListPageState extends State<AddListPage> {
                 SizedBox(
                   height: 15,
                 ),
+                TimeField(
+                  controller: startTime,
+                  label: "Start Time",
+                )
               ],
             )),
           ),
