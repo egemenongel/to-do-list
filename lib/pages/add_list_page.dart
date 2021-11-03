@@ -95,7 +95,6 @@ class _AddListPageState extends State<AddListPage> {
             onPressed: () {
               TaskModel task = TaskModel(
                 title: taskTitle.text,
-                // startTime: parseTime(startTime.text),
                 startTime: startTime.text,
                 finishTime: finishTime.text,
               );
@@ -115,14 +114,9 @@ class _AddListPageState extends State<AddListPage> {
                           icon: Icon(Icons.remove_circle),
                           onPressed: () => taskListManager.removeTask(task),
                         ),
-                        subtitle: Text((task.startTime == null
-                                    ? ""
-                                    : "${task.startTime} - ") +
-                                (task.finishTime == null
-                                    ? ""
-                                    : "${task.finishTime}")
-                            // "${task.startTime!.format(context).split(" ")[0]} - ${task.finishTime!.format(context).split(" ")[0]}"
-                            ),
+
+                        // "${task.startTime!.format(context).split(" ")[0]} - ${task.finishTime!.format(context).split(" ")[0]}"
+
                         // ERROR VALIDATION SHOULD BE ADDED to check if start date is smaller than finish date.//
                         title: Row(
                           children: [
