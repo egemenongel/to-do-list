@@ -93,24 +93,31 @@ class AddListPage extends StatelessWidget {
                             height: 15,
                           ),
                           TextFormField(
-                            controller: durationController,
-                          ),
+                              controller: durationController,
+                              validator: (value) {
+                                if (value!.isNotEmpty) {
+                                  if (startTime.text.isNotEmpty ||
+                                      finishTime.text.isNotEmpty) {
+                                    return "If you entered a time value, please leave this field empty.";
+                                  }
+                                }
+                              }),
                         ],
                       )),
                 )),
           ),
           ElevatedButton(
             onPressed: () {
-              // if (_formKey.currentState!.validate()) {
-              //   TaskModel task = TaskModel(
-              //     title: taskTitle.text,
-              //     startTime: startTime.text,
-              //     finishTime: finishTime.text,
-              //     duration: durationController.text,
-              //   );
-              //   _taskListManager.addTask(task);
-              //   _clearForm();
-              // }
+              if (_formKey.currentState!.validate()) {
+                TaskModel task = TaskModel(
+                  title: taskTitle.text,
+                  startTime: startTime.text,
+                  finishTime: finishTime.text,
+                  duration: durationController.text,
+                );
+                _taskListManager.addTask(task);
+                _clearForm();
+              }
             },
             child: Text("Add"),
           ),
