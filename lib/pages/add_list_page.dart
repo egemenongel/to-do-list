@@ -5,14 +5,8 @@ import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/widgets/time_field.dart';
 import 'package:to_do_list_with_provider/widgets/bottom_app_bar.dart';
 
-class AddListPage extends StatefulWidget {
+class AddListPage extends StatelessWidget {
   AddListPage({Key? key}) : super(key: key);
-
-  @override
-  State<AddListPage> createState() => _AddListPageState();
-}
-
-class _AddListPageState extends State<AddListPage> {
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
@@ -23,6 +17,11 @@ class _AddListPageState extends State<AddListPage> {
   //       hour: int.parse(time.split(":")[0]),
   //       minute: int.parse(time.split(":")[1][0] + time.split(":")[1][1]));
   // }
+  void _clearForm() {
+    taskTitle.clear();
+    startTime.clear();
+    finishTime.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +98,7 @@ class _AddListPageState extends State<AddListPage> {
                 finishTime: finishTime.text,
               );
               _taskListManager.addTask(task);
-              taskTitle.clear();
+              _clearForm();
             },
             child: Text("Add"),
           ),
