@@ -29,7 +29,7 @@ class ListBottomBar extends StatelessWidget {
                   style: ButtonStyle(),
                   onPressed: () {
                     Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
+                        MaterialPageRoute(builder: (context) => ListPage()));
                   },
                   child: Text("Submit")))
         ],
