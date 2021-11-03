@@ -47,11 +47,11 @@ class TaskTile extends StatelessWidget {
                   ? Container(
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Colors.blueAccent,
+                        color: Colors.blueAccent[100],
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
-                        duration,
+                        "$duration mins",
                         style: TextStyle(color: Colors.white),
                       ),
                     )
