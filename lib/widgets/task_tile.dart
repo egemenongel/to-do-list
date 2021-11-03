@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 class TaskTile extends StatelessWidget {
-  TaskTile(
-      {required this.taskTitle,
-      required this.isCompleted,
-      required this.checkboxCallback,
-      required this.removeCallback});
+  TaskTile({
+    required this.taskTitle,
+    required this.isCompleted,
+    required this.checkboxCallback,
+  });
 
   final String taskTitle;
   final bool isCompleted;
   final void Function(bool?)? checkboxCallback;
-  final VoidCallback removeCallback;
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -25,12 +24,6 @@ class TaskTile extends StatelessWidget {
         value: isCompleted,
         onChanged: checkboxCallback,
         activeColor: Colors.green,
-      ),
-      trailing: IconButton(
-        icon: Icon(
-          Icons.remove_circle_outline,
-        ),
-        onPressed: removeCallback,
       ),
     );
   }
