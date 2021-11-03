@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_list_with_provider/pages/home_page.dart';
+import 'package:to_do_list_with_provider/pages/list_page.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
 class ListBottomBar extends StatelessWidget {
