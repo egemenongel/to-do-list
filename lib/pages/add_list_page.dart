@@ -16,14 +16,13 @@ class _AddListPageState extends State<AddListPage> {
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
-  TimeOfDay parseTime(String time) {
-    return TimeOfDay(
-        hour: int.parse(time.split(":")[0]),
-        minute: int.parse(time.split(":")[1][0] + time.split(":")[1][1]));
-  }
-
-  OutlineInputBorder _border() =>
+  final OutlineInputBorder _border =
       OutlineInputBorder(borderRadius: BorderRadius.circular(10));
+  // TimeOfDay parseTime(String time) {
+  //   return TimeOfDay(
+  //       hour: int.parse(time.split(":")[0]),
+  //       minute: int.parse(time.split(":")[1][0] + time.split(":")[1][1]));
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +58,7 @@ class _AddListPageState extends State<AddListPage> {
                         controller: taskTitle,
                         decoration: InputDecoration(
                             labelText: "New Task",
-                            border: _border(),
+                            border: _border,
                             labelStyle: TextStyle(color: Colors.deepPurple)),
                         autofocus: true,
                       ),
