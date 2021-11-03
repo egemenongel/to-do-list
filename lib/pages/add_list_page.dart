@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
@@ -93,7 +95,41 @@ class AddListPage extends StatelessWidget {
                           SizedBox(
                             height: 15,
                           ),
-                          TextFormField(
+                          Container(
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Divider(
+                                    height: 20,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  width: 50,
+                                  child: Text(
+                                    "OR",
+                                    style: TextStyle(
+                                        color: Colors.deepPurple,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Divider(
+                                    height: 20,
+                                    color: Colors.deepPurple,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Container(
+                            width: 100,
+                            child: TextFormField(
+                              textAlign: TextAlign.center,
                               controller: durationController,
                               enabled: isEnabled,
                               validator: (value) {
@@ -101,7 +137,15 @@ class AddListPage extends StatelessWidget {
                                     finishTime.text.isNotEmpty) {
                                   isEnabled = false; //setState
                                 }
-                              }),
+                              },
+                              decoration: InputDecoration(
+                                  border: _border,
+                                  labelText: "Duration",
+                                  labelStyle:
+                                      TextStyle(color: Colors.deepPurple)),
+                              keyboardType: TextInputType.number,
+                            ),
+                          ),
                         ],
                       )),
                 )),
