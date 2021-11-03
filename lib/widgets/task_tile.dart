@@ -43,7 +43,19 @@ class TaskTile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text("$duration"),
+              duration != ""
+                  ? Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        color: Colors.blueAccent,
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        duration,
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    )
+                  : SizedBox(),
               startTime != ""
                   ? Container(
                       padding: EdgeInsets.all(5),
