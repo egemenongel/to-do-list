@@ -17,16 +17,16 @@ void main() {
 
 /// We are using a StatefulWidget such that we only create the [Future] once,
 /// no matter how many times our widget rebuild.
-/// If we used a [StatelessWidget], in the event where [App] is rebuilt, that
+/// If we used a [StatelessWidget], in the event where [MyApp] is rebuilt, that
 /// would re-initialize FlutterFire and make our application re-enter loading state,
 /// which is undesired.
-class App extends StatefulWidget {
+class MyApp extends StatefulWidget {
   // Create the initialization Future outside of `build`:
   @override
-  _AppState createState() => _AppState();
+  _MyAppState createState() => _MyAppState();
 }
 
-class _AppState extends State<App> {
+class _MyAppState extends State<MyApp> {
   /// The future is part of the state of our widget. We should not call `initializeApp`
   /// directly inside [build].
   final Future<FirebaseApp> _initialization = Firebase.initializeApp();
@@ -64,19 +64,19 @@ class _AppState extends State<App> {
   }
 }
 
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      builder: (context, child) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
-        child: child!,
-      ),
-      title: 'Flutter Demo',
-      theme: MyTheme.theme,
-      home: ListTitlePage(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
-}
+// class MyApp extends StatelessWidget {
+//   // This widget is the root of your application.
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       builder: (context, child) => MediaQuery(
+//         data: MediaQuery.of(context).copyWith(alwaysUse24HourFormat: true),
+//         child: child!,
+//       ),
+//       title: 'Flutter Demo',
+//       theme: MyTheme.theme,
+//       home: ListTitlePage(),
+//       debugShowCheckedModeBanner: false,
+//     );
+//   }
+// }

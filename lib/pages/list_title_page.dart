@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/pages/add_list_page.dart';
@@ -40,9 +42,11 @@ class ListTitlePage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              context.read<TaskListManager>().setTitle(listTitle.text);
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AddListPage()));
+              CollectionReference firestore =
+                  FirebaseFirestore.instance.collection("tasks");
+              // context.read<TaskListManager>().setTitle(listTitle.text);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => AddListPage()));
             },
             child: Text("Next"),
           ),
