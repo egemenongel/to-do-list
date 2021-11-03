@@ -5,6 +5,7 @@ class TaskTile extends StatelessWidget {
     required this.taskTitle,
     required this.startTime,
     required this.finishTime,
+    required this.duration,
     required this.isCompleted,
     required this.checkboxCallback,
   });
@@ -12,6 +13,7 @@ class TaskTile extends StatelessWidget {
   final String taskTitle;
   final String startTime;
   final String finishTime;
+  final String duration;
   final bool isCompleted;
   final void Function(bool?)? checkboxCallback;
   @override
@@ -41,6 +43,7 @@ class TaskTile extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
+              Text("$duration"),
               startTime != ""
                   ? Container(
                       padding: EdgeInsets.all(5),

@@ -40,9 +40,10 @@ class ListPage extends StatelessWidget {
                     var task = taskListManager.taskList[index];
                     return TaskTile(
                       taskTitle: task.title,
+                      isCompleted: task.isCompleted!,
                       startTime: task.startTime!,
                       finishTime: task.finishTime!,
-                      isCompleted: task.isCompleted!,
+                      duration: task.duration!,
                       checkboxCallback: (checkboxState) =>
                           taskListManager.checkboxToggle(task),
                     );

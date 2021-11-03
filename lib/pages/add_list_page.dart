@@ -10,6 +10,7 @@ class AddListPage extends StatelessWidget {
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
+  final durationController = TextEditingController();
   final OutlineInputBorder _border =
       OutlineInputBorder(borderRadius: BorderRadius.circular(10));
   // TimeOfDay parseTime(String time) {
@@ -86,6 +87,9 @@ class AddListPage extends StatelessWidget {
                       SizedBox(
                         height: 15,
                       ),
+                      TextFormField(
+                        controller: durationController,
+                      ),
                     ],
                   )),
                 )),
@@ -96,6 +100,7 @@ class AddListPage extends StatelessWidget {
                 title: taskTitle.text,
                 startTime: startTime.text,
                 finishTime: finishTime.text,
+                duration: durationController.text,
               );
               _taskListManager.addTask(task);
               _clearForm();
@@ -113,9 +118,7 @@ class AddListPage extends StatelessWidget {
                           icon: Icon(Icons.remove_circle),
                           onPressed: () => taskListManager.removeTask(task),
                         ),
-
                         // "${task.startTime!.format(context).split(" ")[0]} - ${task.finishTime!.format(context).split(" ")[0]}"
-
                         // ERROR VALIDATION SHOULD BE ADDED to check if start date is smaller than finish date.//
                         title: Row(
                           children: [
