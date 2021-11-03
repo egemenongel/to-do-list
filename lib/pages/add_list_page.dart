@@ -10,6 +10,7 @@ class AddListPage extends StatelessWidget {
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
   final durationController = TextEditingController();
   final OutlineInputBorder _border =
       OutlineInputBorder(borderRadius: BorderRadius.circular(10));
@@ -50,60 +51,66 @@ class AddListPage extends StatelessWidget {
                   color: Colors.purple[50],
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: Expanded(
+                child: Container(
                   child: Form(
+                      key: _formKey,
                       child: Column(
-                    children: [
-                      TextFormField(
-                        controller: taskTitle,
-                        decoration: InputDecoration(
-                            labelText: "New Task",
-                            border: _border,
-                            labelStyle: TextStyle(color: Colors.deepPurple)),
-                        autofocus: true,
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
-                            width: 110,
-                            child: TimeField(
-                              controller: startTime,
-                              labelText: "Start Time",
-                            ),
+                          TextFormField(
+                              controller: taskTitle,
+                              decoration: InputDecoration(
+                                  labelText: "New Task",
+                                  border: _border,
+                                  labelStyle:
+                                      TextStyle(color: Colors.deepPurple)),
+                              autofocus: true,
+                              validator: (value) => value!.isEmpty
+                                  ? "Please enter a task"
+                                  : null),
+                          SizedBox(
+                            height: 15,
                           ),
-                          Container(
-                            width: 110,
-                            child: TimeField(
-                              controller: finishTime,
-                              labelText: "Finish Time",
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Container(
+                                width: 110,
+                                child: TimeField(
+                                  controller: startTime,
+                                  labelText: "Start Time",
+                                ),
+                              ),
+                              Container(
+                                width: 110,
+                                child: TimeField(
+                                  controller: finishTime,
+                                  labelText: "Finish Time",
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          TextFormField(
+                            controller: durationController,
                           ),
                         ],
-                      ),
-                      SizedBox(
-                        height: 15,
-                      ),
-                      TextFormField(
-                        controller: durationController,
-                      ),
-                    ],
-                  )),
+                      )),
                 )),
           ),
           ElevatedButton(
             onPressed: () {
-              TaskModel task = TaskModel(
-                title: taskTitle.text,
-                startTime: startTime.text,
-                finishTime: finishTime.text,
-                duration: durationController.text,
-              );
-              _taskListManager.addTask(task);
-              _clearForm();
+              // if (_formKey.currentState!.validate()) {
+              //   TaskModel task = TaskModel(
+              //     title: taskTitle.text,
+              //     startTime: startTime.text,
+              //     finishTime: finishTime.text,
+              //     duration: durationController.text,
+              //   );
+              //   _taskListManager.addTask(task);
+              //   _clearForm();
+              // }
             },
             child: Text("Add"),
           ),
