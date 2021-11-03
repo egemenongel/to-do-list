@@ -17,6 +17,12 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+        onTap: () {},
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+            side: BorderSide(
+              color: Colors.deepOrange,
+            )),
         title: Text(
           taskTitle,
           style: TextStyle(
@@ -39,11 +45,12 @@ class TaskTile extends StatelessWidget {
                   ? Container(
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: Colors.greenAccent,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
                         startTime,
+                        style: TextStyle(color: Colors.white),
                       ),
                     )
                   : SizedBox(),
@@ -51,11 +58,12 @@ class TaskTile extends StatelessWidget {
                   ? Container(
                       padding: EdgeInsets.all(5),
                       decoration: BoxDecoration(
-                        color: Colors.amber,
+                        color: Colors.redAccent,
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Text(
                         finishTime,
+                        style: TextStyle(color: Colors.white),
                       ),
                     )
                   : SizedBox(),

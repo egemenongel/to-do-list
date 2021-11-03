@@ -34,19 +34,27 @@ class ListPage extends StatelessWidget {
             ),
             Expanded(
               child: Consumer<TaskListManager>(
-                builder: (_, taskListManager, __) => ListView.builder(
-                    itemCount: taskListManager.listLength,
-                    itemBuilder: (BuildContext context, int index) {
-                      var task = taskListManager.taskList[index];
-                      return TaskTile(
-                        taskTitle: task.title,
-                        startTime: task.startTime!,
-                        finishTime: task.finishTime!,
-                        isCompleted: task.isCompleted!,
-                        checkboxCallback: (checkboxState) =>
-                            taskListManager.checkboxToggle(task),
-                      );
-                    }),
+                builder: (_, taskListManager, __) => ListView.separated(
+                  itemCount: taskListManager.listLength,
+                  itemBuilder: (BuildContext context, int index) {
+                    var task = taskListManager.taskList[index];
+                    return TaskTile(
+                      taskTitle: task.title,
+                      startTime: task.startTime!,
+                      finishTime: task.finishTime!,
+                      isCompleted: task.isCompleted!,
+                      checkboxCallback: (checkboxState) =>
+                          taskListManager.checkboxToggle(task),
+                    );
+                  },
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      height: 10,
+                      color: Colors.transparent,
+                    );
+                  },
+                ),
               ),
             ),
           ],
