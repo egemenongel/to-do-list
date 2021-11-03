@@ -9,7 +9,7 @@ class TimeField extends StatefulWidget {
   }) : super(key: key);
   final String? labelText;
   final TextEditingController? controller;
-  final String? validator;
+  final String Function(String?)? validator;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: Colors.deepPurple));
@@ -36,16 +36,15 @@ class _TimeFieldState extends State<TimeField> {
     }
 
     return TextFormField(
-      decoration: InputDecoration(
-          labelText: widget.labelText,
-          labelStyle: TextStyle(color: Colors.deepPurple),
-          enabledBorder:
-              widget.controller!.text.isNotEmpty ? widget._border : null,
-          border: widget._border),
-      controller: widget.controller,
-      onTap: () => selectTime(widget.controller!),
-      onChanged: (time) => widget.controller!.text,
-      validator: (value) => widget.validator,
-    );
+        decoration: InputDecoration(
+            labelText: widget.labelText,
+            labelStyle: TextStyle(color: Colors.deepPurple),
+            enabledBorder:
+                widget.controller!.text.isNotEmpty ? widget._border : null,
+            border: widget._border),
+        controller: widget.controller,
+        onTap: () => selectTime(widget.controller!),
+        onChanged: (time) => widget.controller!.text,
+        validator: widget.validator);
   }
 }

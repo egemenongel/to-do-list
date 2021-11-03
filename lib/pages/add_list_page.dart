@@ -28,6 +28,7 @@ class AddListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
+    bool isEnabled = true;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: Center(
@@ -94,12 +95,11 @@ class AddListPage extends StatelessWidget {
                           ),
                           TextFormField(
                               controller: durationController,
+                              enabled: isEnabled,
                               validator: (value) {
-                                if (value!.isNotEmpty) {
-                                  if (startTime.text.isNotEmpty ||
-                                      finishTime.text.isNotEmpty) {
-                                    return "If you entered a time value, please leave this field empty.";
-                                  }
+                                if (startTime.text.isNotEmpty ||
+                                    finishTime.text.isNotEmpty) {
+                                  isEnabled = false; //setState
                                 }
                               }),
                         ],
