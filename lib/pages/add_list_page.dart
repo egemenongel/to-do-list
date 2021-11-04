@@ -13,7 +13,7 @@ class AddListPage extends StatelessWidget {
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final durationController = TextEditingController();
+  final duration = TextEditingController();
 
   // TimeOfDay parseTime(String time) {
   //   return TimeOfDay(
@@ -59,7 +59,7 @@ class AddListPage extends StatelessWidget {
                   taskTitle: taskTitle,
                   startTime: startTime,
                   finishTime: finishTime,
-                  duration: durationController,
+                  duration: duration,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ))),
@@ -71,7 +71,7 @@ class AddListPage extends StatelessWidget {
                   title: taskTitle.text,
                   startTime: startTime.text,
                   finishTime: finishTime.text,
-                  duration: durationController.text,
+                  duration: duration.text,
                 );
                 _taskListManager.addTask(task);
                 _clearForm();
