@@ -7,26 +7,35 @@ class EditDialog extends StatelessWidget {
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  final durationController = TextEditingController();
+  final duration = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: Colors.deepPurple,
+          )),
       title: Text(
         "Edit Task",
       ),
-      content: TaskForm(
-        formKey: _formKey,
-        taskTitle: taskTitle,
-        startTime: startTime,
-        finishTime: finishTime,
-        duration: durationController,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+      content: Container(
+        height: 250,
+        child: TaskForm(
+          formKey: _formKey,
+          taskTitle: taskTitle,
+          startTime: startTime,
+          finishTime: finishTime,
+          duration: duration,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        ),
       ),
       actions: [
         TextButton(onPressed: () {}, child: Text("Edit")),
         TextButton(
             onPressed: () => Navigator.pop(context), child: Text("Cancel"))
       ],
+      actionsAlignment: MainAxisAlignment.spaceBetween,
     );
   }
 }
