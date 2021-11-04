@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/pages/list_page.dart';
+import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
 class ListBottomBar extends StatelessWidget {
@@ -29,6 +30,8 @@ class ListBottomBar extends StatelessWidget {
               child: TextButton(
                   style: ButtonStyle(),
                   onPressed: () {
+                    var firestore = FireStoreService();
+                    firestore.addTasks(context.read<TaskListManager>());
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => ListPage()));
                   },
