@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/widgets/time_field.dart';
 
 class TaskTile extends StatelessWidget {
   TaskTile({
@@ -19,7 +20,12 @@ class TaskTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        onTap: () {},
+        onTap: () {
+          showDialog(
+            context: context,
+            builder: (_) => myDialog,
+          );
+        },
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
             side: BorderSide(
@@ -86,4 +92,14 @@ class TaskTile extends StatelessWidget {
           ),
         ));
   }
+
+  AlertDialog myDialog = AlertDialog(
+    title: Text(
+      "Edit Task",
+    ),
+    actions: [
+      TextButton(onPressed: () {}, child: Text("Edit")),
+      TextButton(onPressed: () {}, child: Text("Cancel"))
+    ],
+  );
 }
