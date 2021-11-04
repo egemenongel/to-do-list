@@ -42,15 +42,29 @@ class ListPage extends StatelessWidget {
                 if (!snapshot.hasData) {
                   return CircularProgressIndicator();
                 }
-                return ListView.builder(
+                return ListView.separated(
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      onTap: () {},
-                      title:
-                          Text(snapshot.data.docs[index]["title"].toString()),
-                      subtitle: Text(
-                          snapshot.data.docs[index]["isCompleted"].toString()),
+                    var task = snapshot.data.docs[index];
+                    return TaskTile(
+                      taskTitle: task["title"],
+                      startTime: task["startTime"],
+                      finishTime: task["finishTime"],
+                      duration: task["duration"],
+                      isCompleted: task["isCompleted"],
+                      checkboxCallback: (checkboxState) {
+                        firestore.checkboxToggle(index, checkboxState!);
+                        // firestore.list1
+                        //     .doc("task$index")
+                        //     .update({"isCompleted": checkboxState!});
+                      },
+                    );
+                  },
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      height: 10,
+                      color: Colors.transparent,
                     );
                   },
                 );

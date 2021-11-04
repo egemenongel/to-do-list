@@ -25,11 +25,14 @@ class FireStoreService {
     }
   }
 
+  late Query orderById = list1.orderBy("id", descending: false);
   void deleteTask(TaskModel task, TaskListManager taskListManager) {
     list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
   }
 
-  late Query orderById = list1.orderBy("id", descending: false);
+  void checkboxToggle(int index, bool checkboxState) {
+    list1.doc("task$index").update({"isCompleted": checkboxState});
+  }
 }
 // addTasks(
 //                 Provider.of<TaskListManager>(context, listen: false));
