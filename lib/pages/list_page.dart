@@ -52,15 +52,11 @@ class ListPage extends StatelessWidget {
                       finishTime: task["finishTime"],
                       duration: task["duration"],
                       isCompleted: task["isCompleted"],
-                      checkboxCallback: (checkboxState) {
-                        firestore.checkboxToggle(index, checkboxState!);
-                        // firestore.list1
-                        //     .doc("task$index")
-                        //     .update({"isCompleted": checkboxState!});
-                      },
+                      checkboxCallback: (checkboxState) =>
+                          firestore.checkboxToggle(task, checkboxState!),
                     );
                   },
-                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  padding: EdgeInsets.all(20),
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
                       height: 10,

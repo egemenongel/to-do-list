@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
@@ -30,9 +31,13 @@ class FireStoreService {
     list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
   }
 
-  void checkboxToggle(int index, bool checkboxState) {
-    list1.doc("task$index").update({"isCompleted": checkboxState});
+  void checkboxToggle(QueryDocumentSnapshot task, bool checkboxState) {
+    list1.doc("task${task["id"]}").update({"isCompleted": checkboxState});
   }
+
+  // void checkboxToggle(int index, bool checkboxState) {
+  //   list1.doc("task$index").update({"isCompleted": checkboxState});
+  // }
 }
 // addTasks(
 //                 Provider.of<TaskListManager>(context, listen: false));
