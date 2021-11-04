@@ -25,6 +25,10 @@ class FireStoreService {
     }
   }
 
+  void deleteTask(TaskModel task, TaskListManager taskListManager) {
+    list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
+  }
+
   late Query orderById = list1.orderBy("id", descending: false);
 }
 // addTasks(

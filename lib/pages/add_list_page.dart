@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
+import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/widgets/time_field.dart';
 import 'package:to_do_list_with_provider/widgets/bottom_app_bar.dart';
@@ -171,11 +172,16 @@ class AddListPage extends StatelessWidget {
                     itemCount: taskListManager.listLength,
                     itemBuilder: (BuildContext context, int index) {
                       var task = taskListManager.taskList[index];
+                      var firestore = FireStoreService();
                       return ListTile(
                         trailing: IconButton(
-                          icon: Icon(Icons.remove_circle),
-                          onPressed: () => taskListManager.removeTask(task),
-                        ),
+                            icon: Icon(Icons.remove_circle),
+                            onPressed: () {
+                              firestore.deleteTask(task, taskListManager);
+                            }
+
+                            // onPressed: () => taskListManager.removeTask(task),
+                            ),
                         // "${task.startTime!.format(context).split(" ")[0]} - ${task.finishTime!.format(context).split(" ")[0]}"
                         // ERROR VALIDATION SHOULD BE ADDED to check if start date is smaller than finish date.//
                         title: Row(
