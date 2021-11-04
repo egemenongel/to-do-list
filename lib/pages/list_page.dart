@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/widgets/task_tile.dart';
@@ -9,6 +11,7 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var firestore = FireStoreService();
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -33,31 +36,52 @@ class ListPage extends StatelessWidget {
               height: 30,
             ),
             Expanded(
-              child: Consumer<TaskListManager>(
-                builder: (_, taskListManager, __) => ListView.separated(
-                  itemCount: taskListManager.listLength,
+                child: StreamBuilder(
+              stream: firestore.orderById.snapshots(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                if (!snapshot.hasData) {
+                  return CircularProgressIndicator();
+                }
+                return ListView.builder(
+                  itemCount: snapshot.data.docs.length,
                   itemBuilder: (BuildContext context, int index) {
-                    var task = taskListManager.taskList[index];
-                    return TaskTile(
-                      taskTitle: task.title,
-                      isCompleted: task.isCompleted!,
-                      startTime: task.startTime!,
-                      finishTime: task.finishTime!,
-                      duration: task.duration!,
-                      checkboxCallback: (checkboxState) =>
-                          taskListManager.checkboxToggle(task),
+                    return ListTile(
+                      onTap: () {},
+                      title:
+                          Text(snapshot.data.docs[index]["title"].toString()),
+                      subtitle: Text(
+                          snapshot.data.docs[index]["isCompleted"].toString()),
                     );
                   },
-                  padding: EdgeInsets.symmetric(horizontal: 20),
-                  separatorBuilder: (BuildContext context, int index) {
-                    return Divider(
-                      height: 10,
-                      color: Colors.transparent,
-                    );
-                  },
-                ),
-              ),
-            ),
+                );
+              },
+            )),
+            // Expanded(
+            //   child: Consumer<TaskListManager>(
+            //     builder: (_, taskListManager, __) => ListView.separated(
+            //       itemCount: taskListManager.listLength,
+            //       itemBuilder: (BuildContext context, int index) {
+            //         var task = taskListManager.taskList[index];
+            //         return TaskTile(
+            //           taskTitle: task.title,
+            //           isCompleted: task.isCompleted!,
+            //           startTime: task.startTime!,
+            //           finishTime: task.finishTime!,
+            //           duration: task.duration!,
+            //           checkboxCallback: (checkboxState) =>
+            //               taskListManager.checkboxToggle(task),
+            //         );
+            //       },
+            //       padding: EdgeInsets.symmetric(horizontal: 20),
+            //       separatorBuilder: (BuildContext context, int index) {
+            //         return Divider(
+            //           height: 10,
+            //           color: Colors.transparent,
+            //         );
+            //       },
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
