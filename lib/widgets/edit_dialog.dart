@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
 class EditDialog extends StatelessWidget {
-  EditDialog({Key? key}) : super(key: key);
+  EditDialog({Key? key, required this.index}) : super(key: key);
+  final index;
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
@@ -31,7 +33,14 @@ class EditDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        TextButton(onPressed: () {}, child: Text("Edit")),
+        TextButton(
+            onPressed: () {
+              FireStoreService firestore = FireStoreService();
+              firestore.editTask(index, taskTitle.text, startTime.text,
+                  finishTime.text, duration.text);
+              Navigator.pop(context);
+            },
+            child: Text("Edit")),
         TextButton(
             onPressed: () => Navigator.pop(context), child: Text("Cancel"))
       ],
