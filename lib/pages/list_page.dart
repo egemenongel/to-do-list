@@ -34,7 +34,9 @@ class ListPage extends StatelessWidget {
               stream: firestore.orderById.snapshots(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (!snapshot.hasData) {
-                  return CircularProgressIndicator();
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
                 }
                 return ListView.separated(
                   itemCount: snapshot.data.docs.length,

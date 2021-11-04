@@ -22,7 +22,6 @@ class EditDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    taskTitle.text = firestore.list1.doc("task1").id;
     return AlertDialog(
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -38,7 +37,7 @@ class EditDialog extends StatelessWidget {
           stream: firestore.orderById.snapshots(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
             if (!snapshot.hasData) {
-              return CircularProgressIndicator();
+              return Center(child: CircularProgressIndicator());
             }
             //SET INITIAL VALUES
             var task = snapshot.data.docs[index];
