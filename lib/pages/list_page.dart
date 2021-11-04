@@ -41,6 +41,7 @@ class ListPage extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     var task = snapshot.data.docs[index];
                     return TaskTile(
+                      index: index,
                       taskTitle: task["title"],
                       startTime: task["startTime"],
                       finishTime: task["finishTime"],

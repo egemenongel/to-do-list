@@ -3,6 +3,7 @@ import 'package:to_do_list_with_provider/widgets/edit_dialog.dart';
 
 class TaskTile extends StatelessWidget {
   TaskTile({
+    required this.index,
     required this.taskTitle,
     required this.startTime,
     required this.finishTime,
@@ -11,6 +12,7 @@ class TaskTile extends StatelessWidget {
     required this.checkboxCallback,
   });
 
+  final int index;
   final String taskTitle;
   final String startTime;
   final String finishTime;
@@ -23,7 +25,9 @@ class TaskTile extends StatelessWidget {
         onTap: () {
           showDialog(
             context: context,
-            builder: (_) => EditDialog(),
+            builder: (_) => EditDialog(
+              index: index,
+            ),
           );
         },
         shape: RoundedRectangleBorder(
