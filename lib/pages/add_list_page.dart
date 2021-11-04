@@ -59,7 +59,7 @@ class AddListPage extends StatelessWidget {
                   taskTitle: taskTitle,
                   startTime: startTime,
                   finishTime: finishTime,
-                  durationController: durationController,
+                  duration: durationController,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                 ))),

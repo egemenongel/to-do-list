@@ -8,14 +8,14 @@ class TaskForm extends StatelessWidget {
     required this.taskTitle,
     required this.startTime,
     required this.finishTime,
-    required this.durationController,
+    required this.duration,
     required this.border,
   }) : super(key: key);
   final GlobalKey formKey;
   final TextEditingController taskTitle;
   final TextEditingController startTime;
   final TextEditingController finishTime;
-  final TextEditingController durationController;
+  final TextEditingController duration;
   final OutlineInputBorder border;
 
   @override
@@ -92,7 +92,7 @@ class TaskForm extends StatelessWidget {
             width: 100,
             child: TextFormField(
               textAlign: TextAlign.center,
-              controller: durationController,
+              controller: duration,
               // enabled: isEnabled,
               // validator: (value) {
               //   if (startTime.text.isNotEmpty ||
