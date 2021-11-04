@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
-import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/widgets/task_tile.dart';
 

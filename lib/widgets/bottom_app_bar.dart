@@ -6,8 +6,8 @@ import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
 class ListBottomBar extends StatelessWidget {
   ListBottomBar({Key? key}) : super(key: key);
-  int taskId = 0;
-  String? title;
+  final int taskId = 0;
+  final String? title = "";
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(

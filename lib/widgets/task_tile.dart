@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:to_do_list_with_provider/widgets/time_field.dart';
 
 class TaskTile extends StatelessWidget {
   TaskTile({
@@ -93,7 +92,7 @@ class TaskTile extends StatelessWidget {
         ));
   }
 
-  AlertDialog myDialog = AlertDialog(
+  final AlertDialog myDialog = AlertDialog(
     title: Text(
       "Edit Task",
     ),
