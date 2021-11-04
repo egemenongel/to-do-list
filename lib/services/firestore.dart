@@ -7,7 +7,6 @@ class FireStoreService {
       .collection("storage")
       .doc("lists")
       .collection("list1");
-
   void addTask(TaskModel task, TaskListManager taskListManager) {}
   void addTasks(TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
@@ -26,6 +25,7 @@ class FireStoreService {
   }
 
   late Query orderById = list1.orderBy("id", descending: false);
+
   void deleteTask(TaskModel task, TaskListManager taskListManager) {
     list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
   }
