@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/widgets/edit_dialog.dart';
 
 class TaskTile extends StatelessWidget {
   TaskTile({
@@ -22,7 +23,7 @@ class TaskTile extends StatelessWidget {
         onTap: () {
           showDialog(
             context: context,
-            builder: (_) => myDialog,
+            builder: (_) => EditDialog(),
           );
         },
         shape: RoundedRectangleBorder(
@@ -91,14 +92,4 @@ class TaskTile extends StatelessWidget {
           ),
         ));
   }
-
-  final AlertDialog myDialog = AlertDialog(
-    title: Text(
-      "Edit Task",
-    ),
-    actions: [
-      TextButton(onPressed: () {}, child: Text("Edit")),
-      TextButton(onPressed: () {}, child: Text("Cancel"))
-    ],
-  );
 }
