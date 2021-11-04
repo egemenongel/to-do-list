@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/widgets/edit_dialog.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class TaskTile extends StatelessWidget {
   TaskTile({
@@ -21,79 +22,101 @@ class TaskTile extends StatelessWidget {
   final void Function(bool?)? checkboxCallback;
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-        onTap: () {
-          showDialog(
-            context: context,
-            builder: (_) => EditDialog(
-              index: index,
+    return Slidable(
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.deepOrange),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: ListTile(
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (_) => EditDialog(
+                  index: index,
+                ),
+              );
+            },
+            // shape: RoundedRectangleBorder(
+            //     borderRadius: BorderRadius.circular(10),
+            //     side: BorderSide(
+            //       color: Colors.deepOrange,
+            //     )),
+            title: Text(
+              taskTitle,
+              style: TextStyle(
+                  decoration: isCompleted
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
+                  decorationColor: Theme.of(context).primaryColor),
             ),
-          );
-        },
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-            side: BorderSide(
-              color: Colors.deepOrange,
+            leading: Checkbox(
+              value: isCompleted,
+              onChanged: checkboxCallback,
+              activeColor: Colors.green,
+            ),
+            trailing: Container(
+              width: 150,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  duration != ""
+                      ? Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.blueAccent[100],
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            "$duration mins",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )
+                      : SizedBox(),
+                  startTime != ""
+                      ? Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.greenAccent,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            startTime,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )
+                      : SizedBox(),
+                  finishTime != ""
+                      ? Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                            color: Colors.redAccent,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Text(
+                            finishTime,
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        )
+                      : SizedBox(),
+                ],
+              ),
             )),
-        title: Text(
-          taskTitle,
-          style: TextStyle(
-              decoration: isCompleted
-                  ? TextDecoration.lineThrough
-                  : TextDecoration.none,
-              decorationColor: Theme.of(context).primaryColor),
-        ),
-        leading: Checkbox(
-          value: isCompleted,
-          onChanged: checkboxCallback,
-          activeColor: Colors.green,
-        ),
-        trailing: Container(
-          width: 150,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              duration != ""
-                  ? Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.blueAccent[100],
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        "$duration mins",
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  : SizedBox(),
-              startTime != ""
-                  ? Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.greenAccent,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        startTime,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  : SizedBox(),
-              finishTime != ""
-                  ? Container(
-                      padding: EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        color: Colors.redAccent,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Text(
-                        finishTime,
-                        style: TextStyle(color: Colors.white),
-                      ),
-                    )
-                  : SizedBox(),
-            ],
-          ),
-        ));
+      ),
+      actionPane: const SlidableScrollActionPane(),
+      actionExtentRatio: 0.25,
+      secondaryActions: [
+        Container(
+            height: 50,
+            child: IconButton(
+              onPressed: () {},
+              icon: Icon(Icons.delete),
+              color: Colors.white,
+            ),
+            decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.all(Radius.circular(10)))),
+      ],
+    );
   }
 }
