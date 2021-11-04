@@ -28,13 +28,10 @@ class ListPage extends StatelessWidget {
             SizedBox(
               height: 30,
             ),
-            Text(
-              "${context.read<TaskListManager>().listTitle}",
-              style: Theme.of(context).textTheme.headline2,
-            ),
-            SizedBox(
-              height: 30,
-            ),
+            // Text(
+            //   "${context.read<TaskListManager>().listTitle}",
+            //   style: Theme.of(context).textTheme.headline2,
+            // ),
             Expanded(
                 child: StreamBuilder(
               stream: firestore.orderById.snapshots(),
