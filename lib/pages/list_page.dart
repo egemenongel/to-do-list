@@ -56,7 +56,9 @@ class ListPage extends StatelessWidget {
                           firestore.checkboxToggle(task, checkboxState!),
                     );
                   },
-                  padding: EdgeInsets.all(20),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
                   separatorBuilder: (BuildContext context, int index) {
                     return Divider(
                       height: 10,
@@ -66,6 +68,10 @@ class ListPage extends StatelessWidget {
                 );
               },
             )),
+            Container(
+              color: Colors.purple[200],
+              height: 40,
+            ),
             // Expanded(
             //   child: Consumer<TaskListManager>(
             //     builder: (_, taskListManager, __) => ListView.separated(
