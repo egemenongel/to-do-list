@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
+import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
 class FireStoreService {
   CollectionReference list1 = FirebaseFirestore.instance
@@ -7,15 +8,24 @@ class FireStoreService {
       .doc("lists")
       .collection("list1");
 
-  void addTask(TaskModel task) {
-    list1.doc("task1").set({
-      "title": task.title,
-      "isCompleted": task.isCompleted,
-      "startTime": task.startTime,
-      "finishTime": task.finishTime,
-      "duration": task.duration,
-    });
+  void addTask(TaskModel task, TaskListManager taskListManager) {}
+  void addTasks(TaskListManager taskListManager) {
+    for (TaskModel task in taskListManager.taskList) {
+      // addTask(task, taskListManager);
+      var currentTask =
+          list1.doc("task${taskListManager.taskList.indexOf(task)}");
+      currentTask.set({
+        "id": taskListManager.taskList.indexOf(task),
+        "title": task.title,
+        "isCompleted": task.isCompleted,
+        "startTime": task.startTime,
+        "finishTime": task.finishTime,
+        "duration": task.duration,
+      });
+    }
   }
+
+  late Query orderById = list1.orderBy("id", descending: false);
 }
 // addTasks(
 //                 Provider.of<TaskListManager>(context, listen: false));
