@@ -29,9 +29,9 @@ class TaskTile extends StatelessWidget {
     return Slidable(
       child: Container(
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.deepOrange),
-          borderRadius: BorderRadius.circular(10),
-        ),
+            border: Border.all(color: Colors.deepOrange),
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(10), topLeft: Radius.circular(10))),
         child: ListTile(
             onTap: () {
               showDialog(
@@ -107,11 +107,11 @@ class TaskTile extends StatelessWidget {
               ),
             )),
       ),
-      actionPane: const SlidableScrollActionPane(),
+      actionPane: const SlidableStrechActionPane(),
       actionExtentRatio: 0.25,
       secondaryActions: [
         Container(
-            height: 50,
+            height: 60,
             child: IconButton(
               onPressed: deleteCallback,
               icon: Icon(Icons.delete),
@@ -119,7 +119,9 @@ class TaskTile extends StatelessWidget {
             ),
             decoration: BoxDecoration(
                 color: Colors.red,
-                borderRadius: BorderRadius.all(Radius.circular(10)))),
+                borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(10),
+                    bottomRight: Radius.circular(10)))),
       ],
     );
   }
