@@ -9,7 +9,7 @@ class FireStoreService {
       .collection("list1");
   late Query orderById = list1.orderBy("id", descending: false);
 
-  void addTasks(TaskListManager taskListManager) {
+  void addTasksToDatabase(TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
       // addTask(task, taskListManager);
       var currentTask =
