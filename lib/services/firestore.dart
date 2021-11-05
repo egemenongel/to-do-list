@@ -26,9 +26,9 @@ class FireStoreService {
     }
   }
 
-  void deleteTask(TaskModel task, TaskListManager taskListManager) {
-    list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
-  }
+  // void deleteTask(TaskModel task, TaskListManager taskListManager) {
+  //   list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
+  // }
 
   void checkboxToggle(QueryDocumentSnapshot task, bool checkboxState) {
     list1.doc("task${task["id"]}").update({"isCompleted": checkboxState});
@@ -43,6 +43,11 @@ class FireStoreService {
       "duration": duration,
     });
   }
+
+  void deleteTask(QueryDocumentSnapshot task) {
+    list1.doc("task${task["id"]}").delete();
+  }
+
   // void checkboxToggle(int index, bool checkboxState) {
   //   list1.doc("task$index").update({"isCompleted": checkboxState});
   // }

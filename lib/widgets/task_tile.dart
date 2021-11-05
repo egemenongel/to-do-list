@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/widgets/edit_dialog.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
@@ -11,6 +13,7 @@ class TaskTile extends StatelessWidget {
     required this.duration,
     required this.isCompleted,
     required this.checkboxCallback,
+    required this.deleteCallback,
   });
 
   final int index;
@@ -20,6 +23,7 @@ class TaskTile extends StatelessWidget {
   final String duration;
   final bool isCompleted;
   final void Function(bool?)? checkboxCallback;
+  final void Function()? deleteCallback;
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -109,7 +113,7 @@ class TaskTile extends StatelessWidget {
         Container(
             height: 50,
             child: IconButton(
-              onPressed: () {},
+              onPressed: deleteCallback,
               icon: Icon(Icons.delete),
               color: Colors.white,
             ),
