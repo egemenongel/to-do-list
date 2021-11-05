@@ -8,17 +8,11 @@ class EditDialog extends StatelessWidget {
     required this.index,
   }) : super(key: key);
   final index;
-
   final FireStoreService firestore = FireStoreService();
-
   final taskTitle = TextEditingController();
-
   final startTime = TextEditingController();
-
   final finishTime = TextEditingController();
-
   final _formKey = GlobalKey<FormState>();
-
   final duration = TextEditingController();
   @override
   Widget build(BuildContext context) {
