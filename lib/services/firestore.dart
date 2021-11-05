@@ -43,29 +43,29 @@ class FireStoreService {
     doc.reference.update({"isCompleted": checkboxState});
   }
 
-  // Stream<QuerySnapshot> get tasks {
-  //   return list1.snapshots();
-  // }
+// Stream<QuerySnapshot> get tasks {
+//   return list1.snapshots();
+// }
 
-  // Future<int> get length async {
-  //   return await tasks.length;
-  // }
-  // void addTask() {
-  //   list1.doc().set({taskModel});
-  // }
+// Future<int> get length async {
+//   return await tasks.length;
+// }
+// void addTask() {
+//   list1.doc().set({taskModel});
+// }
 
-  // void editTask(QueryDocumentSnapshot task, String title, String startTime,
-  //     String finishTime, String duration) {
-  //   list1.doc("task${task["id"]}").update({
-  //     "title": title,
-  //     "startTime": startTime,
-  //     "finishTime": finishTime,
-  //     "duration": duration,
-  //   });
+// void editTask(QueryDocumentSnapshot task, String title, String startTime,
+//     String finishTime, String duration) {
+//   list1.doc("task${task["id"]}").update({
+//     "title": title,
+//     "startTime": startTime,
+//     "finishTime": finishTime,
+//     "duration": duration,
+//   });
 
-  // void deleteTask(QueryDocumentSnapshot task) {
-  //   list1.doc("task${task["id"]}").delete();
-  // }
+// void deleteTask(QueryDocumentSnapshot task) {
+//   list1.doc("task${task["id"]}").delete();
+// }
 }
 
 // void deleteTask(TaskModel task, TaskListManager taskListManager) {

@@ -52,10 +52,4 @@ class AddTask extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceBetween,
     );
   }
-
-  // Future addTask(TaskModel task) async{
-  //   try{
-  //     await firestore.list1.add(task.toMap());
-  //   }
-  // }
 }
