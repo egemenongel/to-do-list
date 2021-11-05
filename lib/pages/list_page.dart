@@ -99,13 +99,26 @@ class ListPage extends StatelessWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ListTitlePage()));
-        },
-      ),
+      persistentFooterButtons: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                // Add a task to the list
+              },
+            ),
+            FloatingActionButton(
+              child: Icon(Icons.add_box_outlined),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ListTitlePage()));
+              },
+            ),
+          ],
+        )
+      ],
     );
   }
 }
