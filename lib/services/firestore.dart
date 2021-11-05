@@ -42,7 +42,7 @@ class FireStoreService {
   void checkboxToggle(QueryDocumentSnapshot doc, bool checkboxState) {
     doc.reference.update({"isCompleted": checkboxState});
   }
-
+}
 // Stream<QuerySnapshot> get tasks {
 //   return list1.snapshots();
 // }
@@ -66,12 +66,10 @@ class FireStoreService {
 // void deleteTask(QueryDocumentSnapshot task) {
 //   list1.doc("task${task["id"]}").delete();
 // }
-}
 
 // void deleteTask(TaskModel task, TaskListManager taskListManager) {
 //   list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
 // }
-
 // void editTask(int index, String title, String startTime, String finishTime,
 //     String duration) {
 //   list1.doc("task$index").update({
