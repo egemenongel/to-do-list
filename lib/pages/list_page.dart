@@ -77,7 +77,9 @@ class ListPage extends StatelessWidget {
                   child: Icon(Icons.add),
                   onPressed: () {
                     showDialog(
-                        context: context, builder: (context) => AddTask());
+                      context: context,
+                      builder: (context) => AddTask(),
+                    );
                     // Add a task to the list
                   },
                 ),
