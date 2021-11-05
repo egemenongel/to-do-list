@@ -9,7 +9,6 @@ class FireStoreService {
       .collection("list1");
   late Query orderById = list1.orderBy("id", descending: false);
 
-  void addTask(TaskModel task, TaskListManager taskListManager) {}
   void addTasks(TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
       // addTask(task, taskListManager);
@@ -26,23 +25,9 @@ class FireStoreService {
     }
   }
 
-  // void deleteTask(TaskModel task, TaskListManager taskListManager) {
-  //   list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
-  // }
-
   void checkboxToggle(QueryDocumentSnapshot task, bool checkboxState) {
     list1.doc("task${task["id"]}").update({"isCompleted": checkboxState});
   }
-
-  // void editTask(int index, String title, String startTime, String finishTime,
-  //     String duration) {
-  //   list1.doc("task$index").update({
-  //     "title": title,
-  //     "startTime": startTime,
-  //     "finishTime": finishTime,
-  //     "duration": duration,
-  //   });
-  // }
 
   void editTask(QueryDocumentSnapshot task, String title, String startTime,
       String finishTime, String duration) {
@@ -57,27 +42,42 @@ class FireStoreService {
   void deleteTask(QueryDocumentSnapshot task) {
     list1.doc("task${task["id"]}").delete();
   }
-
-  // void checkboxToggle(int index, bool checkboxState) {
-  //   list1.doc("task$index").update({"isCompleted": checkboxState});
-  // }
 }
+
+// void deleteTask(TaskModel task, TaskListManager taskListManager) {
+//   list1.doc("task${taskListManager.taskList.indexOf(task)}").delete();
+// }
+
+// void editTask(int index, String title, String startTime, String finishTime,
+//     String duration) {
+//   list1.doc("task$index").update({
+//     "title": title,
+//     "startTime": startTime,
+//     "finishTime": finishTime,
+//     "duration": duration,
+//   });
+// }
+
+// void checkboxToggle(int index, bool checkboxState) {
+//   list1.doc("task$index").update({"isCompleted": checkboxState});
+// }
+
 // addTasks(
 //                 Provider.of<TaskListManager>(context, listen: false));
 
-//  void addTasks(TaskListManager taskListManager) {
+// void addTasks(TaskListManager taskListManager) {
 //     for (TaskModel task in taskListManager.taskList) {
 //       addTask(task, taskListManager);
 //     }
 //   }
 
-  // Future<void> addTask(TaskModel task, TaskListManager taskListManager) {
+// Future<void> addTask(TaskModel task, TaskListManager taskListManager) {
   //   DocumentReference lists =
   //       FirebaseFirestore.instance.collection("storage").doc("lists");
   //   taskId++;
   //   CollectionReference currentList = lists.collection("list1"); //listTitle
 
-  //   return currentList
+// return currentList
   //       .doc(
   //           "task${currentList.get().then((value) => value.docs.length.toString())}") //taskId
   //       .set({
