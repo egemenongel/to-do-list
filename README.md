@@ -7,12 +7,13 @@ A simple To Do List built with Flutter. Used Provider Package for State Manageme
 ## TO DO
 
 * [X] After adding a task, automatically focus to TextFormField.
+* [X] Fix AM PM for duration calculation and checking start and finish dates.
+* [X] Edit tasks.
 * [ ] New properties to tasks.
-* [ ] Fix AM PM for duration calculation and checking start and finish dates.
-* [ ] Edit tasks.
 * [ ] Works with multiple lists.
 * [ ] Add tags,due date, category etc. to tasks.
 * [ ] Gridview for Lists. 
+* [ ] Dialog boxes to ask to user if they are sure about the action.
 * [ ] Report page for tasks.
 * [ ] Firebase Integration.
 * [ ] More appealing design.
