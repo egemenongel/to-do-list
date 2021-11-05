@@ -3,7 +3,10 @@ import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
 class EditDialog extends StatelessWidget {
-  EditDialog({Key? key, required this.index}) : super(key: key);
+  EditDialog({
+    Key? key,
+    required this.index,
+  }) : super(key: key);
   final index;
 
   final FireStoreService firestore = FireStoreService();
@@ -17,7 +20,6 @@ class EditDialog extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
 
   final duration = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -30,7 +32,7 @@ class EditDialog extends StatelessWidget {
         "Edit Task",
       ),
       content: Container(
-        height: 250,
+        height: 350,
         child: StreamBuilder(
           stream: firestore.orderById.snapshots(),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -43,26 +45,32 @@ class EditDialog extends StatelessWidget {
             startTime.text = task["startTime"];
             finishTime.text = task["finishTime"];
             duration.text = task["duration"];
-            return TaskForm(
-              formKey: _formKey,
-              taskTitle: taskTitle,
-              startTime: startTime,
-              finishTime: finishTime,
-              duration: duration,
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+            return Column(
+              children: [
+                TaskForm(
+                  formKey: _formKey,
+                  taskTitle: taskTitle,
+                  startTime: startTime,
+                  finishTime: finishTime,
+                  duration: duration,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                ),
+                TextButton(
+                  onPressed: () {
+                    firestore.editTask(task, taskTitle.text, startTime.text,
+                        finishTime.text, duration.text);
+                    Navigator.pop(context);
+                  },
+                  child: Text("a"),
+                )
+              ],
             );
           },
         ),
       ),
       actions: [
-        TextButton(
-            onPressed: () {
-              firestore.editTask(index, taskTitle.text, startTime.text,
-                  finishTime.text, duration.text);
-              Navigator.pop(context);
-            },
-            child: Text("Edit")),
+        // TextButton(onPressed: editCallback, child: Text("Edit")),
         TextButton(
             onPressed: () => Navigator.pop(context), child: Text("Cancel"))
       ],

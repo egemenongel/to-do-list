@@ -34,9 +34,19 @@ class FireStoreService {
     list1.doc("task${task["id"]}").update({"isCompleted": checkboxState});
   }
 
-  void editTask(int index, String title, String startTime, String finishTime,
-      String duration) {
-    list1.doc("task$index").update({
+  // void editTask(int index, String title, String startTime, String finishTime,
+  //     String duration) {
+  //   list1.doc("task$index").update({
+  //     "title": title,
+  //     "startTime": startTime,
+  //     "finishTime": finishTime,
+  //     "duration": duration,
+  //   });
+  // }
+
+  void editTask(QueryDocumentSnapshot task, String title, String startTime,
+      String finishTime, String duration) {
+    list1.doc("task${task["id"]}").update({
       "title": title,
       "startTime": startTime,
       "finishTime": finishTime,
