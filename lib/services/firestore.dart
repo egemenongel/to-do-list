@@ -19,6 +19,8 @@ class FireStoreService {
 
   late Query orderById = list1.orderBy("id", descending: false);
 
+  late Query orderByTimestamp = list1.orderBy("timeStamp", descending: false);
+
   void addTasksToDatabase(TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
       // addTask(task, taskListManager);
