@@ -41,11 +41,6 @@ class TaskTile extends StatelessWidget {
                 ),
               );
             },
-            // shape: RoundedRectangleBorder(
-            //     borderRadius: BorderRadius.circular(10),
-            //     side: BorderSide(
-            //       color: Colors.deepOrange,
-            //     )),
             title: Text(
               taskTitle,
               style: TextStyle(
@@ -110,18 +105,18 @@ class TaskTile extends StatelessWidget {
       actionPane: const SlidableStrechActionPane(),
       actionExtentRatio: 0.25,
       secondaryActions: [
-        Container(
-            height: 60,
-            child: IconButton(
-              onPressed: deleteCallback,
-              icon: Icon(Icons.delete),
-              color: Colors.white,
-            ),
-            decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(10),
-                    bottomRight: Radius.circular(10)))),
+        SlideAction(
+          onTap: deleteCallback,
+          child: Icon(
+            Icons.delete,
+            color: Colors.white,
+          ),
+          decoration: BoxDecoration(
+              color: Colors.red,
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10))),
+        )
       ],
     );
   }
