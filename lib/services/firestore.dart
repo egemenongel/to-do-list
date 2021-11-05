@@ -40,7 +40,9 @@ class FireStoreService {
     list1.doc("task${task["id"]}").update({"isCompleted": checkboxState});
   }
 
-  void addTask() {}
+  // void addTask() {
+  //   list1.doc().set({taskModel});
+  // }
 
   void editTask(QueryDocumentSnapshot task, String title, String startTime,
       String finishTime, String duration) {
