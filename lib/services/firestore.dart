@@ -38,16 +38,16 @@ class FireStoreService {
     }
   }
 
-  void checkboxToggle(QueryDocumentSnapshot task, bool checkboxState) {
-    list1.doc("task${task["id"]}").update({"isCompleted": checkboxState});
+  void checkboxToggle(QueryDocumentSnapshot doc, bool checkboxState) {
+    doc.reference.update({"isCompleted": checkboxState});
   }
 
   Future addTask(TaskModel task) async {
     await list1.add(task.toMap());
   }
 
-  Future removeTask(QueryDocumentSnapshot doc) async {
-    await doc.reference.delete();
+  removeTask(QueryDocumentSnapshot doc) {
+    doc.reference.delete();
   }
 
   // void addTask() {
