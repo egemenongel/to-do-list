@@ -38,31 +38,34 @@ class FireStoreService {
     }
   }
 
-  void checkboxToggle(QueryDocumentSnapshot doc, bool checkboxState) {
-    doc.reference.update({"isCompleted": checkboxState});
-  }
-
   Future addTask(TaskModel task) async {
     await list1.add(task.toMap());
   }
 
-  removeTask(QueryDocumentSnapshot doc) {
+  void removeTask(QueryDocumentSnapshot doc) {
     doc.reference.delete();
+  }
+
+  void editTask(QueryDocumentSnapshot doc, TaskModel task) {
+    doc.reference.update(task.toMap());
+  }
+
+  void checkboxToggle(QueryDocumentSnapshot doc, bool checkboxState) {
+    doc.reference.update({"isCompleted": checkboxState});
   }
 
   // void addTask() {
   //   list1.doc().set({taskModel});
   // }
 
-  void editTask(QueryDocumentSnapshot task, String title, String startTime,
-      String finishTime, String duration) {
-    list1.doc("task${task["id"]}").update({
-      "title": title,
-      "startTime": startTime,
-      "finishTime": finishTime,
-      "duration": duration,
-    });
-  }
+  // void editTask(QueryDocumentSnapshot task, String title, String startTime,
+  //     String finishTime, String duration) {
+  //   list1.doc("task${task["id"]}").update({
+  //     "title": title,
+  //     "startTime": startTime,
+  //     "finishTime": finishTime,
+  //     "duration": duration,
+  //   });
 
   // void deleteTask(QueryDocumentSnapshot task) {
   //   list1.doc("task${task["id"]}").delete();
@@ -95,23 +98,3 @@ class FireStoreService {
 //       addTask(task, taskListManager);
 //     }
 //   }
-
-// Future<void> addTask(TaskModel task, TaskListManager taskListManager) {
-  //   DocumentReference lists =
-  //       FirebaseFirestore.instance.collection("storage").doc("lists");
-  //   taskId++;
-  //   CollectionReference currentList = lists.collection("list1"); //listTitle
-
-// return currentList
-  //       .doc(
-  //           "task${currentList.get().then((value) => value.docs.length.toString())}") //taskId
-  //       .set({
-  //         "title": task.title,
-  //         "isCompleted": task.isCompleted,
-  //         "startTime": task.startTime,
-  //         "finishTime": task.finishTime,
-  //         "duration": task.duration,
-  //       })
-  //       .then((value) => print("Task Added"))
-  //       .catchError((error) => print("Failed to add task: $error"));
-  // }

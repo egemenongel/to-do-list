@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
@@ -19,7 +21,7 @@ class EditDialog extends StatelessWidget {
     return Container(
       height: 350,
       child: StreamBuilder(
-        stream: firestore.orderById.snapshots(),
+        stream: firestore.orderByTimestamp.snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -53,8 +55,15 @@ class EditDialog extends StatelessWidget {
             actions: [
               TextButton(
                   onPressed: () {
-                    firestore.editTask(task, taskTitle.text, startTime.text,
-                        finishTime.text, duration.text);
+                    firestore.editTask(
+                        task,
+                        TaskModel(
+                          title: taskTitle.text,
+                          startTime: startTime.text,
+                          finishTime: finishTime.text,
+                          duration: duration.text,
+                          timeStamp: task["timeStamp"], //To make it same
+                        ));
                     Navigator.pop(context);
                   },
                   child: Text("Edit")),
