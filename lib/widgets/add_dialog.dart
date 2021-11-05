@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
@@ -35,14 +36,22 @@ class AddTask extends StatelessWidget {
         // firestore.orderById.snapshots()
         TextButton(
             onPressed: () {
-              firestore.list1.doc().set({
-                "title": taskTitle.text,
-                "isCompleted": false,
-                "startTime": startTime.text,
-                "finishTime": finishTime.text,
-                "duration": duration.text,
-                "timeStamp": Timestamp.now(),
-              });
+              firestore.addTask(TaskModel(
+                title: taskTitle.text,
+                isCompleted: false,
+                startTime: startTime.text,
+                finishTime: finishTime.text,
+                duration: duration.text,
+                timeStamp: Timestamp.now(),
+              ));
+              // firestore.list1.doc().set({
+              //   "title": taskTitle.text,
+              //   "isCompleted": false,
+              //   "startTime": startTime.text,
+              //   "finishTime": finishTime.text,
+              //   "duration": duration.text,
+              //   "timeStamp": Timestamp.now(),
+              // });
 
               Navigator.pop(context);
             },
@@ -53,4 +62,10 @@ class AddTask extends StatelessWidget {
       actionsAlignment: MainAxisAlignment.spaceBetween,
     );
   }
+
+  // Future addTask(TaskModel task) async{
+  //   try{
+  //     await firestore.list1.add(task.toMap());
+  //   }
+  // }
 }

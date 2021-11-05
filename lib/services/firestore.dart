@@ -42,6 +42,10 @@ class FireStoreService {
     list1.doc("task${task["id"]}").update({"isCompleted": checkboxState});
   }
 
+  Future addTask(TaskModel task) async {
+    await list1.add(task.toMap());
+  }
+
   // void addTask() {
   //   list1.doc().set({taskModel});
   // }
