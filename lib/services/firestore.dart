@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
@@ -8,16 +7,6 @@ class FireStoreService {
       .collection("storage")
       .doc("lists")
       .collection("list1");
-
-  Stream<QuerySnapshot> get tasks {
-    return list1.snapshots();
-  }
-
-  Future<int> get length async {
-    return await tasks.length;
-  }
-
-  late Query orderById = list1.orderBy("id", descending: false);
 
   late Query orderByTimestamp = list1.orderBy("timeStamp", descending: false);
 
@@ -54,6 +43,13 @@ class FireStoreService {
     doc.reference.update({"isCompleted": checkboxState});
   }
 
+  // Stream<QuerySnapshot> get tasks {
+  //   return list1.snapshots();
+  // }
+
+  // Future<int> get length async {
+  //   return await tasks.length;
+  // }
   // void addTask() {
   //   list1.doc().set({taskModel});
   // }
@@ -89,12 +85,3 @@ class FireStoreService {
 // void checkboxToggle(int index, bool checkboxState) {
 //   list1.doc("task$index").update({"isCompleted": checkboxState});
 // }
-
-// addTasks(
-//                 Provider.of<TaskListManager>(context, listen: false));
-
-// void addTasks(TaskListManager taskListManager) {
-//     for (TaskModel task in taskListManager.taskList) {
-//       addTask(task, taskListManager);
-//     }
-//   }
