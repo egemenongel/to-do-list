@@ -44,15 +44,6 @@ class AddTask extends StatelessWidget {
                 duration: duration.text,
                 timeStamp: Timestamp.now(),
               ));
-              // firestore.list1.doc().set({
-              //   "title": taskTitle.text,
-              //   "isCompleted": false,
-              //   "startTime": startTime.text,
-              //   "finishTime": finishTime.text,
-              //   "duration": duration.text,
-              //   "timeStamp": Timestamp.now(),
-              // });
-
               Navigator.pop(context);
             },
             child: Text("Add")),

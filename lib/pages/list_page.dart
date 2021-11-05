@@ -53,7 +53,7 @@ class ListPage extends StatelessWidget {
                         isCompleted: task["isCompleted"],
                         checkboxCallback: (checkboxState) =>
                             firestore.checkboxToggle(task, checkboxState!),
-                        deleteCallback: () => firestore.deleteTask(task),
+                        deleteCallback: () => firestore.removeTask(task),
                       );
                     },
                     padding: EdgeInsets.symmetric(

@@ -46,6 +46,10 @@ class FireStoreService {
     await list1.add(task.toMap());
   }
 
+  Future removeTask(QueryDocumentSnapshot doc) async {
+    await doc.reference.delete();
+  }
+
   // void addTask() {
   //   list1.doc().set({taskModel});
   // }
@@ -60,9 +64,9 @@ class FireStoreService {
     });
   }
 
-  void deleteTask(QueryDocumentSnapshot task) {
-    list1.doc("task${task["id"]}").delete();
-  }
+  // void deleteTask(QueryDocumentSnapshot task) {
+  //   list1.doc("task${task["id"]}").delete();
+  // }
 }
 
 // void deleteTask(TaskModel task, TaskListManager taskListManager) {
