@@ -12,7 +12,6 @@ class AddTask extends StatelessWidget {
   final finishTime = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final duration = TextEditingController();
-  var id = 100;
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
