@@ -34,8 +34,14 @@ class ListBottomBar extends StatelessWidget {
                     firestore.addList(
                         context.read<TaskListManager>().listTitle!,
                         context.read<TaskListManager>());
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => ListPage()));
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ListPage(
+                                  index: context
+                                      .read<TaskListManager>()
+                                      .listTitle!,
+                                )));
                   },
                   child: Text("Submit")))
         ],
