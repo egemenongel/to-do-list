@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
 
@@ -9,6 +8,10 @@ class ListsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var firestore = FireStoreService();
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("My Lists"),
+      ),
       body: StreamBuilder(
         stream: firestore.listStorage.snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
