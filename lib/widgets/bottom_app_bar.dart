@@ -31,8 +31,9 @@ class ListBottomBar extends StatelessWidget {
                   style: ButtonStyle(),
                   onPressed: () {
                     var firestore = FireStoreService();
-                    firestore
-                        .addTasksToDatabase(context.read<TaskListManager>());
+                    firestore.addList(
+                        context.read<TaskListManager>().listTitle!,
+                        context.read<TaskListManager>());
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => ListPage()));
                   },
