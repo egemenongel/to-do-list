@@ -19,26 +19,40 @@ class ListPage extends StatelessWidget {
           );
         }
         return Scaffold(
-          appBar: AppBar(
-            title: Center(
-              child: Text(
-                "TO DO LIST",
-                style: TextStyle(fontSize: 25),
-              ),
-            ),
-            automaticallyImplyLeading: false,
-          ),
+          // appBar: AppBar(
+          //   title: Center(
+          //     child: Text(
+          //       "TO DO LIST",
+          //       style: TextStyle(fontSize: 25),
+          //     ),
+          //   ),
+          //   automaticallyImplyLeading: false,
+          // ),
           body: Center(
             child: Column(
               children: [
                 SizedBox(
                   height: 30,
                 ),
-                Text(
-                  "$listTitle",
-                  style: Theme.of(context).textTheme.headline2,
+                Container(
+                  child: Text(
+                    "$listTitle",
+                    style: TextStyle(
+                      color: Color(0xffff6434),
+                      fontSize: 40.0,
+                    ),
+                  ),
                 ),
                 Expanded(
+                    child: Container(
+                  padding: EdgeInsets.symmetric(vertical: 20),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      Colors.purple,
+                      Colors.deepPurpleAccent,
+                    ]),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                   child: ListView.separated(
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (BuildContext context, int index) {
@@ -66,37 +80,48 @@ class ListPage extends StatelessWidget {
                       );
                     },
                   ),
+                )),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.deepPurple[200],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      FloatingActionButton(
+                        backgroundColor: Colors.deepPurple[100],
+                        heroTag: null,
+                        child: Icon(Icons.add),
+                        onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AddTask(listTitle: listTitle),
+                          );
+                        },
+                      ),
+                      FloatingActionButton(
+                        backgroundColor: Colors.deepPurple[100],
+                        heroTag: null,
+                        child: Icon(
+                          Icons.add_box_outlined,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ListTitlePage()));
+                        },
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          persistentFooterButtons: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                FloatingActionButton(
-                  heroTag: null,
-                  child: Icon(Icons.add),
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AddTask(listTitle: listTitle),
-                    );
-                  },
-                ),
-                FloatingActionButton(
-                  heroTag: null,
-                  child: Icon(Icons.add_box_outlined),
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ListTitlePage()));
-                  },
-                ),
-              ],
-            )
-          ],
         );
       },
     );

@@ -29,7 +29,8 @@ class TaskTile extends StatelessWidget {
     return Slidable(
       child: Container(
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.deepOrange),
+            border: Border.all(color: Color(0xff80ffde), width: 2),
+            color: Color(0xFF80a2ff),
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10), topLeft: Radius.circular(10))),
         child: ListTile(
@@ -45,6 +46,7 @@ class TaskTile extends StatelessWidget {
             title: Text(
               taskTitle,
               style: TextStyle(
+                  color: Colors.white,
                   decoration: isCompleted
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,
@@ -106,17 +108,22 @@ class TaskTile extends StatelessWidget {
       actionPane: const SlidableStrechActionPane(),
       actionExtentRatio: 0.25,
       secondaryActions: [
-        SlideAction(
-          onTap: deleteCallback,
-          child: Icon(
-            Icons.delete,
-            color: Colors.white,
+        Container(
+          child: SlideAction(
+            onTap: deleteCallback,
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+            decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color(0xff80ffde),
+                ),
+                color: Colors.red,
+                borderRadius: BorderRadius.only(
+                    bottomRight: Radius.circular(10),
+                    topRight: Radius.circular(10))),
           ),
-          decoration: BoxDecoration(
-              color: Colors.red,
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  bottomRight: Radius.circular(10))),
         )
       ],
     );
