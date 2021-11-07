@@ -8,22 +8,22 @@ class FireStoreService {
       .doc("lists")
       .collection("list1");
 
-  DocumentReference lists =
-      FirebaseFirestore.instance.collection("storage").doc("lists");
+  DocumentReference lists = FirebaseFirestore.instance
+      .collection("storage")
+      .doc("lists"); //Need to order this
+
+  CollectionReference listStorage =
+      FirebaseFirestore.instance.collection("lists");
 
   late Query orderByTimestamp = list1.orderBy("timeStamp", descending: false);
 
   void addList(String listTitle, TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
       // var currentTask = lists.collection(listTitle).doc();
-      FirebaseFirestore.instance.collection("lists").doc(listTitle).set({
+      listStorage.doc(listTitle).set({
         "title": listTitle,
       });
-      var currentTask = FirebaseFirestore.instance
-          .collection("lists")
-          .doc(listTitle)
-          .collection("tasks")
-          .doc();
+      var currentTask = listStorage.doc(listTitle).collection("tasks").doc();
       currentTask.set({
         "title": task.title,
         "isCompleted": task.isCompleted,

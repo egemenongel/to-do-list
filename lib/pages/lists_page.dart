@@ -9,25 +9,8 @@ class ListsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var firestore = FireStoreService();
     return Scaffold(
-      body:
-          // FutureBuilder(
-          //   future: firestore.a(),
-          //   builder: (BuildContext context, AsyncSnapshot snapshot) {
-          //     if (!snapshot.hasData) {
-          //       return Center(
-          //         child: CircularProgressIndicator(),
-          //       );
-          //     }
-          //     return ListView.builder(
-          //       itemCount: snapshot.data.docs.length,
-          //       itemBuilder: (BuildContext context, int index) {
-          //         return Text("a");
-          //       },
-          //     );
-          //   },
-          // ),
-          StreamBuilder(
-        stream: FirebaseFirestore.instance.collection("lists").snapshots(),
+      body: StreamBuilder(
+        stream: firestore.listStorage.snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Center(
