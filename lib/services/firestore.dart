@@ -8,15 +8,15 @@ class FireStoreService {
       .doc("lists")
       .collection("list1");
 
+  DocumentReference lists =
+      FirebaseFirestore.instance.collection("storage").doc("lists");
+
   late Query orderByTimestamp = list1.orderBy("timeStamp", descending: false);
 
-  void addTasksToDatabase(TaskListManager taskListManager) {
+  void addList(String listTitle, TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
-      // addTask(task, taskListManager);
-      var currentTask =
-          list1.doc("task${taskListManager.taskList.indexOf(task)}");
+      var currentTask = lists.collection(listTitle).doc();
       currentTask.set({
-        "id": taskListManager.taskList.indexOf(task),
         "title": task.title,
         "isCompleted": task.isCompleted,
         "startTime": task.startTime,
@@ -26,6 +26,22 @@ class FireStoreService {
       });
     }
   }
+  // void addListToDatabase(TaskListManager taskListManager) {
+  //   for (TaskModel task in taskListManager.taskList) {
+  //     // addTask(task, taskListManager);
+  //     var currentTask =
+  //         list1.doc("task${taskListManager.taskList.indexOf(task)}");
+  //     currentTask.set({
+  //       "id": taskListManager.taskList.indexOf(task),
+  //       "title": task.title,
+  //       "isCompleted": task.isCompleted,
+  //       "startTime": task.startTime,
+  //       "finishTime": task.finishTime,
+  //       "duration": task.duration,
+  //       "timeStamp": Timestamp.now(),
+  //     });
+  //   }
+  // }
 
   Future addTask(TaskModel task) async {
     await list1.add(task.toMap());
