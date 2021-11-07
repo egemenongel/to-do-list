@@ -25,16 +25,17 @@ class ListsPage extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data.docs.length,
             itemBuilder: (BuildContext context, int index) {
+              var list = snapshot.data.docs[index];
               return ListTile(
                 title: Text(
-                  snapshot.data.docs[index].id,
+                  list.id,
                 ),
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => ListPage(
-                          listTitle: snapshot.data.docs[index].id,
+                          listTitle: list.id,
                           // To the list on index
                         ),
                       ));

@@ -10,6 +10,7 @@ class ListBottomBar extends StatelessWidget {
   final String? title = "";
   @override
   Widget build(BuildContext context) {
+    var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return BottomAppBar(
       shape: CircularNotchedRectangle(),
       child: Row(
@@ -32,15 +33,12 @@ class ListBottomBar extends StatelessWidget {
                   onPressed: () {
                     var firestore = FireStoreService();
                     firestore.addList(
-                        context.read<TaskListManager>().listTitle!,
-                        context.read<TaskListManager>());
+                        _taskListManager.listTitle!, _taskListManager);
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
                             builder: (context) => ListPage(
-                                  listTitle: context
-                                      .read<TaskListManager>()
-                                      .listTitle!,
+                                  listTitle: _taskListManager.listTitle!,
                                 )));
                   },
                   child: Text("Submit")))
