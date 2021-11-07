@@ -30,6 +30,15 @@ class ListsPage extends StatelessWidget {
                 title: Text(
                   list.id,
                 ),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.delete_forever,
+                    color: Colors.redAccent,
+                  ),
+                  onPressed: () {
+                    firestore.removeList(list);
+                  },
+                ),
                 onTap: () {
                   Navigator.push(
                       context,

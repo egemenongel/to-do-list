@@ -39,6 +39,10 @@ class FireStoreService {
     doc.reference.delete();
   }
 
+  void removeList(DocumentSnapshot list) {
+    list.reference.delete();
+  }
+
   void editTask(QueryDocumentSnapshot doc, TaskModel task) {
     doc.reference.update(task.toMap());
   }
