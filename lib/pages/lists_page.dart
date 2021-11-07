@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/pages/list_page.dart';
+import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
 
 class ListsPage extends StatelessWidget {
@@ -41,6 +42,13 @@ class ListsPage extends StatelessWidget {
               );
             },
           );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add_box_outlined),
+        onPressed: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ListTitlePage()));
         },
       ),
     );
