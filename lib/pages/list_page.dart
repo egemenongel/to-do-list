@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
@@ -11,7 +12,7 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var firestore = FireStoreService();
     return StreamBuilder(
-      stream: firestore.orderByTimestamp.snapshots(),
+      stream: FirebaseFirestore.instance.collection("lists").snapshots(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
