@@ -23,13 +23,20 @@ class ListsPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          return ListView.builder(
+          return ListView.separated(
+            padding: EdgeInsets.all(10),
             itemCount: snapshot.data.docs.length,
             itemBuilder: (BuildContext context, int index) {
               var list = snapshot.data.docs[index];
               return ListTile(
+                tileColor: Colors.purple[100],
+                leading: Icon(
+                  Icons.list_alt_rounded,
+                  color: Colors.blueGrey,
+                ),
                 title: Text(
                   list.id,
+                  style: TextStyle(color: Colors.deepPurple),
                 ),
                 trailing: IconButton(
                   icon: Icon(
@@ -52,6 +59,12 @@ class ListsPage extends StatelessWidget {
                         ),
                       ));
                 },
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return Container(
+                height: 10,
+                color: Colors.pink[100],
               );
             },
           );
