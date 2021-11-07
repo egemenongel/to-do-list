@@ -46,6 +46,7 @@ class ListsPage extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: null,
         child: Icon(Icons.add_box_outlined),
         onPressed: () {
           Navigator.push(context,

@@ -75,6 +75,7 @@ class ListPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 FloatingActionButton(
+                  heroTag: null,
                   child: Icon(Icons.add),
                   onPressed: () {
                     showDialog(
@@ -84,6 +85,7 @@ class ListPage extends StatelessWidget {
                   },
                 ),
                 FloatingActionButton(
+                  heroTag: null,
                   child: Icon(Icons.add_box_outlined),
                   onPressed: () {
                     Navigator.push(
