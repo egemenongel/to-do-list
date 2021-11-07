@@ -52,8 +52,8 @@ class FireStoreService {
   //   }
   // }
 
-  Future addTask(TaskModel task) async {
-    await list1.add(task.toMap());
+  Future addTask(String listTitle, TaskModel task) async {
+    await listsCollection.doc(listTitle).collection("tasks").add(task.toMap());
   }
 
   void removeTask(QueryDocumentSnapshot doc) {

@@ -5,7 +5,8 @@ import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
 class AddTask extends StatelessWidget {
-  AddTask({Key? key}) : super(key: key);
+  AddTask({Key? key, required this.listTitle}) : super(key: key);
+  final String? listTitle;
   final FireStoreService firestore = FireStoreService();
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
@@ -35,14 +36,16 @@ class AddTask extends StatelessWidget {
         // firestore.orderById.snapshots()
         TextButton(
             onPressed: () {
-              firestore.addTask(TaskModel(
-                title: taskTitle.text,
-                isCompleted: false,
-                startTime: startTime.text,
-                finishTime: finishTime.text,
-                duration: duration.text,
-                timeStamp: Timestamp.now(),
-              ));
+              firestore.addTask(
+                  listTitle!,
+                  TaskModel(
+                    title: taskTitle.text,
+                    isCompleted: false,
+                    startTime: startTime.text,
+                    finishTime: finishTime.text,
+                    duration: duration.text,
+                    timeStamp: Timestamp.now(),
+                  ));
               Navigator.pop(context);
             },
             child: Text("Add")),
