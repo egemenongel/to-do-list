@@ -15,7 +15,15 @@ class FireStoreService {
 
   void addList(String listTitle, TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
-      var currentTask = lists.collection(listTitle).doc();
+      // var currentTask = lists.collection(listTitle).doc();
+      FirebaseFirestore.instance.collection("lists").doc(listTitle).set({
+        "title": listTitle,
+      });
+      var currentTask = FirebaseFirestore.instance
+          .collection("lists")
+          .doc(listTitle)
+          .collection("tasks")
+          .doc();
       currentTask.set({
         "title": task.title,
         "isCompleted": task.isCompleted,
