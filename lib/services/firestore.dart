@@ -35,8 +35,8 @@ class FireStoreService {
     await listsCollection.doc(listTitle).collection("tasks").add(task.toMap());
   }
 
-  void removeTask(QueryDocumentSnapshot doc) {
-    doc.reference.delete();
+  void removeTask(QueryDocumentSnapshot task) {
+    task.reference.delete();
   }
 
   void removeList(DocumentSnapshot list) {
