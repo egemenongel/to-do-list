@@ -14,7 +14,7 @@ class ListsPage extends StatelessWidget {
         title: Text("My Lists"),
       ),
       body: StreamBuilder(
-        stream: firestore.listStorage.snapshots(),
+        stream: firestore.listsCollection.snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Center(

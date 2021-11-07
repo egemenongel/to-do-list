@@ -11,8 +11,10 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var firestore = FireStoreService();
     return StreamBuilder(
-      stream:
-          firestore.listStorage.doc("$index").collection("tasks").snapshots(),
+      stream: firestore.listsCollection
+          .doc("$index")
+          .collection("tasks")
+          .snapshots(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
