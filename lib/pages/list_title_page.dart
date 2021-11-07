@@ -42,7 +42,7 @@ class ListTitlePage extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               context.read<TaskListManager>().setTitle(listTitle.text);
-              Navigator.push(context,
+              Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => AddListPage()));
             },
             child: Text("Next"),
