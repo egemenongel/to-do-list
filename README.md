@@ -10,9 +10,11 @@ A simple To Do List built with Flutter. Used Provider Package for State Manageme
 * [X] Fix AM PM for duration calculation and checking start and finish dates.
 * [X] Edit tasks.
 * [X] Task title.
+* [X] Works with multiple lists.
+* [ ] Edit list names.
+* [ ] Delete list.
 * [ ] Completed task count.
 * [ ] New properties to tasks.
-* [ ] Works with multiple lists.
 * [ ] Add tags,due date, category etc. to tasks.
 * [ ] Gridview for Lists. 
 * [ ] Dialog boxes to ask to user if they are sure about the action.
