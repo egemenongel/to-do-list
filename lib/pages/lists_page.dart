@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/pages/list_page.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
+import 'package:to_do_list_with_provider/widgets/are_you_sure.dart';
 
 class ListsPage extends StatelessWidget {
   const ListsPage({Key? key}) : super(key: key);
@@ -36,7 +37,10 @@ class ListsPage extends StatelessWidget {
                     color: Colors.redAccent,
                   ),
                   onPressed: () {
-                    firestore.removeList(list);
+                    showDialog(
+                      context: context,
+                      builder: (context) => AreYouSureDialog(list: list),
+                    );
                   },
                 ),
                 onTap: () {
@@ -45,7 +49,6 @@ class ListsPage extends StatelessWidget {
                       MaterialPageRoute(
                         builder: (context) => ListPage(
                           listTitle: list.id,
-                          // To the list on index
                         ),
                       ));
                 },
