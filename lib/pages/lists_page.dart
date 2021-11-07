@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list_with_provider/pages/list_page.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
 
 class ListsPage extends StatelessWidget {
@@ -27,7 +28,15 @@ class ListsPage extends StatelessWidget {
                 title: Text(
                   snapshot.data.docs[index].id,
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ListPage(
+                            // To the list on index
+                            ),
+                      ));
+                },
               );
             },
           );
