@@ -33,7 +33,7 @@ class ListsPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ListPage(
-                          index: snapshot.data.docs[index].id,
+                          listTitle: snapshot.data.docs[index].id,
                           // To the list on index
                         ),
                       ));

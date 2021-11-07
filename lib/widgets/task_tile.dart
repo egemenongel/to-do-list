@@ -5,6 +5,7 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class TaskTile extends StatelessWidget {
   TaskTile({
     required this.index,
+    required this.listTitle,
     required this.taskTitle,
     required this.startTime,
     required this.finishTime,
@@ -15,6 +16,7 @@ class TaskTile extends StatelessWidget {
   });
 
   final int index;
+  final String listTitle;
   final String taskTitle;
   final String startTime;
   final String finishTime;
@@ -36,6 +38,7 @@ class TaskTile extends StatelessWidget {
                 context: context,
                 builder: (_) => EditDialog(
                   index: index,
+                  listTitle: listTitle,
                 ),
               );
             },

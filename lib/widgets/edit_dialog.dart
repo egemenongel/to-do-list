@@ -7,8 +7,10 @@ class EditDialog extends StatelessWidget {
   EditDialog({
     Key? key,
     required this.index,
+    required this.listTitle,
   }) : super(key: key);
   final index;
+  final String listTitle;
   final FireStoreService firestore = FireStoreService();
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
@@ -20,7 +22,10 @@ class EditDialog extends StatelessWidget {
     return Container(
       height: 350,
       child: StreamBuilder(
-        stream: firestore.orderByTimestamp.snapshots(),
+        stream: firestore.listsCollection
+            .doc(listTitle)
+            .collection("tasks")
+            .snapshots(),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (!snapshot.hasData) {
             return Center(

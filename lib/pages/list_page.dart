@@ -5,14 +5,14 @@ import 'package:to_do_list_with_provider/widgets/add_dialog.dart';
 import 'package:to_do_list_with_provider/widgets/task_tile.dart';
 
 class ListPage extends StatelessWidget {
-  ListPage({Key? key, this.index}) : super(key: key);
-  final String? index;
+  ListPage({Key? key, this.listTitle}) : super(key: key);
+  final String? listTitle;
   @override
   Widget build(BuildContext context) {
     var firestore = FireStoreService();
     return StreamBuilder(
       stream: firestore.listsCollection
-          .doc("$index")
+          .doc(listTitle)
           .collection("tasks")
           .snapshots(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -38,7 +38,7 @@ class ListPage extends StatelessWidget {
                   height: 30,
                 ),
                 Text(
-                  "$index",
+                  "$listTitle",
                   style: Theme.of(context).textTheme.headline2,
                 ),
                 Expanded(
@@ -48,6 +48,7 @@ class ListPage extends StatelessWidget {
                       var task = snapshot.data.docs[index];
                       return TaskTile(
                         index: index,
+                        listTitle: listTitle!,
                         taskTitle: task["title"],
                         startTime: task["startTime"],
                         finishTime: task["finishTime"],

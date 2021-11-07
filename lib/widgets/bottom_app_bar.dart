@@ -38,7 +38,7 @@ class ListBottomBar extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => ListPage(
-                                  index: context
+                                  listTitle: context
                                       .read<TaskListManager>()
                                       .listTitle!,
                                 )));
