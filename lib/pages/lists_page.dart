@@ -22,7 +22,7 @@ class ListsPage extends StatelessWidget {
             );
           }
           return ListView.builder(
-            itemCount: 2,
+            itemCount: snapshot.data.docs.length,
             itemBuilder: (BuildContext context, int index) {
               return ListTile(
                 title: Text(
@@ -33,8 +33,9 @@ class ListsPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ListPage(
-                            // To the list on index
-                            ),
+                          index: snapshot.data.docs[index].id,
+                          // To the list on index
+                        ),
                       ));
                 },
               );
