@@ -40,6 +40,7 @@ class ListBottomBar extends StatelessWidget {
                             builder: (context) => ListPage(
                                   listTitle: _taskListManager.listTitle!,
                                 )));
+                    _taskListManager.clearList();
                   },
                   child: Text("Submit")))
         ],
