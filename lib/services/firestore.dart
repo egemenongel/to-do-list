@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
@@ -6,14 +7,12 @@ class FireStoreService {
   CollectionReference listsCollection =
       FirebaseFirestore.instance.collection("lists");
 
-  addList(String listTitle, TaskListManager taskListManager) {
+  Future<void> addList(
+      String listTitle, TaskListManager taskListManager) async {
+    var list = listsCollection.doc();
+    list.set({"title": listTitle});
     for (TaskModel task in taskListManager.taskList) {
-      listsCollection.doc(listTitle).set({
-        "title": listTitle,
-      });
-      var currentTask =
-          listsCollection.doc(listTitle).collection("tasks").doc();
-      currentTask.set({
+      list.collection("tasks").doc().set({
         "title": task.title,
         "isCompleted": task.isCompleted,
         "startTime": task.startTime,
@@ -22,21 +21,6 @@ class FireStoreService {
         "timeStamp": Timestamp.now(),
       });
     }
-  }
-
-  Query orderedTasks(String listTitle) {
-    return listsCollection
-        .doc(listTitle)
-        .collection("tasks")
-        .orderBy("timeStamp");
-  }
-
-  Future addTask(String listTitle, TaskModel task) async {
-    await listsCollection.doc(listTitle).collection("tasks").add(task.toMap());
-  }
-
-  removeTask(QueryDocumentSnapshot task) async {
-    task.reference.delete();
   }
 
   Future<void> removeList(DocumentSnapshot list) async {
@@ -48,6 +32,18 @@ class FireStoreService {
     }
 
     list.reference.delete();
+  }
+
+  Query orderedTasks(DocumentReference doc) {
+    return doc.collection("tasks").orderBy("timeStamp");
+  }
+
+  Future addTask(DocumentReference list, TaskModel task) async {
+    await list.collection("tasks").add(task.toMap());
+  }
+
+  removeTask(QueryDocumentSnapshot task) async {
+    task.reference.delete();
   }
 
   void editTask(QueryDocumentSnapshot doc, TaskModel task) {
@@ -87,13 +83,4 @@ class FireStoreService {
   // //   // print(task["isCompleted"]);
   // // }
 
-  newMethod() {
-    // listsCollection.get().then((snapshot) => snapshot.docs.forEach((list) {
-    //       print(list.data());
-    //     }));
-
-    listsCollection
-        .get()
-        .then((snapshot) => snapshot.docs.first.reference.delete());
-  }
 }
