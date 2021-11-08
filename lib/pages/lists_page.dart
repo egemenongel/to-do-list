@@ -36,7 +36,7 @@ class ListsPage extends StatelessWidget {
                   color: Colors.blueGrey,
                 ),
                 title: Text(
-                  list.id,
+                  list["title"],
                   style: TextStyle(color: Colors.deepPurple),
                 ),
                 trailing: IconButton(
@@ -56,7 +56,7 @@ class ListsPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => ListPage(
-                          listTitle: list.id,
+                          list: list,
                         ),
                       ));
                 },

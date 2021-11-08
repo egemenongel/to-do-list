@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
@@ -7,10 +8,10 @@ class EditDialog extends StatelessWidget {
   EditDialog({
     Key? key,
     required this.index,
-    required this.listTitle,
+    required this.sortedList,
   }) : super(key: key);
   final index;
-  final String listTitle;
+  final Query sortedList;
   final FireStoreService firestore = FireStoreService();
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
@@ -20,10 +21,7 @@ class EditDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: firestore.listsCollection
-          .doc(listTitle)
-          .collection("tasks")
-          .snapshots(),
+      stream: sortedList.snapshots(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(

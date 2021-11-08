@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/widgets/edit_dialog.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -5,7 +6,6 @@ import 'package:flutter_slidable/flutter_slidable.dart';
 class TaskTile extends StatelessWidget {
   TaskTile({
     required this.index,
-    required this.listTitle,
     required this.taskTitle,
     required this.startTime,
     required this.finishTime,
@@ -13,10 +13,11 @@ class TaskTile extends StatelessWidget {
     required this.isCompleted,
     required this.checkboxCallback,
     required this.deleteCallback,
+    required this.sortedList,
   });
 
   final int index;
-  final String listTitle;
+  final Query sortedList;
   final String taskTitle;
   final String startTime;
   final String finishTime;
@@ -38,8 +39,8 @@ class TaskTile extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (_) => EditDialog(
-                  index: index,
-                  listTitle: listTitle,
+                  index: index, sortedList: sortedList,
+                  // listTitle: listTitle,
                 ),
               );
             },

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/services/firestore.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
@@ -5,13 +6,13 @@ import 'package:to_do_list_with_provider/widgets/add_dialog.dart';
 import 'package:to_do_list_with_provider/widgets/task_tile.dart';
 
 class ListPage extends StatelessWidget {
-  ListPage({Key? key, this.listTitle}) : super(key: key);
-  final String? listTitle;
+  ListPage({Key? key, this.list}) : super(key: key);
+  final DocumentSnapshot? list;
   @override
   Widget build(BuildContext context) {
     var firestore = FireStoreService();
     return StreamBuilder(
-      stream: firestore.orderedTasks(listTitle!).snapshots(),
+      stream: firestore.orderedTasks(list!.reference).snapshots(),
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         if (!snapshot.hasData) {
           return Center(
@@ -36,7 +37,7 @@ class ListPage extends StatelessWidget {
                 ),
                 Container(
                   child: Text(
-                    "$listTitle",
+                    "${list!["title"]}",
                     style: TextStyle(
                       color: Color(0xffff6434),
                       fontSize: 40.0,
@@ -59,7 +60,8 @@ class ListPage extends StatelessWidget {
                       var task = snapshot.data.docs[index];
                       return TaskTile(
                         index: index,
-                        listTitle: listTitle!,
+                        sortedList: firestore.orderedTasks(list!.reference),
+                        // listTitle: listTitle!,
                         taskTitle: task["title"],
                         startTime: task["startTime"],
                         finishTime: task["finishTime"],
@@ -99,7 +101,7 @@ class ListPage extends StatelessWidget {
                         onPressed: () {
                           showDialog(
                             context: context,
-                            builder: (context) => AddTask(listTitle: listTitle),
+                            builder: (context) => AddTask(list: list!),
                           );
                         },
                       ),
