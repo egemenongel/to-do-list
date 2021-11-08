@@ -11,8 +11,9 @@ A simple To Do List built with Flutter. Used Provider Package for State Manageme
 * [X] Edit tasks.
 * [X] Task title.
 * [X] Works with multiple lists.
+* [ ] Media query sizing.
 * [ ] Edit list names.
-* [ ] Delete list.
+* [X] Delete list.
 * [ ] Completed task count.
 * [ ] New properties to tasks.
 * [ ] Add tags,due date, category etc. to tasks.
