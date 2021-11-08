@@ -54,7 +54,6 @@ class ListPage extends StatelessWidget {
                       return TaskTile(
                         index: index,
                         sortedList: firestore.orderedTasks(list!.reference),
-                        // listTitle: listTitle!,
                         taskTitle: task["title"],
                         startTime: task["startTime"],
                         finishTime: task["finishTime"],
