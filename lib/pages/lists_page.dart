@@ -1,8 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/pages/list_page.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
-import 'package:to_do_list_with_provider/services/firestore.dart';
+import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/widgets/are_you_sure.dart';
 
 class ListsPage extends StatelessWidget {
@@ -10,7 +9,7 @@ class ListsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var firestore = FireStoreService();
+    var firestore = DatabaseService();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,

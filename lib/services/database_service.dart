@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
-class FireStoreService {
+class DatabaseService {
   CollectionReference listsCollection =
       FirebaseFirestore.instance.collection("lists");
 

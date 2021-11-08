@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:to_do_list_with_provider/services/firestore.dart';
+import 'package:to_do_list_with_provider/services/database_service.dart';
 
 class AreYouSureDialog extends StatelessWidget {
   AreYouSureDialog({Key? key, this.list}) : super(key: key);
@@ -16,7 +16,7 @@ class AreYouSureDialog extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                FireStoreService().removeList(list!);
+                DatabaseService().removeList(list!);
                 Navigator.pop(context);
               },
               child: Text("Yes"),

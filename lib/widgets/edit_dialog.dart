@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/models/task_model.dart';
-import 'package:to_do_list_with_provider/services/firestore.dart';
+import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
 class EditDialog extends StatelessWidget {
@@ -12,7 +12,7 @@ class EditDialog extends StatelessWidget {
   }) : super(key: key);
   final index;
   final Query sortedList;
-  final FireStoreService firestore = FireStoreService();
+  final DatabaseService firestore = DatabaseService();
   final taskTitle = TextEditingController();
   final startTime = TextEditingController();
   final finishTime = TextEditingController();
