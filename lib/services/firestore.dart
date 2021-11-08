@@ -46,6 +46,7 @@ class FireStoreService {
     for (var task in tasks.docs) {
       task.reference.delete();
     }
+
     list.reference.delete();
   }
 
