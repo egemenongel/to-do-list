@@ -52,7 +52,9 @@ class ListPage extends StatelessWidget {
                       Colors.purple,
                       Colors.deepPurpleAccent,
                     ]),
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10)),
                   ),
                   child: ListView.separated(
                     itemCount: snapshot.data.docs.length,
@@ -83,12 +85,11 @@ class ListPage extends StatelessWidget {
                     },
                   ),
                 )),
-                SizedBox(
-                  height: 10.0,
-                ),
                 Container(
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10)),
                     color: Colors.deepPurple[200],
                   ),
                   child: Row(
