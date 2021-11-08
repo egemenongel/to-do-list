@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:to_do_list_with_provider/widgets/edit_dialog.dart';
+import 'package:to_do_list_with_provider/widgets/edit_task_dialog.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class TaskTile extends StatelessWidget {
@@ -38,7 +38,7 @@ class TaskTile extends StatelessWidget {
             onTap: () {
               showDialog(
                 context: context,
-                builder: (_) => EditDialog(
+                builder: (_) => EditTaskDialog(
                   index: index, sortedList: sortedList,
                   // listTitle: listTitle,
                 ),

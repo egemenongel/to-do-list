@@ -4,8 +4,8 @@ import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
-class EditDialog extends StatelessWidget {
-  EditDialog({
+class EditTaskDialog extends StatelessWidget {
+  EditTaskDialog({
     Key? key,
     required this.index,
     required this.sortedList,

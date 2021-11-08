@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
-import 'package:to_do_list_with_provider/widgets/add_dialog.dart';
+import 'package:to_do_list_with_provider/widgets/add_task_dialog.dart';
 import 'package:to_do_list_with_provider/widgets/task_tile.dart';
 
 class ListPage extends StatelessWidget {
@@ -93,7 +93,7 @@ class ListPage extends StatelessWidget {
                         onPressed: () {
                           showDialog(
                             context: context,
-                            builder: (context) => AddDialog(list: list!),
+                            builder: (context) => AddTaskDialog(list: list!),
                           );
                         },
                       ),

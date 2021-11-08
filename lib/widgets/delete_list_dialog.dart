@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
 
-class AreYouSureDialog extends StatelessWidget {
-  AreYouSureDialog({Key? key, this.list}) : super(key: key);
+class DeleteListDialog extends StatelessWidget {
+  DeleteListDialog({Key? key, this.list}) : super(key: key);
   final DocumentSnapshot? list;
   @override
   Widget build(BuildContext context) {
