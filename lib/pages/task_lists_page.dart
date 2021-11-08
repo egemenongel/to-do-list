@@ -3,8 +3,8 @@ import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/widgets/task_list_tile.dart';
 
-class ListsPage extends StatelessWidget {
-  const ListsPage({Key? key}) : super(key: key);
+class TaskListsPage extends StatelessWidget {
+  const TaskListsPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
