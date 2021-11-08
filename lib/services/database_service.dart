@@ -33,6 +33,10 @@ class DatabaseService {
     list.reference.delete();
   }
 
+  void editList(DocumentSnapshot doc, String newTitle) {
+    doc.reference.update({"title": newTitle});
+  }
+
   Query orderedTasks(DocumentReference doc) {
     return doc.collection("tasks").orderBy("timeStamp");
   }
