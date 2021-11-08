@@ -102,7 +102,7 @@ class ListPage extends StatelessWidget {
                         onPressed: () {
                           showDialog(
                             context: context,
-                            builder: (context) => AddTask(list: list!),
+                            builder: (context) => AddDialog(list: list!),
                           );
                         },
                       ),

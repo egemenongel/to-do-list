@@ -4,8 +4,8 @@ import 'package:to_do_list_with_provider/models/task_model.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/widgets/task_form.dart';
 
-class AddTask extends StatelessWidget {
-  AddTask({Key? key, required this.list}) : super(key: key);
+class AddDialog extends StatelessWidget {
+  AddDialog({Key? key, required this.list}) : super(key: key);
   final DocumentSnapshot? list;
   final DatabaseService firestore = DatabaseService();
   final taskTitle = TextEditingController();

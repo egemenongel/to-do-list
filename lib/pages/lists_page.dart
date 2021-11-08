@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/pages/list_page.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
-import 'package:to_do_list_with_provider/widgets/are_you_sure.dart';
+import 'package:to_do_list_with_provider/widgets/are_you_sure_dialog.dart';
 
 class ListsPage extends StatelessWidget {
   const ListsPage({Key? key}) : super(key: key);
