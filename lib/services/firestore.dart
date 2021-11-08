@@ -6,7 +6,7 @@ class FireStoreService {
   CollectionReference listsCollection =
       FirebaseFirestore.instance.collection("lists");
 
-  void addList(String listTitle, TaskListManager taskListManager) {
+  addList(String listTitle, TaskListManager taskListManager) {
     for (TaskModel task in taskListManager.taskList) {
       listsCollection.doc(listTitle).set({
         "title": listTitle,
@@ -35,11 +35,17 @@ class FireStoreService {
     await listsCollection.doc(listTitle).collection("tasks").add(task.toMap());
   }
 
-  void removeTask(QueryDocumentSnapshot task) {
+  removeTask(QueryDocumentSnapshot task) async {
     task.reference.delete();
   }
 
-  void removeList(DocumentSnapshot list) {
+  Future<void> removeList(DocumentSnapshot list) async {
+    QuerySnapshot tasks =
+        await listsCollection.doc(list.id).collection("tasks").get();
+    list.reference.set({"title": ""});
+    for (var task in tasks.docs) {
+      task.reference.delete();
+    }
     list.reference.delete();
   }
 
@@ -49,5 +55,44 @@ class FireStoreService {
 
   void checkboxToggle(QueryDocumentSnapshot doc, bool checkboxState) {
     doc.reference.update({"isCompleted": checkboxState});
+  }
+
+  // // Future<void> newMethod(String listTitle) async {
+  // //   CollectionReference lists = FirebaseFirestore.instance.collection("list");
+  // //   DocumentSnapshot snapshot = await lists.doc("list1").get();
+  // //   var data = snapshot.data() as Map;
+  // //   var tasksData = data["tasks"] as List<dynamic>;
+  // //   // print(data["tasks"][1]["isCompleted"]);
+
+  // //   CollectionReference myLists =
+  // //       FirebaseFirestore.instance.collection("lists");
+  // //   DocumentSnapshot list = await myLists.doc("list1").get();
+  // //   DocumentSnapshot task = await list.reference
+  // //       .collection("tasks")
+  // //       .doc("8B7Sv8YUgM36sW2jR6Wf")
+  // //       .get();
+  // //   CollectionReference col = list.reference.collection("tasks");
+  // //   List<dynamic> taskList = await col.snapshots().toList();
+
+  // //   List<DocumentSnapshot> aaa = [];
+  // //   // DocumentSnapshot task1 = await col.doc("task1").get();
+
+  // //   // col.get().then((snapshot) => snapshot.docs.forEach((task) {
+  // //   //       print(task.data());
+  // //   //     }));
+  // //   // var t1 = task1.data() as Map;
+  // //   // var list1Data = list.data() as Map;
+
+  // //   // print(task["isCompleted"]);
+  // // }
+
+  newMethod() {
+    // listsCollection.get().then((snapshot) => snapshot.docs.forEach((list) {
+    //       print(list.data());
+    //     }));
+
+    listsCollection
+        .get()
+        .then((snapshot) => snapshot.docs.first.reference.delete());
   }
 }
