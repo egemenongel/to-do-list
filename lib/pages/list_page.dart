@@ -20,15 +20,6 @@ class ListPage extends StatelessWidget {
           );
         }
         return Scaffold(
-          // appBar: AppBar(
-          //   title: Center(
-          //     child: Text(
-          //       "TO DO LIST",
-          //       style: TextStyle(fontSize: 25),
-          //     ),
-          //   ),
-          //   automaticallyImplyLeading: false,
-          // ),
           body: Center(
             child: Column(
               children: [

@@ -20,95 +20,105 @@ class TaskForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      child: Column(
-        children: [
-          TextFormField(
-              controller: taskTitle,
-              decoration: InputDecoration(
-                  labelText: "New Task",
-                  labelStyle: TextStyle(color: Colors.deepPurple),
-                  border: border),
-              autofocus: true,
-              validator: (value) =>
-                  value!.isEmpty ? "Please enter a task" : null),
-          SizedBox(
-            height: 15,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 40),
+      child: Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            color: Colors.purple[50],
+            borderRadius: BorderRadius.circular(10),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              Container(
-                width: 110,
-                child: TimeField(
-                  controller: startTime,
-                  labelText: "Start Time",
-                ),
-              ),
-              Container(
-                width: 110,
-                child: TimeField(
-                  controller: finishTime,
-                  labelText: "Finish Time",
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Container(
-            child: Row(
+          child: Form(
+            key: formKey,
+            child: Column(
               children: [
-                Expanded(
-                  child: Divider(
-                    height: 20,
-                    color: Colors.deepPurple,
-                  ),
+                TextFormField(
+                    controller: taskTitle,
+                    decoration: InputDecoration(
+                        labelText: "New Task",
+                        labelStyle: TextStyle(color: Colors.deepPurple),
+                        border: border),
+                    autofocus: true,
+                    validator: (value) =>
+                        value!.isEmpty ? "Please enter a task" : null),
+                SizedBox(
+                  height: 15,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Container(
+                      width: 110,
+                      child: TimeField(
+                        controller: startTime,
+                        labelText: "Start Time",
+                      ),
+                    ),
+                    Container(
+                      width: 110,
+                      child: TimeField(
+                        controller: finishTime,
+                        labelText: "Finish Time",
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: 15,
                 ),
                 Container(
-                  alignment: Alignment.center,
-                  width: 50,
-                  child: Text(
-                    "OR",
-                    style: TextStyle(
-                        color: Colors.deepPurple, fontWeight: FontWeight.bold),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          height: 20,
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        width: 50,
+                        child: Text(
+                          "OR",
+                          style: TextStyle(
+                              color: Colors.deepPurple,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          height: 20,
+                          color: Colors.deepPurple,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: Divider(
-                    height: 20,
-                    color: Colors.deepPurple,
+                SizedBox(
+                  height: 15,
+                ),
+                Container(
+                  width: 100,
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    controller: duration,
+                    // enabled: isEnabled,
+                    // validator: (value) {
+                    //   if (startTime.text.isNotEmpty ||
+                    //       finishTime.text.isNotEmpty) {
+                    //     isEnabled = false; //setState
+                    //   }
+                    // },
+                    decoration: InputDecoration(
+                        labelText: "Duration",
+                        labelStyle: TextStyle(color: Colors.deepPurple),
+                        border: border),
+                    keyboardType: TextInputType.number,
                   ),
                 ),
               ],
             ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          Container(
-            width: 100,
-            child: TextFormField(
-              textAlign: TextAlign.center,
-              controller: duration,
-              // enabled: isEnabled,
-              // validator: (value) {
-              //   if (startTime.text.isNotEmpty ||
-              //       finishTime.text.isNotEmpty) {
-              //     isEnabled = false; //setState
-              //   }
-              // },
-              decoration: InputDecoration(
-                  labelText: "Duration",
-                  labelStyle: TextStyle(color: Colors.deepPurple),
-                  border: border),
-              keyboardType: TextInputType.number,
-            ),
-          ),
-        ],
-      ),
+          )),
     );
   }
 }

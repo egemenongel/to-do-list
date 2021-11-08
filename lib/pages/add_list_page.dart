@@ -21,9 +21,7 @@ class AddListPage extends StatelessWidget {
   //       minute: int.parse(time.split(":")[1][0] + time.split(":")[1][1]));
   // }
   void _clearForm() {
-    taskTitle.clear();
-    startTime.clear();
-    finishTime.clear();
+    _formKey.currentState!.reset();
   }
 
   @override
@@ -45,24 +43,13 @@ class AddListPage extends StatelessWidget {
           SizedBox(
             height: 70,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.purple[50],
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Container(
-                    child: TaskForm(
-                  formKey: _formKey,
-                  taskTitle: taskTitle,
-                  startTime: startTime,
-                  finishTime: finishTime,
-                  duration: duration,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                ))),
+          TaskForm(
+            formKey: _formKey,
+            taskTitle: taskTitle,
+            startTime: startTime,
+            finishTime: finishTime,
+            duration: duration,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
           ElevatedButton(
             onPressed: () {
