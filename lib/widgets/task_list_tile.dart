@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_list_with_provider/pages/list_page.dart';
 import 'package:to_do_list_with_provider/widgets/delete_list_dialog.dart';
+import 'package:to_do_list_with_provider/widgets/edit_list_dialog.dart';
 
 class TaskListTile extends StatelessWidget {
   TaskListTile({Key? key, required this.list}) : super(key: key);
-  final QueryDocumentSnapshot list;
+  final DocumentSnapshot list;
   @override
   Widget build(BuildContext context) {
     return Slidable(
@@ -34,6 +35,12 @@ class TaskListTile extends StatelessWidget {
       secondaryActions: [
         Container(
           child: SlideAction(
+            onTap: () => showDialog(
+              context: context,
+              builder: (context) => EditListDialog(
+                list: list,
+              ),
+            ),
             child: Icon(
               Icons.edit,
               color: Colors.white,

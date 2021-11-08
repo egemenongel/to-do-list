@@ -39,8 +39,8 @@ class TaskTile extends StatelessWidget {
               showDialog(
                 context: context,
                 builder: (_) => EditTaskDialog(
-                  index: index, sortedList: sortedList,
-                  // listTitle: listTitle,
+                  index: index,
+                  sortedList: sortedList,
                 ),
               );
             },
