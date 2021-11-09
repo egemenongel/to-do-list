@@ -19,7 +19,10 @@ class TaskListsPage extends StatelessWidget {
         }
         return Scaffold(
           body: Container(
-            color: Colors.blueAccent,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.only(bottomRight: Radius.circular(50)),
+              color: Colors.blueAccent,
+            ),
             child: Column(
               children: [
                 Container(
@@ -68,14 +71,13 @@ class TaskListsPage extends StatelessWidget {
           floatingActionButton: FloatingActionButton(
             backgroundColor: Colors.deepOrange[800],
             heroTag: null,
-            child: Icon(Icons.add_box_outlined),
+            child: Icon(Icons.add),
             onPressed: () {
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => ListTitlePage()));
             },
           ),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerFloat,
+          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         );
       },
     );
