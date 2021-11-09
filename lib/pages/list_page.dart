@@ -20,100 +20,98 @@ class ListPage extends StatelessWidget {
           );
         }
         return Scaffold(
-          body: Center(
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 30,
+          body: Column(
+            children: [
+              SizedBox(
+                height: 30,
+              ),
+              Container(
+                child: Text(
+                  "${list!["title"]}",
+                  style: TextStyle(
+                    color: Color(0xffff6434),
+                    fontSize: 40.0,
+                  ),
                 ),
-                Container(
-                  child: Text(
-                    "${list!["title"]}",
-                    style: TextStyle(
-                      color: Color(0xffff6434),
-                      fontSize: 40.0,
+              ),
+              Expanded(
+                  child: Container(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    Colors.purple,
+                    Colors.deepPurpleAccent,
+                  ]),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(10),
+                      topRight: Radius.circular(10)),
+                ),
+                child: ListView.separated(
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    var task = snapshot.data.docs[index];
+                    return TaskTile(
+                      index: index,
+                      sortedList: firestore.orderedTasks(list!.reference),
+                      taskTitle: task["title"],
+                      startTime: task["startTime"],
+                      finishTime: task["finishTime"],
+                      duration: task["duration"],
+                      isCompleted: task["isCompleted"],
+                      checkboxCallback: (checkboxState) =>
+                          firestore.checkboxToggle(task, checkboxState!),
+                      deleteCallback: () => firestore.removeTask(task),
+                    );
+                  },
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                  ),
+                  separatorBuilder: (BuildContext context, int index) {
+                    return Divider(
+                      height: 10,
+                      color: Colors.transparent,
+                    );
+                  },
+                ),
+              )),
+              Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(10),
+                      bottomRight: Radius.circular(10)),
+                  color: Colors.deepPurple[200],
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    FloatingActionButton(
+                      backgroundColor: Colors.deepPurple[100],
+                      heroTag: null,
+                      child: Icon(Icons.add),
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (context) => AddTaskDialog(list: list!),
+                        );
+                      },
                     ),
-                  ),
-                ),
-                Expanded(
-                    child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 20),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(colors: [
-                      Colors.purple,
-                      Colors.deepPurpleAccent,
-                    ]),
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10)),
-                  ),
-                  child: ListView.separated(
-                    itemCount: snapshot.data.docs.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      var task = snapshot.data.docs[index];
-                      return TaskTile(
-                        index: index,
-                        sortedList: firestore.orderedTasks(list!.reference),
-                        taskTitle: task["title"],
-                        startTime: task["startTime"],
-                        finishTime: task["finishTime"],
-                        duration: task["duration"],
-                        isCompleted: task["isCompleted"],
-                        checkboxCallback: (checkboxState) =>
-                            firestore.checkboxToggle(task, checkboxState!),
-                        deleteCallback: () => firestore.removeTask(task),
-                      );
-                    },
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 20,
+                    FloatingActionButton(
+                      backgroundColor: Colors.deepPurple[100],
+                      heroTag: null,
+                      child: Icon(
+                        Icons.add_box_outlined,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ListTitlePage()));
+                      },
                     ),
-                    separatorBuilder: (BuildContext context, int index) {
-                      return Divider(
-                        height: 10,
-                        color: Colors.transparent,
-                      );
-                    },
-                  ),
-                )),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(10),
-                        bottomRight: Radius.circular(10)),
-                    color: Colors.deepPurple[200],
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      FloatingActionButton(
-                        backgroundColor: Colors.deepPurple[100],
-                        heroTag: null,
-                        child: Icon(Icons.add),
-                        onPressed: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AddTaskDialog(list: list!),
-                          );
-                        },
-                      ),
-                      FloatingActionButton(
-                        backgroundColor: Colors.deepPurple[100],
-                        heroTag: null,
-                        child: Icon(
-                          Icons.add_box_outlined,
-                        ),
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ListTitlePage()));
-                        },
-                      ),
-                    ],
-                  ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
