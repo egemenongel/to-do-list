@@ -17,7 +17,7 @@ class TaskModel {
     this.timeStamp,
   }) {
     this.title = title;
-    this.isCompleted = false;
+    this.isCompleted = isCompleted;
     this.startTime = startTime;
     this.finishTime = finishTime;
     this.duration = duration;
