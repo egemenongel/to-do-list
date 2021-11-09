@@ -9,43 +9,75 @@ class TaskListsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var firestore = DatabaseService();
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("My Lists"),
-      ),
-      body: StreamBuilder(
-        stream: firestore.listsCollection.snapshots(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          if (!snapshot.hasData) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          return ListView.separated(
-            padding: EdgeInsets.all(10),
-            itemCount: snapshot.data.docs.length,
-            itemBuilder: (BuildContext context, int index) {
-              var list = snapshot.data.docs[index];
-              return TaskListTile(list: list);
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return Container(
-                height: 10,
-                color: Colors.pink[100],
-              );
-            },
+    return StreamBuilder(
+      stream: firestore.listsCollection.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(),
           );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: null,
-        child: Icon(Icons.add_box_outlined),
-        onPressed: () {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => ListTitlePage()));
-        },
-      ),
+        }
+        return Scaffold(
+          body: Container(
+            color: Colors.blueAccent,
+            child: Column(
+              children: [
+                Container(
+                  child: Center(
+                    child: Text(
+                      "My Lists",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40.0,
+                      ),
+                    ),
+                  ),
+                  height: 110,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                      color: Colors.orange[700],
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                      )),
+                ),
+                Expanded(
+                    child: Container(
+                        padding: EdgeInsets.all(20),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: ListView.separated(
+                                itemCount: snapshot.data.docs.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  var list = snapshot.data.docs[index];
+                                  return TaskListTile(list: list, index: index);
+                                },
+                                separatorBuilder:
+                                    (BuildContext context, int index) {
+                                  return Divider(
+                                      height: 20, color: Colors.transparent);
+                                },
+                              ),
+                            ),
+                          ],
+                        ))),
+              ],
+            ),
+          ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.deepOrange[800],
+            heroTag: null,
+            child: Icon(Icons.add_box_outlined),
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ListTitlePage()));
+            },
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+        );
+      },
     );
   }
 }

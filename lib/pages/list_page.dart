@@ -25,19 +25,18 @@ class ListPage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  height: 80,
-                  child: Center(
-                    child: Text(
-                      "${list!["title"]}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 40.0,
+                    margin: EdgeInsets.all(10),
+                    padding: EdgeInsets.symmetric(vertical: 10),
+                    height: 80,
+                    child: Center(
+                      child: Text(
+                        "${list!["title"]}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 40.0,
+                        ),
                       ),
-                    ),
-                  ),
-                ),
+                    )),
                 Expanded(
                     child: Container(
                         padding: EdgeInsets.only(top: 20),
