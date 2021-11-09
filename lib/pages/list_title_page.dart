@@ -6,7 +6,7 @@ import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 class ListTitlePage extends StatelessWidget {
   ListTitlePage({Key? key}) : super(key: key);
   final listTitle = TextEditingController();
-
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +26,7 @@ class ListTitlePage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Form(
+              key: _formKey,
               child: TextFormField(
                 controller: listTitle,
                 decoration: InputDecoration(
@@ -33,6 +34,8 @@ class ListTitlePage extends StatelessWidget {
                         "List Title (Shopping List, Daily To Do List...)",
                     labelStyle: TextStyle(fontSize: 14)),
                 autofocus: true,
+                validator: (val) =>
+                    listTitle.text.isEmpty ? "Please enter a list title" : null,
               ),
             ),
           ),
@@ -41,9 +44,11 @@ class ListTitlePage extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              context.read<TaskListManager>().setTitle(listTitle.text);
-              Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => AddListPage()));
+              if (_formKey.currentState!.validate()) {
+                context.read<TaskListManager>().setTitle(listTitle.text);
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (context) => AddListPage()));
+              }
             },
             child: Text("Next"),
           ),
