@@ -17,7 +17,7 @@ class TaskListTile extends StatelessWidget {
         decoration: BoxDecoration(
             border: Border.all(color: Colors.white),
             color:
-                index % 2 == 1 ? Colors.lightBlue[100] : Colors.lightBlue[900],
+                index % 2 == 1 ? Colors.lightBlue[200] : Colors.lightBlue[900],
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(40),
             )),
