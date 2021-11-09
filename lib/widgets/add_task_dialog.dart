@@ -16,14 +16,14 @@ class AddTaskDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
+      backgroundColor: Colors.deepPurple[200],
+      insetPadding: EdgeInsets.symmetric(horizontal: 20),
+      contentPadding: EdgeInsets.zero,
       shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
           side: BorderSide(
             color: Colors.deepPurple,
           )),
-      title: Text(
-        "Add Task",
-      ),
       content: SingleChildScrollView(
         child: TaskForm(
           formKey: _formKey,
@@ -34,7 +34,6 @@ class AddTaskDialog extends StatelessWidget {
         ),
       ),
       actions: [
-        // firestore.orderById.snapshots()
         TextButton(
             onPressed: () {
               firestore.addTask(

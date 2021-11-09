@@ -29,6 +29,7 @@ class _TaskFormState extends State<TaskForm> {
   @override
   void initState() {
     super.initState();
+
     SchedulerBinding.instance!.addPostFrameCallback((_) {
       if (widget.startTime.text.isNotEmpty ||
           widget.finishTime.text.isNotEmpty) {
@@ -45,6 +46,7 @@ class _TaskFormState extends State<TaskForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
+        width: 350,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.purple[50],
@@ -94,42 +96,50 @@ class _TaskFormState extends State<TaskForm> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
-                              width: 90,
-                              child: TimeField(
-                                clearButton: () {
-                                  widget.startTime.clear();
-                                  if (widget.startTime.text.isEmpty &&
-                                      widget.finishTime.text.isEmpty) {
-                                    Provider.of<TaskListManager>(context,
-                                            listen: false)
-                                        .changeBool(true);
-                                  }
-                                },
-                                controller: widget.startTime,
-                                labelText: "Start Time",
-                                enabled: isEnabled,
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: TimeField(
+                                  clearButton: () {
+                                    widget.startTime.clear();
+                                    if (widget.startTime.text.isEmpty &&
+                                        widget.finishTime.text.isEmpty) {
+                                      Provider.of<TaskListManager>(context,
+                                              listen: false)
+                                          .changeBool(true);
+                                    }
+                                  },
+                                  controller: widget.startTime,
+                                  labelText: "Start Time",
+                                  enabled: isEnabled,
+                                ),
                               ),
                             ),
                             SizedBox(
                               width: 10,
                             ),
-                            Container(
-                              width: 90,
-                              child: TimeField(
-                                clearButton: () {
-                                  widget.finishTime.clear();
-                                  if (widget.startTime.text.isEmpty &&
-                                      widget.finishTime.text.isEmpty) {
-                                    Provider.of<TaskListManager>(context,
-                                            listen: false)
-                                        .changeBool(true);
-                                  }
-                                },
-                                controller: widget.finishTime,
-                                labelText: "Finish Time",
-                                enabled: isEnabled,
+                            Expanded(
+                              child: Container(
+                                child: TimeField(
+                                  clearButton: () {
+                                    widget.finishTime.clear();
+                                    if (widget.startTime.text.isEmpty &&
+                                        widget.finishTime.text.isEmpty) {
+                                      Provider.of<TaskListManager>(context,
+                                              listen: false)
+                                          .changeBool(true);
+                                    }
+                                  },
+                                  controller: widget.finishTime,
+                                  labelText: "Finish Time",
+                                  enabled: isEnabled,
+                                ),
                               ),
+                            ),
+                            SizedBox(
+                              width: 5,
                             ),
                           ],
                         ),
