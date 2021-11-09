@@ -31,7 +31,7 @@ class TaskTile extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
             border: Border.all(color: Colors.black, width: 1),
-            color: Colors.indigo[200],
+            color: (index % 2) == 1 ? Colors.blue[100] : Colors.white,
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10), topLeft: Radius.circular(10))),
         child: ListTile(
@@ -47,16 +47,19 @@ class TaskTile extends StatelessWidget {
             title: Text(
               taskTitle,
               style: TextStyle(
-                  color: Colors.white,
+                  color: (index % 2) == 1 ? Colors.indigo : Colors.blue[900],
                   decoration: isCompleted
                       ? TextDecoration.lineThrough
                       : TextDecoration.none,
-                  decorationColor: Theme.of(context).primaryColor),
+                  decorationColor:
+                      (index % 2) == 1 ? Colors.orange : Colors.deepOrange),
             ),
             leading: Checkbox(
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5)),
               value: isCompleted,
               onChanged: checkboxCallback,
-              activeColor: Colors.green,
+              activeColor: (index % 2) == 1 ? Colors.orange : Colors.deepOrange,
             ),
             trailing: Container(
               width: 100,
@@ -110,20 +113,31 @@ class TaskTile extends StatelessWidget {
       actionExtentRatio: 0.25,
       secondaryActions: [
         Container(
-          child: SlideAction(
-            onTap: deleteCallback,
-            child: Icon(
-              Icons.delete,
-              color: Colors.white,
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(10),
+              topRight: Radius.circular(10),
             ),
-            decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black,
+            child: SlideAction(
+              onTap: deleteCallback,
+              child: Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    color: Colors.black,
+                    width: 1,
+                  ),
+                  top: BorderSide(
+                    color: Colors.black,
+                    width: 1,
+                  ),
                 ),
                 color: Colors.red,
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(10),
-                    topRight: Radius.circular(10))),
+              ),
+            ),
           ),
         )
       ],
