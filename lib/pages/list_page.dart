@@ -28,11 +28,13 @@ class ListPage extends StatelessWidget {
                   margin: EdgeInsets.all(10),
                   padding: EdgeInsets.symmetric(vertical: 10),
                   height: 80,
-                  child: Text(
-                    "${list!["title"]}",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 40.0,
+                  child: Center(
+                    child: Text(
+                      "${list!["title"]}",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 40.0,
+                      ),
                     ),
                   ),
                 ),
