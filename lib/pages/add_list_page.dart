@@ -25,7 +25,6 @@ class AddListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
-    bool isEnabled = true;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
