@@ -27,20 +27,28 @@ class EditListDialog extends StatelessWidget {
                   color: Colors.deepPurple,
                 )),
             title: Text("Change List Name"),
-            content: Container(
-              child: TextFormField(
-                decoration: InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(10)))),
-                controller: listTitle,
+            content: Form(
+              key: _formKey,
+              child: Container(
+                child: TextFormField(
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10)))),
+                  controller: listTitle,
+                  validator: (val) => listTitle.text.isEmpty
+                      ? "Please enter a list title"
+                      : null,
+                ),
+                height: 250.0,
               ),
-              height: 250.0,
             ),
             actions: [
               TextButton(
                   onPressed: () {
-                    firestore.editList(snapshot.data, listTitle.text);
-                    Navigator.pop(context);
+                    if (_formKey.currentState!.validate()) {
+                      firestore.editList(snapshot.data, listTitle.text);
+                      Navigator.pop(context);
+                    }
                   },
                   child: Text("Edit")),
               TextButton(
