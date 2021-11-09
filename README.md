@@ -10,22 +10,23 @@ A simple To Do List built with Flutter. Used Provider Package for State Manageme
 * [X] Fix AM PM for duration calculation and checking start and finish dates.
 * [X] Edit tasks.
 * [X] Task title.
+* [X] Firebase Integration.
 * [X] Works with multiple lists.
 * [X] Edit list names.
 * [X] Delete list.
 * [X] Make form with expandable sections.
 * [X] New properties to tasks.
-* [ ] Text sizing for long texts.
+* [X] Add validation to list title page.
 * [ ] Fix form validations.
+* [ ] Focus node.
+* [ ] Text sizing for long texts.
 * [ ] Media query sizing.
-* [ ] Add validation to list tile page as well.
 * [ ] Completed task count.
 * [ ] Completed tasks to bottom.
 * [ ] Add tags,due date, category etc. to tasks.
 * [ ] Gridview for Lists. 
 * [ ] Dialog boxes to ask to user if they are sure about the action.
 * [ ] Report page for tasks.
-* [ ] Firebase Integration.
 * [ ] More appealing design.
 * [ ] Add details to the project.
 * [ ] Add license.
