@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 
 class TimeField extends StatefulWidget {
   TimeField({
@@ -6,10 +8,14 @@ class TimeField extends StatefulWidget {
     this.labelText,
     this.controller,
     this.validator,
+    this.enabled,
+    this.clearButton,
   }) : super(key: key);
   final String? labelText;
   final TextEditingController? controller;
   final String Function(String?)? validator;
+  final void Function()? clearButton;
+  final enabled;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: Colors.deepPurple));
@@ -33,25 +39,29 @@ class _TimeFieldState extends State<TimeField> {
           date.value = TextEditingValue(text: newTime.format(context));
         });
       }
+      if (date.value.text.isNotEmpty) {
+        Provider.of<TaskListManager>(context, listen: false).changeBool(false);
+      }
     }
 
     return TextFormField(
-        decoration: InputDecoration(
-            suffixIcon: IconButton(
-              onPressed: () => widget.controller!.clear(),
-              icon: Icon(
-                Icons.clear,
-              ),
-              iconSize: 15,
+      decoration: InputDecoration(
+          suffixIcon: IconButton(
+            onPressed: widget.clearButton,
+            icon: Icon(
+              Icons.clear,
             ),
-            labelText: widget.labelText,
-            labelStyle: TextStyle(color: Colors.deepPurple),
-            enabledBorder:
-                widget.controller!.text.isNotEmpty ? widget._border : null,
-            border: widget._border),
-        controller: widget.controller,
-        onTap: () => selectTime(widget.controller!),
-        onChanged: (time) => widget.controller!.text,
-        validator: widget.validator);
+            iconSize: 15,
+          ),
+          labelText: widget.labelText,
+          labelStyle: TextStyle(color: Colors.deepPurple),
+          enabledBorder:
+              widget.controller!.text.isNotEmpty ? widget._border : null,
+          border: widget._border),
+      controller: widget.controller,
+      onTap: () => selectTime(widget.controller!),
+      validator: widget.validator,
+      enabled: widget.enabled,
+    );
   }
 }
