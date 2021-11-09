@@ -64,6 +64,7 @@ class EditTaskDialog extends StatelessWidget {
                         finishTime: finishTime.text,
                         duration: duration.text,
                         timeStamp: task["timeStamp"], //To make it same
+                        isCompleted: task["isCompleted"],
                       ));
                   Navigator.pop(context);
                 },
