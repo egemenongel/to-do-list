@@ -26,8 +26,7 @@ class TaskListTile extends StatelessWidget {
           title: Text(
             list["title"],
             style: TextStyle(
-                color:
-                    index % 2 == 1 ? Colors.indigo[800] : Colors.indigo[200]),
+                color: index % 2 == 1 ? Colors.indigo[800] : Colors.white),
           ),
           onTap: () {
             Navigator.push(
