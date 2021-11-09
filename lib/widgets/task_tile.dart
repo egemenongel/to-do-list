@@ -35,15 +35,7 @@ class TaskTile extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10), topLeft: Radius.circular(10))),
         child: ListTile(
-            onTap: () {
-              showDialog(
-                context: context,
-                builder: (_) => EditTaskDialog(
-                  index: index,
-                  sortedList: sortedList,
-                ),
-              );
-            },
+            onTap: () {},
             title: Text(
               taskTitle,
               style: TextStyle(
@@ -113,6 +105,34 @@ class TaskTile extends StatelessWidget {
       actionExtentRatio: 0.25,
       secondaryActions: [
         Container(
+          child: SlideAction(
+            onTap: () => showDialog(
+              context: context,
+              builder: (_) => EditTaskDialog(
+                index: index,
+                sortedList: sortedList,
+              ),
+            ),
+            child: Icon(
+              Icons.mode_edit_outlined,
+              color: Colors.white,
+            ),
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: Colors.black,
+                  width: 1,
+                ),
+                top: BorderSide(
+                  color: Colors.black,
+                  width: 1,
+                ),
+              ),
+              color: Colors.grey,
+            ),
+          ),
+        ),
+        Container(
           child: ClipRRect(
             borderRadius: BorderRadius.only(
               bottomRight: Radius.circular(10),
@@ -139,7 +159,7 @@ class TaskTile extends StatelessWidget {
               ),
             ),
           ),
-        )
+        ),
       ],
     );
   }

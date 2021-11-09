@@ -35,6 +35,7 @@ class EditTaskDialog extends StatelessWidget {
         finishTime.text = task["finishTime"];
         duration.text = task["duration"];
         return AlertDialog(
+          backgroundColor: Colors.purple[50],
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
