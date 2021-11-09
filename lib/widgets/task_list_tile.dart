@@ -6,34 +6,68 @@ import 'package:to_do_list_with_provider/widgets/delete_list_dialog.dart';
 import 'package:to_do_list_with_provider/widgets/edit_list_dialog.dart';
 
 class TaskListTile extends StatelessWidget {
-  TaskListTile({Key? key, required this.list}) : super(key: key);
+  TaskListTile({Key? key, required this.list, required this.index})
+      : super(key: key);
+  final int index;
   final DocumentSnapshot list;
   @override
   Widget build(BuildContext context) {
     return Slidable(
-      child: ListTile(
-        tileColor: Colors.purple[100],
-        leading: Icon(
-          Icons.list_alt_rounded,
-          color: Colors.blueGrey,
+      child: Container(
+        decoration: BoxDecoration(
+            border: Border.all(color: Colors.white),
+            color:
+                index % 2 == 1 ? Colors.lightBlue[100] : Colors.lightBlue[900],
+            borderRadius: BorderRadius.only(
+              bottomRight: Radius.circular(40),
+            )),
+        child: ListTile(
+          tileColor: Colors.white,
+          title: Text(
+            list["title"],
+            style: TextStyle(
+                color:
+                    index % 2 == 1 ? Colors.indigo[800] : Colors.indigo[200]),
+          ),
+          onTap: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ListPage(
+                    list: list,
+                  ),
+                ));
+          },
         ),
-        title: Text(
-          list["title"],
-          style: TextStyle(color: Colors.deepPurple),
-        ),
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ListPage(
-                  list: list,
-                ),
-              ));
-        },
       ),
       actionPane: SlidableScrollActionPane(),
-      secondaryActions: [
+      actions: [
         Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white),
+          ),
+          child: SlideAction(
+            onTap: () => showDialog(
+              context: context,
+              builder: (context) => DeleteListDialog(list: list),
+            ),
+            child: Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+            decoration: BoxDecoration(
+              color: Colors.red,
+            ),
+          ),
+        ),
+        Container(
+          decoration: BoxDecoration(
+              border: Border(
+            bottom: BorderSide(color: Colors.white),
+            top: BorderSide(
+              color: Colors.white,
+            ),
+          )),
           child: SlideAction(
             onTap: () => showDialog(
               context: context,
@@ -46,22 +80,7 @@ class TaskListTile extends StatelessWidget {
               color: Colors.white,
             ),
             decoration: BoxDecoration(
-              color: Colors.lightBlue,
-            ),
-          ),
-        ),
-        Container(
-          child: SlideAction(
-            onTap: () => showDialog(
-              context: context,
-              builder: (context) => DeleteListDialog(list: list),
-            ),
-            child: Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
-            decoration: BoxDecoration(
-              color: Colors.red,
+              color: Colors.grey,
             ),
           ),
         ),
