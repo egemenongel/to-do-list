@@ -24,16 +24,14 @@ class AddTaskDialog extends StatelessWidget {
       title: Text(
         "Add Task",
       ),
-      content: Container(
+      content: SingleChildScrollView(
         child: TaskForm(
           formKey: _formKey,
           taskTitle: taskTitle,
           startTime: startTime,
           finishTime: finishTime,
           duration: duration,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
         ),
-        height: 300.0,
       ),
       actions: [
         // firestore.orderById.snapshots()

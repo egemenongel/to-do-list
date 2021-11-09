@@ -49,7 +49,6 @@ class AddListPage extends StatelessWidget {
             startTime: startTime,
             finishTime: finishTime,
             duration: duration,
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
           ),
           ElevatedButton(
             onPressed: () {
