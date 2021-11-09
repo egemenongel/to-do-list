@@ -5,7 +5,7 @@ import 'package:to_do_list_with_provider/models/task_model.dart';
 class TaskListManager extends ChangeNotifier {
   String? listTitle;
   List<TaskModel> _taskList = [];
-
+  bool duration = true;
   UnmodifiableListView<TaskModel> get taskList {
     return UnmodifiableListView(_taskList);
   }
@@ -36,6 +36,11 @@ class TaskListManager extends ChangeNotifier {
 
   checkboxToggle(TaskModel task) {
     task.toggle();
+    notifyListeners();
+  }
+
+  changeBool(bool value) {
+    duration = value;
     notifyListeners();
   }
 }
