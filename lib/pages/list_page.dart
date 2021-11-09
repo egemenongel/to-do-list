@@ -38,10 +38,7 @@ class ListPage extends StatelessWidget {
                   child: Container(
                 padding: EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    Colors.purple,
-                    Colors.deepPurpleAccent,
-                  ]),
+                  color: Colors.purple[200],
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(10),
                       topRight: Radius.circular(10)),
