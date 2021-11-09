@@ -37,6 +37,13 @@ class _TimeFieldState extends State<TimeField> {
 
     return TextFormField(
         decoration: InputDecoration(
+            suffixIcon: IconButton(
+              onPressed: () => widget.controller!.clear(),
+              icon: Icon(
+                Icons.clear,
+              ),
+              iconSize: 15,
+            ),
             labelText: widget.labelText,
             labelStyle: TextStyle(color: Colors.deepPurple),
             enabledBorder:
