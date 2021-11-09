@@ -55,6 +55,7 @@ class AddListPage extends StatelessWidget {
                     startTime: startTime.text,
                     finishTime: finishTime.text,
                     duration: duration.text,
+                    isCompleted: false,
                   );
                   _taskListManager.addTask(task);
                   _clearForm();
