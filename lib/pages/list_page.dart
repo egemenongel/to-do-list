@@ -25,8 +25,6 @@ class ListPage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                    margin: EdgeInsets.all(10),
-                    padding: EdgeInsets.symmetric(vertical: 10),
                     height: 80,
                     child: Center(
                       child: Text(

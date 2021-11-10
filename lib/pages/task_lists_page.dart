@@ -35,7 +35,7 @@ class TaskListsPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  height: 110,
+                  height: 80,
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.orange[700],
