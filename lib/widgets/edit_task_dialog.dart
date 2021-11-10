@@ -39,15 +39,15 @@ class EditTaskDialog extends StatelessWidget {
         dueDate.text = task["dueDate"];
         notes.text = task["notes"];
         return AlertDialog(
-          backgroundColor: Colors.purple[50],
+          backgroundColor: Colors.orange,
+          insetPadding: EdgeInsets.symmetric(horizontal: 20),
+          contentPadding: EdgeInsets.zero,
+          titlePadding: EdgeInsets.all(10.0),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
               side: BorderSide(
-                color: Colors.deepPurple,
+                color: Colors.orange,
               )),
-          title: Text(
-            "Edit Task",
-          ),
           content: SingleChildScrollView(
             child: TaskForm(
               formKey: _formKey,
