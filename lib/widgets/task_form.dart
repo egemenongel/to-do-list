@@ -14,6 +14,7 @@ class TaskForm extends StatefulWidget {
     required this.finishTime,
     required this.duration,
     required this.dueDate,
+    required this.notes,
   }) : super(key: key);
   final GlobalKey formKey;
   final TextEditingController taskTitle;
@@ -21,6 +22,7 @@ class TaskForm extends StatefulWidget {
   final TextEditingController finishTime;
   final TextEditingController duration;
   final TextEditingController dueDate;
+  final TextEditingController notes;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: Colors.deepPurple));
@@ -254,6 +256,7 @@ class _TaskFormState extends State<TaskForm> {
                       labelText: "Add Notes",
                       labelStyle: TextStyle(color: Colors.deepPurple),
                     ),
+                    controller: widget.notes,
                   ),
                   SizedBox(
                     height: 15,

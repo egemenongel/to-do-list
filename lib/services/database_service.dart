@@ -17,6 +17,8 @@ class DatabaseService {
         "startTime": task.startTime,
         "finishTime": task.finishTime,
         "duration": task.duration,
+        "dueDate": task.dueDate,
+        "notes": task.notes,
         "timeStamp": Timestamp.now(),
       });
     }

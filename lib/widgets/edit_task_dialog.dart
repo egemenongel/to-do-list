@@ -19,6 +19,7 @@ class EditTaskDialog extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final duration = TextEditingController();
   final dueDate = TextEditingController();
+  final notes = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -36,6 +37,7 @@ class EditTaskDialog extends StatelessWidget {
         finishTime.text = task["finishTime"];
         duration.text = task["duration"];
         dueDate.text = task["dueDate"];
+        notes.text = task["notes"];
         return AlertDialog(
           backgroundColor: Colors.purple[50],
           shape: RoundedRectangleBorder(
@@ -54,6 +56,7 @@ class EditTaskDialog extends StatelessWidget {
               finishTime: finishTime,
               duration: duration,
               dueDate: dueDate,
+              notes: notes,
             ),
           ),
           actions: [
@@ -68,6 +71,7 @@ class EditTaskDialog extends StatelessWidget {
                           finishTime: finishTime.text,
                           duration: duration.text,
                           dueDate: dueDate.text,
+                          notes: notes.text,
                           timeStamp: task["timeStamp"], //To make it same
                           isCompleted: task["isCompleted"],
                         ));

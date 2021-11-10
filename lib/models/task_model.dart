@@ -7,6 +7,7 @@ class TaskModel {
   String? finishTime;
   String? duration;
   String? dueDate;
+  String? notes;
   Timestamp? timeStamp;
 
   TaskModel({
@@ -17,6 +18,7 @@ class TaskModel {
     this.isCompleted,
     this.timeStamp,
     this.dueDate,
+    this.notes,
   }) {
     this.title = title;
     this.isCompleted = isCompleted;
@@ -25,6 +27,7 @@ class TaskModel {
     this.duration = duration;
     this.timeStamp = timeStamp;
     this.dueDate = dueDate;
+    this.notes = notes;
   }
 
   void toggle() {
@@ -41,6 +44,7 @@ class TaskModel {
       "duration": duration,
       "dueDate": dueDate,
       "timeStamp": timeStamp,
+      "notes": notes,
     };
   }
 
@@ -53,6 +57,7 @@ class TaskModel {
       duration: map["duration"],
       dueDate: map["dueDate"],
       timeStamp: map["timeStamp"],
+      notes: map["notes"],
     );
   }
 }

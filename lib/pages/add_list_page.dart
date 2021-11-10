@@ -13,6 +13,7 @@ class AddListPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();
   final duration = TextEditingController();
   final dueDate = TextEditingController();
+  final notes = TextEditingController();
   // TimeOfDay parseTime(String time) {
   //   return TimeOfDay(
   //       hour: int.parse(time.split(":")[0]),
@@ -47,6 +48,7 @@ class AddListPage extends StatelessWidget {
               finishTime: finishTime,
               duration: duration,
               dueDate: dueDate,
+              notes: notes,
             ),
             ElevatedButton(
               onPressed: () {
@@ -58,6 +60,7 @@ class AddListPage extends StatelessWidget {
                     duration: duration.text,
                     dueDate: dueDate.text,
                     isCompleted: false,
+                    notes: notes.text,
                   );
                   _taskListManager.addTask(task);
                   _clearForm();
