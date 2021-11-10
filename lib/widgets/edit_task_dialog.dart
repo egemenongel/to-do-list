@@ -56,17 +56,19 @@ class EditTaskDialog extends StatelessWidget {
           actions: [
             TextButton(
                 onPressed: () {
-                  firestore.editTask(
-                      task,
-                      TaskModel(
-                        title: taskTitle.text,
-                        startTime: startTime.text,
-                        finishTime: finishTime.text,
-                        duration: duration.text,
-                        timeStamp: task["timeStamp"], //To make it same
-                        isCompleted: task["isCompleted"],
-                      ));
-                  Navigator.pop(context);
+                  if (_formKey.currentState!.validate()) {
+                    firestore.editTask(
+                        task,
+                        TaskModel(
+                          title: taskTitle.text,
+                          startTime: startTime.text,
+                          finishTime: finishTime.text,
+                          duration: duration.text,
+                          timeStamp: task["timeStamp"], //To make it same
+                          isCompleted: task["isCompleted"],
+                        ));
+                    Navigator.pop(context);
+                  }
                 },
                 child: Text("Edit")),
             TextButton(
