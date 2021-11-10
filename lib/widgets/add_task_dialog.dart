@@ -13,6 +13,7 @@ class AddTaskDialog extends StatelessWidget {
   final finishTime = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   final duration = TextEditingController();
+  final dueDate = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -31,6 +32,7 @@ class AddTaskDialog extends StatelessWidget {
           startTime: startTime,
           finishTime: finishTime,
           duration: duration,
+          dueDate: dueDate,
         ),
       ),
       actions: [
@@ -45,6 +47,7 @@ class AddTaskDialog extends StatelessWidget {
                       startTime: startTime.text,
                       finishTime: finishTime.text,
                       duration: duration.text,
+                      dueDate: dueDate.text,
                       timeStamp: Timestamp.now(),
                     ));
                 Navigator.pop(context);

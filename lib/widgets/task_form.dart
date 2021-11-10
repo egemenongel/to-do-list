@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
+import 'package:to_do_list_with_provider/widgets/date_field.dart';
 import 'package:to_do_list_with_provider/widgets/time_field.dart';
 
 class TaskForm extends StatefulWidget {
@@ -12,12 +13,14 @@ class TaskForm extends StatefulWidget {
     required this.startTime,
     required this.finishTime,
     required this.duration,
+    required this.dueDate,
   }) : super(key: key);
   final GlobalKey formKey;
   final TextEditingController taskTitle;
   final TextEditingController startTime;
   final TextEditingController finishTime;
   final TextEditingController duration;
+  final TextEditingController dueDate;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
       borderSide: BorderSide(color: Colors.deepPurple));
@@ -225,14 +228,18 @@ class _TaskFormState extends State<TaskForm> {
                   SizedBox(
                     height: 15,
                   ),
-                  TextFormField(
-                    //Due date
-                    decoration: InputDecoration(
-                      border: widget._border,
-                      labelText: "Due Date",
-                      labelStyle: TextStyle(color: Colors.deepPurple),
-                    ),
+                  DateField(
+                    controller: widget.dueDate,
+                    labelText: "Due date",
                   ),
+                  // TextFormField(
+                  //   //Due date
+                  //   decoration: InputDecoration(
+                  //     border: widget._border,
+                  //     labelText: "Due Date",
+                  //     labelStyle: TextStyle(color: Colors.deepPurple),
+                  //   ),
+                  // ),
                   SizedBox(
                     height: 15,
                   ),
