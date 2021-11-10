@@ -35,7 +35,6 @@ class TaskTile extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(10), topLeft: Radius.circular(10))),
         child: ListTile(
-            onTap: () {},
             title: Text(
               taskTitle,
               style: TextStyle(
@@ -82,6 +81,11 @@ class TaskTile extends StatelessWidget {
                             startTime,
                             style: TextStyle(color: Colors.white),
                           ),
+                        )
+                      : SizedBox(),
+                  finishTime != "" && startTime != ""
+                      ? SizedBox(
+                          width: 5.0,
                         )
                       : SizedBox(),
                   finishTime != ""
