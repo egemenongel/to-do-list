@@ -10,11 +10,15 @@ class TimeField extends StatefulWidget {
     this.validator,
     this.enabled,
     this.clearButton,
+    this.focusNode,
+    this.requestNode,
   }) : super(key: key);
   final String? labelText;
   final TextEditingController? controller;
   final String Function(String?)? validator;
   final void Function()? clearButton;
+  final FocusNode? focusNode;
+  final VoidCallback? requestNode;
   final enabled;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
@@ -32,12 +36,12 @@ class _TimeFieldState extends State<TimeField> {
         context: context,
         initialTime: _time,
       );
-      FocusScope.of(context).requestFocus(FocusNode());
       if (newTime != null) {
         setState(() {
           _time = newTime;
           date.value = TextEditingValue(text: newTime.format(context));
         });
+        widget.requestNode!.call();
       }
       if (date.value.text.isNotEmpty) {
         Provider.of<TaskListManager>(context, listen: false).changeBool(false);
@@ -68,6 +72,8 @@ class _TimeFieldState extends State<TimeField> {
       onTap: () => selectTime(widget.controller!),
       validator: widget.validator,
       enabled: widget.enabled,
+      focusNode: widget.focusNode,
+      textInputAction: TextInputAction.next,
     );
   }
 }

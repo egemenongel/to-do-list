@@ -31,10 +31,22 @@ class TaskForm extends StatefulWidget {
 }
 
 class _TaskFormState extends State<TaskForm> {
+  late FocusNode title;
+  late FocusNode startTime;
+  late FocusNode finishTime;
+  late FocusNode duration;
+  late FocusNode dueDate;
+  late FocusNode notes;
+
   @override
   void initState() {
     super.initState();
-
+    title = FocusNode();
+    startTime = FocusNode();
+    finishTime = FocusNode();
+    duration = FocusNode();
+    dueDate = FocusNode();
+    notes = FocusNode();
     SchedulerBinding.instance!.addPostFrameCallback((_) {
       if (widget.startTime.text.isNotEmpty ||
           widget.finishTime.text.isNotEmpty) {
@@ -44,6 +56,17 @@ class _TaskFormState extends State<TaskForm> {
       }
       _disableTimeField();
     });
+  }
+
+  @override
+  void dispose() {
+    title.dispose();
+    startTime.dispose();
+    finishTime.dispose();
+    duration.dispose();
+    dueDate.dispose();
+    notes.dispose();
+    super.dispose();
   }
 
   bool isEnabled = true;
@@ -63,11 +86,16 @@ class _TaskFormState extends State<TaskForm> {
             children: [
               TextFormField(
                   controller: widget.taskTitle,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: "New Task",
                     labelStyle: TextStyle(color: Colors.deepPurple),
                   ),
                   autofocus: true,
+                  focusNode: title,
+                  onSaved: (val) {
+                    title.unfocus();
+                  },
                   validator: (value) =>
                       value!.isEmpty ? "Please enter a task" : null),
               ExpansionTile(
@@ -119,6 +147,9 @@ class _TaskFormState extends State<TaskForm> {
                                   controller: widget.startTime,
                                   labelText: "Start Time",
                                   enabled: isEnabled,
+                                  focusNode: startTime,
+                                  requestNode: () => FocusScope.of(context)
+                                      .requestFocus(finishTime),
                                 ),
                               ),
                             ),
@@ -140,6 +171,9 @@ class _TaskFormState extends State<TaskForm> {
                                   controller: widget.finishTime,
                                   labelText: "Finish Time",
                                   enabled: isEnabled,
+                                  focusNode: finishTime,
+                                  requestNode: () => FocusScope.of(context)
+                                      .requestFocus(dueDate),
                                 ),
                               ),
                             ),
@@ -190,64 +224,60 @@ class _TaskFormState extends State<TaskForm> {
                                 child: Column(
                                   children: [
                                     TextFormField(
-                                      onChanged: (value) {
-                                        if (value.isNotEmpty) {
-                                          setState(() {
-                                            isEnabled = false;
-                                          });
-                                        } else {
-                                          setState(() {
-                                            isEnabled = true;
-                                          });
-                                        }
-                                      },
-                                      textAlign: TextAlign.center,
-                                      controller: widget.duration,
-                                      enabled: Provider.of<TaskListManager>(
-                                              context,
-                                              listen: true)
-                                          .duration,
-                                      decoration: InputDecoration(
-                                        border: widget._border,
-                                        labelText: "Duration",
-                                        labelStyle:
-                                            TextStyle(color: Colors.deepPurple),
-                                      ),
-                                      keyboardType: TextInputType.number,
-                                    ),
+                                        onChanged: (value) {
+                                          if (value.isNotEmpty) {
+                                            setState(() {
+                                              isEnabled = false;
+                                            });
+                                          } else {
+                                            setState(() {
+                                              isEnabled = true;
+                                            });
+                                          }
+                                        },
+                                        textAlign: TextAlign.center,
+                                        controller: widget.duration,
+                                        enabled: Provider.of<TaskListManager>(
+                                                context,
+                                                listen: true)
+                                            .duration,
+                                        decoration: InputDecoration(
+                                          border: widget._border,
+                                          labelText: "Duration",
+                                          labelStyle: TextStyle(
+                                              color: Colors.deepPurple),
+                                        ),
+                                        keyboardType: TextInputType.number,
+                                        focusNode: duration,
+                                        textInputAction: TextInputAction.next,
+                                        onFieldSubmitted: (value) {
+                                          duration.unfocus();
+                                          FocusScope.of(context)
+                                              .requestFocus(dueDate);
+                                        }),
                                   ],
                                 )),
                           ],
                         ),
                       ],
                     ),
-                  ), //Due date
-                  // showDatePicker(
-                  //         context: context,
-                  //         initialDate: DateTime.now(),
-                  //         firstDate: DateTime(2015, 1, 1),
-                  //         lastDate: DateTime(2025, 1, 1))),
+                  ),
                   SizedBox(
                     height: 15,
                   ),
                   DateField(
                     controller: widget.dueDate,
                     labelText: "Due date",
+                    focusNode: dueDate,
+                    requestNode: () =>
+                        FocusScope.of(context).requestFocus(notes),
                   ),
-                  // TextFormField(
-                  //   //Due date
-                  //   decoration: InputDecoration(
-                  //     border: widget._border,
-                  //     labelText: "Due Date",
-                  //     labelStyle: TextStyle(color: Colors.deepPurple),
-                  //   ),
-                  // ),
                   SizedBox(
                     height: 15,
                   ),
                   TextFormField(
                     onChanged: (val) => print(val),
-                    //Notes
+
                     keyboardType: TextInputType.multiline,
                     minLines: 1, //Normal textInputField will be displayed
                     maxLines: 5, // when user presses enter it will adapt to it
@@ -257,6 +287,7 @@ class _TaskFormState extends State<TaskForm> {
                       labelStyle: TextStyle(color: Colors.deepPurple),
                     ),
                     controller: widget.notes,
+                    focusNode: notes,
                   ),
                   SizedBox(
                     height: 15,
