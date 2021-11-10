@@ -36,7 +36,10 @@ class AddListPage extends StatelessWidget {
             ),
             Text(
               "${_taskListManager.listTitle}",
-              style: Theme.of(context).textTheme.headline2,
+              style: TextStyle(
+                fontSize: 40.0,
+                color: Colors.blueGrey[700],
+              ),
             ),
             SizedBox(
               height: 70,
@@ -69,28 +72,44 @@ class AddListPage extends StatelessWidget {
               child: Text("Add"),
             ),
             Container(
-              height: 250,
+              padding: EdgeInsets.symmetric(
+                horizontal: 10.0,
+              ),
+              height: 300,
               child: Consumer<TaskListManager>(
                   builder: (context, taskListManager, child) =>
-                      ListView.builder(
-                          itemCount: taskListManager.listLength,
-                          itemBuilder: (BuildContext context, int index) {
-                            var task = taskListManager.taskList[index];
-                            return ListTile(
-                              trailing: IconButton(
-                                  icon: Icon(Icons.remove_circle),
-                                  onPressed: () =>
-                                      taskListManager.removeTask(task)),
-                              title: Row(
-                                children: [
-                                  Text("${index + 1}. "),
-                                  Text(
-                                    task.title,
-                                  ),
-                                ],
-                              ),
-                            );
-                          })),
+                      ListView.separated(
+                        itemCount: taskListManager.listLength,
+                        itemBuilder: (BuildContext context, int index) {
+                          var task = taskListManager.taskList[index];
+                          return ListTile(
+                            tileColor: Colors.blueGrey[100],
+                            trailing: IconButton(
+                                icon: Icon(
+                                  Icons.remove_circle,
+                                ),
+                                onPressed: () =>
+                                    taskListManager.removeTask(task)),
+                            title: Row(
+                              children: [
+                                Text(
+                                  "${index + 1}. ",
+                                  style: TextStyle(color: Colors.blueAccent),
+                                ),
+                                Text(
+                                  task.title,
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                        separatorBuilder: (BuildContext context, int index) {
+                          return Divider(
+                            height: 0,
+                            thickness: 2.0,
+                          );
+                        },
+                      )),
             ),
           ],
         ),
