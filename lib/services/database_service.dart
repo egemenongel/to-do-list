@@ -27,7 +27,7 @@ class DatabaseService {
   Future<void> removeList(DocumentSnapshot list) async {
     QuerySnapshot tasks =
         await listsCollection.doc(list.id).collection("tasks").get();
-    list.reference.set({"title": ""});
+    list.reference.update({"listTitle": FieldValue.delete()});
     for (var task in tasks.docs) {
       task.reference.delete();
     }
