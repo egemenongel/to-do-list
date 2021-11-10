@@ -36,17 +36,19 @@ class AddTaskDialog extends StatelessWidget {
       actions: [
         TextButton(
             onPressed: () {
-              firestore.addTask(
-                  list!.reference,
-                  TaskModel(
-                    title: taskTitle.text,
-                    isCompleted: false,
-                    startTime: startTime.text,
-                    finishTime: finishTime.text,
-                    duration: duration.text,
-                    timeStamp: Timestamp.now(),
-                  ));
-              Navigator.pop(context);
+              if (_formKey.currentState!.validate()) {
+                firestore.addTask(
+                    list!.reference,
+                    TaskModel(
+                      title: taskTitle.text,
+                      isCompleted: false,
+                      startTime: startTime.text,
+                      finishTime: finishTime.text,
+                      duration: duration.text,
+                      timeStamp: Timestamp.now(),
+                    ));
+                Navigator.pop(context);
+              }
             },
             child: Text("Add")),
         TextButton(
