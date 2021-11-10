@@ -15,7 +15,7 @@ class TimeField extends StatefulWidget {
   }) : super(key: key);
   final String? labelText;
   final TextEditingController? controller;
-  final String Function(String?)? validator;
+  final String? Function(String?)? validator;
   final void Function()? clearButton;
   final FocusNode? focusNode;
   final VoidCallback? requestNode;
@@ -30,15 +30,16 @@ class TimeField extends StatefulWidget {
 class _TimeFieldState extends State<TimeField> {
   @override
   Widget build(BuildContext context) {
-    TimeOfDay _time = TimeOfDay.now();
+    TimeOfDay _turkeyTime = TimeOfDay(
+        hour: TimeOfDay.now().hour + 3, minute: TimeOfDay.now().minute);
     void selectTime(TextEditingController date) async {
       TimeOfDay? newTime = await showTimePicker(
         context: context,
-        initialTime: _time,
+        initialTime: _turkeyTime,
       );
       if (newTime != null) {
         setState(() {
-          _time = newTime;
+          _turkeyTime = newTime;
           date.value = TextEditingValue(text: newTime.format(context));
         });
         widget.requestNode!.call();

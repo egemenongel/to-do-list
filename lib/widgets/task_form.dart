@@ -154,6 +154,11 @@ class _TaskFormState extends State<TaskForm> {
                                   focusNode: startTime,
                                   requestNode: () => FocusScope.of(context)
                                       .requestFocus(finishTime),
+                                  validator: (val) => val!.isNotEmpty
+                                      ? val.contains(":") == false
+                                          ? "Type a time"
+                                          : null
+                                      : null,
                                 ),
                               ),
                             ),
@@ -178,6 +183,11 @@ class _TaskFormState extends State<TaskForm> {
                                   focusNode: finishTime,
                                   requestNode: () => FocusScope.of(context)
                                       .requestFocus(dueDate),
+                                  validator: (val) => val!.isNotEmpty
+                                      ? val.contains(":") == false
+                                          ? "Type a time"
+                                          : null
+                                      : null,
                                 ),
                               ),
                             ),
@@ -224,50 +234,68 @@ class _TaskFormState extends State<TaskForm> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                                width: 150,
+                                width: 100,
                                 child: Column(
                                   children: [
                                     TextFormField(
-                                        onChanged: (value) {
-                                          if (value.isNotEmpty) {
-                                            setState(() {
-                                              isEnabled = false;
-                                            });
-                                          } else {
-                                            setState(() {
-                                              isEnabled = true;
-                                            });
-                                          }
-                                        },
-                                        textAlign: TextAlign.center,
-                                        controller: widget.duration,
-                                        enabled: Provider.of<TaskListManager>(
-                                                context,
-                                                listen: true)
-                                            .duration,
-                                        decoration: InputDecoration(
+                                      onChanged: (value) {
+                                        if (value.isNotEmpty) {
+                                          setState(() {
+                                            isEnabled = false;
+                                          });
+                                        } else {
+                                          setState(() {
+                                            isEnabled = true;
+                                          });
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      controller: widget.duration,
+                                      enabled: Provider.of<TaskListManager>(
+                                              context,
+                                              listen: true)
+                                          .duration,
+                                      decoration: InputDecoration(
                                           border: widget._border,
                                           labelText: "Duration",
                                           labelStyle:
                                               TextStyle(color: Colors.blueGrey),
-                                        ),
-                                        keyboardType: TextInputType.number,
-                                        focusNode: duration,
-                                        textInputAction: TextInputAction.next,
-                                        onFieldSubmitted: (value) {
-                                          duration.unfocus();
-                                          FocusScope.of(context)
-                                              .requestFocus(dueDate);
-                                        }),
+                                          errorStyle: TextStyle(
+                                            fontSize: 9.0,
+                                          ),
+                                          errorMaxLines: 2),
+                                      keyboardType: TextInputType.number,
+                                      focusNode: duration,
+                                      textInputAction: TextInputAction.next,
+                                      onFieldSubmitted: (value) {
+                                        duration.unfocus();
+                                        FocusScope.of(context)
+                                            .requestFocus(dueDate);
+                                      },
+                                      validator: (val) => val!.isNotEmpty
+                                          ? ((int.tryParse(val)) is! int)
+                                              ? "Type an integer"
+                                              : (int.parse(val) < 0)
+                                                  ? "Cannot be negative"
+                                                  : null
+                                          : null,
+                                    ),
                                   ],
                                 )),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Text(
+                              "mins",
+                              style: TextStyle(color: Colors.blueGrey),
+                            )
                           ],
                         ),
                       ],
                     ),
                   ),
                   SizedBox(
-                    height: 15,
+                    height: 25,
                   ),
                   DateField(
                     controller: widget.dueDate,
