@@ -22,7 +22,7 @@ class TimeField extends StatefulWidget {
   final enabled;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: Colors.deepPurple));
+      borderSide: BorderSide(color: Colors.blueGrey));
   @override
   _TimeFieldState createState() => _TimeFieldState();
 }
@@ -57,13 +57,13 @@ class _TimeFieldState extends State<TimeField> {
             padding: EdgeInsets.zero,
             icon: Icon(
               Icons.clear,
-              color: Colors.deepPurple,
+              color: Colors.deepOrange[800],
             ),
             iconSize: 15,
           ),
           labelText: widget.labelText,
           labelStyle: TextStyle(
-            color: Colors.deepPurple,
+            color: Colors.blueGrey,
           ),
           enabledBorder:
               widget.controller!.text.isNotEmpty ? widget._border : null,

@@ -25,7 +25,7 @@ class TaskForm extends StatefulWidget {
   final TextEditingController notes;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: Colors.deepPurple));
+      borderSide: BorderSide(color: Colors.deepOrange));
   @override
   State<TaskForm> createState() => _TaskFormState();
 }
@@ -77,7 +77,7 @@ class _TaskFormState extends State<TaskForm> {
         width: 350,
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.purple[50],
+          color: Colors.deepOrange[100],
           borderRadius: BorderRadius.circular(10),
         ),
         child: Form(
@@ -89,7 +89,7 @@ class _TaskFormState extends State<TaskForm> {
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                     labelText: "New Task",
-                    labelStyle: TextStyle(color: Colors.deepPurple),
+                    labelStyle: TextStyle(color: Colors.blueGrey),
                   ),
                   autofocus: true,
                   focusNode: title,
@@ -99,32 +99,36 @@ class _TaskFormState extends State<TaskForm> {
                   validator: (value) =>
                       value!.isEmpty ? "Please enter a task" : null),
               ExpansionTile(
-                expandedCrossAxisAlignment: CrossAxisAlignment.start,
                 title: Text("Add details"),
-                // Target Dates?
+                tilePadding: EdgeInsets.symmetric(horizontal: 5.0),
+                expandedCrossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
                     height: 15,
                   ),
-                  Text(
-                    "Add target complete time",
-                    style: TextStyle(color: Colors.deepPurple),
-                  ),
-                  SizedBox(
-                    height: 25,
-                  ),
                   Container(
-                    height: 250,
+                    height: 250, padding: EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.deepPurple),
-                      color: Colors.purple[50],
+                      border: Border.all(color: Colors.orange),
+                      color: Colors.deepOrange[100],
                     ),
                     //Target Time Section
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         SizedBox(
-                          height: 15,
+                          height: 10.0,
+                        ),
+                        Text(
+                          "Target complete time",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.blueGrey,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20.0,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -191,7 +195,7 @@ class _TaskFormState extends State<TaskForm> {
                               Expanded(
                                 child: Divider(
                                   height: 20,
-                                  color: Colors.deepPurple,
+                                  color: Colors.blueGrey,
                                 ),
                               ),
                               Container(
@@ -200,14 +204,14 @@ class _TaskFormState extends State<TaskForm> {
                                 child: Text(
                                   "OR",
                                   style: TextStyle(
-                                      color: Colors.deepPurple,
+                                      color: Colors.blueGrey,
                                       fontWeight: FontWeight.bold),
                                 ),
                               ),
                               Expanded(
                                 child: Divider(
                                   height: 20,
-                                  color: Colors.deepPurple,
+                                  color: Colors.blueGrey,
                                 ),
                               ),
                             ],
@@ -244,8 +248,8 @@ class _TaskFormState extends State<TaskForm> {
                                         decoration: InputDecoration(
                                           border: widget._border,
                                           labelText: "Duration",
-                                          labelStyle: TextStyle(
-                                              color: Colors.deepPurple),
+                                          labelStyle:
+                                              TextStyle(color: Colors.blueGrey),
                                         ),
                                         keyboardType: TextInputType.number,
                                         focusNode: duration,
@@ -269,6 +273,7 @@ class _TaskFormState extends State<TaskForm> {
                     controller: widget.dueDate,
                     labelText: "Due date",
                     focusNode: dueDate,
+                    clearButton: () => widget.dueDate.clear(),
                     requestNode: () =>
                         FocusScope.of(context).requestFocus(notes),
                   ),
@@ -284,7 +289,7 @@ class _TaskFormState extends State<TaskForm> {
                     decoration: InputDecoration(
                       border: widget._border,
                       labelText: "Add Notes",
-                      labelStyle: TextStyle(color: Colors.deepPurple),
+                      labelStyle: TextStyle(color: Colors.blueGrey),
                     ),
                     controller: widget.notes,
                     focusNode: notes,

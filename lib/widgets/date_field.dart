@@ -16,7 +16,7 @@ class DateField extends StatefulWidget {
   final VoidCallback? requestNode;
   final OutlineInputBorder _border = OutlineInputBorder(
       borderRadius: BorderRadius.circular(10),
-      borderSide: BorderSide(color: Colors.deepPurple));
+      borderSide: BorderSide(color: Colors.blueGrey));
   @override
   _TimeFieldState createState() => _TimeFieldState();
 }
@@ -31,7 +31,6 @@ class _TimeFieldState extends State<DateField> {
           initialDate: _day,
           firstDate: DateTime(2000, 1, 1),
           lastDate: DateTime(2050, 1, 1));
-      // FocusScope.of(context).requestFocus(FocusNode());
       if (newDay != null) {
         setState(() {
           _day = newDay;
@@ -45,18 +44,18 @@ class _TimeFieldState extends State<DateField> {
       decoration: InputDecoration(
           contentPadding: EdgeInsets.fromLTRB(12, 24, 0, 16),
           suffixIcon: IconButton(
-            onPressed: () {},
+            onPressed: widget.clearButton,
             alignment: Alignment.center,
             padding: EdgeInsets.zero,
             icon: Icon(
               Icons.clear,
-              color: Colors.deepPurple,
+              color: Colors.deepOrange[800],
             ),
             iconSize: 15,
           ),
           labelText: widget.labelText,
           labelStyle: TextStyle(
-            color: Colors.deepPurple,
+            color: Colors.blueGrey,
           ),
           enabledBorder:
               widget.controller!.text.isNotEmpty ? widget._border : null,
