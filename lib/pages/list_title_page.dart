@@ -10,22 +10,14 @@ class ListTitlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-          child: Column(
-        children: [
-          SizedBox(
-            height: 100,
-          ),
-          Text(
-            "TO DO LIST",
-            style: TextStyle(fontSize: 35, color: Colors.green[700]),
-          ),
-          SizedBox(
-            height: 70,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 40),
-            child: Form(
+      body: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: 50.0,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Form(
               key: _formKey,
               child: TextFormField(
                 controller: listTitle,
@@ -38,22 +30,19 @@ class ListTitlePage extends StatelessWidget {
                     listTitle.text.isEmpty ? "Please enter a list title" : null,
               ),
             ),
-          ),
-          SizedBox(
-            height: 15,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              if (_formKey.currentState!.validate()) {
-                context.read<TaskListManager>().setTitle(listTitle.text);
-                Navigator.pushReplacement(context,
-                    MaterialPageRoute(builder: (context) => AddListPage()));
-              }
-            },
-            child: Text("Next"),
-          ),
-        ],
-      )),
+            ElevatedButton(
+              onPressed: () {
+                if (_formKey.currentState!.validate()) {
+                  context.read<TaskListManager>().setTitle(listTitle.text);
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => AddListPage()));
+                }
+              },
+              child: Text("Next"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
