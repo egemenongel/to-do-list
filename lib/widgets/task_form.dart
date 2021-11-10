@@ -81,7 +81,7 @@ class _TaskFormState extends State<TaskForm> {
                     height: 25,
                   ),
                   Container(
-                    height: 210,
+                    height: 250,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(color: Colors.deepPurple),
@@ -181,34 +181,37 @@ class _TaskFormState extends State<TaskForm> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Container(
-                              width: 100,
-                              child: TextFormField(
-                                onChanged: (value) {
-                                  if (value.isNotEmpty) {
-                                    setState(() {
-                                      isEnabled = false;
-                                    });
-                                  } else {
-                                    setState(() {
-                                      isEnabled = true;
-                                    });
-                                  }
-                                },
-                                textAlign: TextAlign.center,
-                                controller: widget.duration,
-                                enabled: Provider.of<TaskListManager>(context,
-                                        listen: true)
-                                    .duration,
-                                validator: (value) {},
-                                decoration: InputDecoration(
-                                  border: widget._border,
-                                  labelText: "Duration",
-                                  labelStyle:
-                                      TextStyle(color: Colors.deepPurple),
-                                ),
-                                keyboardType: TextInputType.number,
-                              ),
-                            ),
+                                width: 150,
+                                child: Column(
+                                  children: [
+                                    TextFormField(
+                                      onChanged: (value) {
+                                        if (value.isNotEmpty) {
+                                          setState(() {
+                                            isEnabled = false;
+                                          });
+                                        } else {
+                                          setState(() {
+                                            isEnabled = true;
+                                          });
+                                        }
+                                      },
+                                      textAlign: TextAlign.center,
+                                      controller: widget.duration,
+                                      enabled: Provider.of<TaskListManager>(
+                                              context,
+                                              listen: true)
+                                          .duration,
+                                      decoration: InputDecoration(
+                                        border: widget._border,
+                                        labelText: "Duration",
+                                        labelStyle:
+                                            TextStyle(color: Colors.deepPurple),
+                                      ),
+                                      keyboardType: TextInputType.number,
+                                    ),
+                                  ],
+                                )),
                           ],
                         ),
                       ],
@@ -254,6 +257,17 @@ class _TaskFormState extends State<TaskForm> {
           ),
         ));
   }
+
+  // Widget _errorBox() {
+  //   if (widget.duration.text.isNotEmpty) {
+  //     if (int.parse(widget.duration.text) is int) {
+  //       return SizedBox();
+  //     } else {
+  //       return Text("Please type an integer");
+  //     }
+  //   }
+  //   return SizedBox();
+  // }
 
   void _disableTimeField() {
     if (widget.duration.text.isNotEmpty) {
