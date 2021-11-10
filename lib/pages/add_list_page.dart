@@ -81,8 +81,6 @@ class AddListPage extends StatelessWidget {
                                   icon: Icon(Icons.remove_circle),
                                   onPressed: () =>
                                       taskListManager.removeTask(task)),
-                              // "${task.startTime!.format(context).split(" ")[0]} - ${task.finishTime!.format(context).split(" ")[0]}"
-                              // ERROR VALIDATION SHOULD BE ADDED to check if start date is smaller than finish date.//
                               title: Row(
                                 children: [
                                   Text("${index + 1}. "),

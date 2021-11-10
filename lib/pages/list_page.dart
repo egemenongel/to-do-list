@@ -32,6 +32,7 @@ class ListPage extends StatelessWidget {
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 40.0,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     )),
