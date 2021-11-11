@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
+import 'package:to_do_list_with_provider/services/size_helper.dart';
 import 'package:to_do_list_with_provider/widgets/task_list_tile.dart';
 
 class TaskListsPage extends StatelessWidget {
@@ -35,7 +36,7 @@ class TaskListsPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  height: 80,
+                  height: appBarHeight(context),
                   width: double.infinity,
                   decoration: BoxDecoration(
                       color: Colors.orange[700],

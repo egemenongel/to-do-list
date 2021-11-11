@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:to_do_list_with_provider/services/size_helper.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
 import 'package:to_do_list_with_provider/widgets/form_fields/date_field.dart';
 import 'package:to_do_list_with_provider/widgets/form_fields/time_field.dart';
@@ -70,11 +71,11 @@ class _TaskFormState extends State<TaskForm> {
   }
 
   bool isEnabled = true;
-  // bool dur = true;
+
   @override
   Widget build(BuildContext context) {
     return Container(
-        width: 350,
+        width: taskFormWidth(context),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: Colors.deepOrange[100],
@@ -230,7 +231,7 @@ class _TaskFormState extends State<TaskForm> {
                           ),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 20,
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,

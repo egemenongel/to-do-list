@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
+import 'package:to_do_list_with_provider/services/size_helper.dart';
 import 'package:to_do_list_with_provider/widgets/dialogs/add_task_dialog.dart';
 import 'package:to_do_list_with_provider/widgets/task_tile.dart';
 
@@ -25,7 +26,7 @@ class ListPage extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                    height: 80,
+                    height: appBarHeight(context),
                     child: Center(
                       child: Text(
                         "${list!["title"]}",
@@ -81,7 +82,7 @@ class ListPage extends StatelessWidget {
                               ),
                             ),
                             Container(
-                              height: 70,
+                              height: bottomBar(context),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.only(
                                     topLeft: Radius.circular(10),
