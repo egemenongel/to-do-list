@@ -40,8 +40,7 @@ class TaskListsPage extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.orange[700],
                       borderRadius: BorderRadius.only(
-                        bottomRight: Radius.circular(10),
-                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(50),
                       )),
                 ),
                 Expanded(

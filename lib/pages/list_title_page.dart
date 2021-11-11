@@ -10,6 +10,7 @@ class ListTitlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         padding: EdgeInsets.symmetric(
           horizontal: 50.0,
@@ -22,8 +23,7 @@ class ListTitlePage extends StatelessWidget {
               child: TextFormField(
                 controller: listTitle,
                 decoration: InputDecoration(
-                    labelText:
-                        "List Title (Shopping List, Daily To Do List...)",
+                    labelText: "List Title",
                     labelStyle: TextStyle(fontSize: 14)),
                 autofocus: true,
                 validator: (val) =>

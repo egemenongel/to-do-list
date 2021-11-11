@@ -14,20 +14,15 @@ class AddListPage extends StatelessWidget {
   final duration = TextEditingController();
   final dueDate = TextEditingController();
   final notes = TextEditingController();
-  // TimeOfDay parseTime(String time) {
-  //   return TimeOfDay(
-  //       hour: int.parse(time.split(":")[0]),
-  //       minute: int.parse(time.split(":")[1][0] + time.split(":")[1][1]));
-  // }
   void _clearForm() {
     _formKey.currentState!.reset();
+    // Does not clear date and times.
   }
 
   @override
   Widget build(BuildContext context) {
     var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: SingleChildScrollView(
         child: Column(
           children: [
