@@ -93,19 +93,25 @@ class ListPage extends StatelessWidget {
                                     MainAxisAlignment.spaceAround,
                                 children: [
                                   FloatingActionButton(
-                                    backgroundColor: Colors.purple[300],
+                                    backgroundColor: Colors.blueGrey,
                                     heroTag: null,
-                                    child: Icon(Icons.add),
+                                    child: Icon(
+                                      Icons.add,
+                                    ),
                                     onPressed: () {
                                       showDialog(
-                                        context: context,
-                                        builder: (context) =>
-                                            AddTaskDialog(list: list!),
-                                      );
+                                          context: context,
+                                          builder: (context) => Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  AddTaskDialog(list: list!),
+                                                ],
+                                              ));
                                     },
                                   ),
                                   FloatingActionButton(
-                                    backgroundColor: Colors.purple[700],
+                                    backgroundColor: Colors.blueGrey,
                                     heroTag: null,
                                     child: Icon(
                                       Icons.add_box_outlined,
