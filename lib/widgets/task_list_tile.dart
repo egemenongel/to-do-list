@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:to_do_list_with_provider/pages/list_page.dart';
-import 'package:to_do_list_with_provider/widgets/delete_list_dialog.dart';
-import 'package:to_do_list_with_provider/widgets/edit_list_dialog.dart';
+import 'package:to_do_list_with_provider/widgets/dialogs/delete_list_dialog.dart';
+import 'package:to_do_list_with_provider/widgets/dialogs/edit_list_dialog.dart';
 
 class TaskListTile extends StatelessWidget {
   TaskListTile({Key? key, required this.list, required this.index})

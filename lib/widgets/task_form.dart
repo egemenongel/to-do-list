@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_list_with_provider/utils/task_list_manager.dart';
-import 'package:to_do_list_with_provider/widgets/date_field.dart';
-import 'package:to_do_list_with_provider/widgets/time_field.dart';
+import 'package:to_do_list_with_provider/widgets/form_fields/date_field.dart';
+import 'package:to_do_list_with_provider/widgets/form_fields/time_field.dart';
 
 class TaskForm extends StatefulWidget {
   TaskForm({
