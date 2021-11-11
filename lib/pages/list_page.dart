@@ -4,6 +4,7 @@ import 'package:to_do_list_with_provider/services/database_service.dart';
 import 'package:to_do_list_with_provider/pages/list_title_page.dart';
 import 'package:to_do_list_with_provider/services/size_helper.dart';
 import 'package:to_do_list_with_provider/widgets/dialogs/add_task_dialog.dart';
+import 'package:to_do_list_with_provider/widgets/dialogs/delete_task_dialog.dart';
 import 'package:to_do_list_with_provider/widgets/task_tile.dart';
 
 class ListPage extends StatelessWidget {
@@ -54,20 +55,22 @@ class ListPage extends StatelessWidget {
                                 itemBuilder: (BuildContext context, int index) {
                                   var task = snapshot.data.docs[index];
                                   return TaskTile(
-                                    index: index,
-                                    sortedList:
-                                        firestore.orderedTasks(list!.reference),
-                                    taskTitle: task["title"],
-                                    startTime: task["startTime"],
-                                    finishTime: task["finishTime"],
-                                    duration: task["duration"],
-                                    isCompleted: task["isCompleted"],
-                                    checkboxCallback: (checkboxState) =>
-                                        firestore.checkboxToggle(
-                                            task, checkboxState!),
-                                    deleteCallback: () =>
-                                        firestore.removeTask(task),
-                                  );
+                                      index: index,
+                                      sortedList: firestore
+                                          .orderedTasks(list!.reference),
+                                      taskTitle: task["title"],
+                                      startTime: task["startTime"],
+                                      finishTime: task["finishTime"],
+                                      duration: task["duration"],
+                                      isCompleted: task["isCompleted"],
+                                      checkboxCallback: (checkboxState) =>
+                                          firestore.checkboxToggle(
+                                              task, checkboxState!),
+                                      deleteCallback: () => showDialog(
+                                            context: context,
+                                            builder: (context) =>
+                                                DeleteTaskDialog(task: task),
+                                          ));
                                 },
                                 padding: EdgeInsets.symmetric(
                                   horizontal: 20,

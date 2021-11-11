@@ -10,7 +10,7 @@ class EditTaskDialog extends StatelessWidget {
     required this.index,
     required this.sortedList,
   }) : super(key: key);
-  final index;
+  final int index;
   final Query sortedList;
   final DatabaseService firestore = DatabaseService();
   final taskTitle = TextEditingController();
