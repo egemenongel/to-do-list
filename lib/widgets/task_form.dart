@@ -110,7 +110,9 @@ class _TaskFormState extends State<TaskForm> {
                     height: 250, padding: EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: Colors.orange),
+                      border: Border.all(
+                        color: Colors.grey,
+                      ),
                       color: Colors.deepOrange[100],
                     ),
                     //Target Time Section
@@ -331,17 +333,6 @@ class _TaskFormState extends State<TaskForm> {
           ),
         ));
   }
-
-  // Widget _errorBox() {
-  //   if (widget.duration.text.isNotEmpty) {
-  //     if (int.parse(widget.duration.text) is int) {
-  //       return SizedBox();
-  //     } else {
-  //       return Text("Please type an integer");
-  //     }
-  //   }
-  //   return SizedBox();
-  // }
 
   void _disableTimeField() {
     if (widget.duration.text.isNotEmpty) {
