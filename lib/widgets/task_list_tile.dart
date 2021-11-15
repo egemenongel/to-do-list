@@ -9,21 +9,18 @@ import 'package:to_do_list_with_provider/widgets/dialogs/delete_list_dialog.dart
 import 'package:to_do_list_with_provider/widgets/dialogs/edit_list_dialog.dart';
 
 class TaskListTile extends StatelessWidget {
-  TaskListTile({Key? key, required this.list, required this.index})
-      : super(key: key);
+  TaskListTile({
+    Key? key,
+    required this.list,
+    required this.index,
+  }) : super(key: key);
   final int index;
+
   final DocumentSnapshot list;
+
   @override
   Widget build(BuildContext context) {
-    int i = 0;
-    int func(AsyncSnapshot snapshot) {
-      i = 0;
-      for (var task in snapshot.data.docs) {
-        if (task.get("isCompleted") == true) i++;
-      }
-      return i;
-    }
-
+    var _taskListManager = Provider.of<TaskListManager>(context, listen: false);
     return StreamBuilder(
       stream: list.reference.collection("tasks").snapshots(),
       builder: (_, AsyncSnapshot snapshot) {
@@ -31,7 +28,6 @@ class TaskListTile extends StatelessWidget {
           return Center(
             child: CircularProgressIndicator(),
           );
-        func(snapshot);
         return Slidable(
           child: Container(
             decoration: BoxDecoration(
@@ -49,10 +45,18 @@ class TaskListTile extends StatelessWidget {
                 style: TextStyle(
                     color: index % 2 == 1 ? Colors.indigo[800] : Colors.white),
               ),
-              trailing: Text(
-                "$i/${snapshot.data.docs!.length}",
-                style: TextStyle(
-                    color: index % 2 == 1 ? Colors.indigo[800] : Colors.white),
+              trailing: FutureBuilder(
+                future: DatabaseService().getTaskList(list.reference),
+                builder: (BuildContext context, AsyncSnapshot snapshot) {
+                  if (!snapshot.hasData) return SizedBox();
+                  _taskListManager.getDone(snapshot);
+                  return Text(
+                    "${_taskListManager.completedCount}/${snapshot.data.docs.length}",
+                    style: TextStyle(
+                        color:
+                            index % 2 == 1 ? Colors.indigo[800] : Colors.white),
+                  );
+                },
               ),
               onTap: () {
                 Navigator.push(
