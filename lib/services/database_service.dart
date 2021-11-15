@@ -6,6 +6,10 @@ class DatabaseService {
   CollectionReference listsCollection =
       FirebaseFirestore.instance.collection("lists");
 
+  Future<QuerySnapshot> getTaskList(DocumentReference list) async {
+    return await list.collection("tasks").get();
+  }
+
   Future<void> addList(
       String listTitle, TaskListManager taskListManager) async {
     var list = listsCollection.doc();
