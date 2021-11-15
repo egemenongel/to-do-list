@@ -54,7 +54,10 @@ class TaskListsPage extends StatelessWidget {
                                 itemCount: snapshot.data.docs.length,
                                 itemBuilder: (BuildContext context, int index) {
                                   var list = snapshot.data.docs[index];
-                                  return TaskListTile(list: list, index: index);
+                                  return TaskListTile(
+                                    list: list,
+                                    index: index,
+                                  );
                                 },
                                 separatorBuilder:
                                     (BuildContext context, int index) {
