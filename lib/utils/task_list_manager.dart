@@ -8,8 +8,26 @@ class TaskListManager extends ChangeNotifier {
   List<TaskModel> _taskList = [];
   bool duration = true;
   int total = 0;
+  int completedCount = 0;
+  int l = 0;
   UnmodifiableListView<TaskModel> get taskList {
     return UnmodifiableListView(_taskList);
+  }
+
+  int getDone(AsyncSnapshot snapshot) {
+    completedCount = 0;
+    for (var task in snapshot.data.docs) {
+      if (task.get("isCompleted") == true) completedCount++;
+    }
+    return completedCount;
+  }
+
+  Future doc(DocumentReference list) async {
+    QuerySnapshot myList = await list.collection("tasks").get();
+    int length = myList.docs.length;
+    print(length);
+    l = length;
+    notifyListeners();
   }
 
   int get listLength {
