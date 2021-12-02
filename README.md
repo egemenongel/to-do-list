@@ -3,7 +3,7 @@
 ## Description
 
 A simple To Do List built with Flutter. Used Provider Package for State Management.
-
+<!--
 ## TO DO
 
 * [X] After adding a task, automatically focus to TextFormField.
@@ -35,7 +35,7 @@ A simple To Do List built with Flutter. Used Provider Package for State Manageme
 * [X] BUG! Sometimes delete list method is not working.
 * [ ] Add details to the project.
 * [ ] Add license.
-
+-->
 ## Screenshots
 
 ### Add a New List
